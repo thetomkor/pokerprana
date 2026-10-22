@@ -803,7 +803,7 @@ button:disabled, button.disabled { cursor: default; }
     filter: drop-shadow(0 0 8px rgba(198,154,82,.85)) drop-shadow(0 0 18px rgba(198,154,82,.55)) drop-shadow(0 0 30px rgba(198,154,82,.3));
   }
 }
-/* Нажатие: вдавливание + вспышка в цвете самой иконки */
+/* Нажатие: вдавливание + вспышка в цвете самой иконки (мышь) */
 .bottom-icon:active {
   transform: scale(0.86);
   opacity: 1;
@@ -813,6 +813,18 @@ button:disabled, button.disabled { cursor: default; }
   filter: drop-shadow(0 0 9px rgba(184,146,74,.95)) drop-shadow(0 0 20px rgba(184,146,74,.7)) drop-shadow(0 0 34px rgba(184,146,74,.42));
 }
 .bottom-icon.bottom-icon--heart:active {
+  filter: drop-shadow(0 0 9px rgba(198,154,82,.95)) drop-shadow(0 0 20px rgba(198,154,82,.7)) drop-shadow(0 0 34px rgba(198,154,82,.42));
+}
+/* Нажатие на мобильном (касание): то же самое вдавливание и подсветка */
+.bottom-icon.is-pressed {
+  transform: scale(0.86);
+  opacity: 1;
+  transition: opacity .08s ease, filter .08s ease, transform .08s ease;
+}
+.bottom-icon.is-pressed:not(.bottom-icon--heart) {
+  filter: drop-shadow(0 0 9px rgba(184,146,74,.95)) drop-shadow(0 0 20px rgba(184,146,74,.7)) drop-shadow(0 0 34px rgba(184,146,74,.42));
+}
+.bottom-icon.bottom-icon--heart.is-pressed {
   filter: drop-shadow(0 0 9px rgba(198,154,82,.95)) drop-shadow(0 0 20px rgba(198,154,82,.7)) drop-shadow(0 0 34px rgba(198,154,82,.42));
 }
 .bottom-icon svg { width: 26px; height: 26px; display: block; -webkit-user-drag: none; user-select: none; pointer-events: none; }
@@ -1453,6 +1465,41 @@ button:disabled, button.disabled { cursor: default; }
   landing.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('load', onScroll);
   onScroll();
+})();
+
+/* ============================================================
+   МОБИЛЬНОЕ НАЖАТИЕ НА ИКОНКИ НИЖНЕЙ ПАНЕЛИ
+   При касании добавляем класс is-pressed (вдавливание + подсветка
+   в цвете иконки), при отпускании/съезде пальца — снимаем.
+   На десктопе всё работает как раньше через :hover и :active.
+   ============================================================ */
+(function() {
+  'use strict';
+  var icons = document.querySelectorAll('.bottom-icon');
+  if (!icons.length) return;
+
+  function press(el) { if (el) el.classList.add('is-pressed'); }
+  function release(el) { if (el) el.classList.remove('is-pressed'); }
+  function releaseAll() { for (var i = 0; i < icons.length; i++) icons[i].classList.remove('is-pressed'); }
+
+  for (var i = 0; i < icons.length; i++) {
+    (function(el) {
+      el.addEventListener('touchstart', function() { press(el); }, { passive: true });
+      el.addEventListener('touchend', function() { release(el); }, { passive: true });
+      el.addEventListener('touchcancel', function() { release(el); }, { passive: true });
+      /* Если палец ушёл с иконки — снять эффект */
+      el.addEventListener('touchmove', function(e) {
+        if (!e.touches || !e.touches.length) { release(el); return; }
+        var t = e.touches[0];
+        var r = el.getBoundingClientRect();
+        var inside = t.clientX >= r.left && t.clientX <= r.right && t.clientY >= r.top && t.clientY <= r.bottom;
+        if (!inside) release(el);
+      }, { passive: true });
+    })(icons[i]);
+  }
+  /* Страховка: если палец ушёл за пределы панели — снять со всех */
+  document.addEventListener('touchend', function() { setTimeout(releaseAll, 120); }, { passive: true });
+  document.addEventListener('touchcancel', releaseAll, { passive: true });
 })();
 </script>
 </body>
