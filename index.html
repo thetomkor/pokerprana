@@ -768,11 +768,13 @@ button:disabled, button.disabled { cursor: default; }
    Подсветка при наведении и нажатии — в цвете самих иконок,
    радиус свечения компактный (без дальнего прозрачного слоя).
 
-   ВАЖНО (глухая подложка):
-   Панель накрывает всю свою область непроницаемой подложкой.
-   Сама подложка перехватывает все тапы, клики и наведения и
-   НЕ пропускает их к элементам под панелью. Кнопки поверх
-   подложки остаются кликабельными и работают как раньше.
+   ВАЖНО (глухая подложка + выезд):
+   Панель накрывает всю свою область непроницаемой подложкой,
+   которая выезжает снизу вверх при прокрутке вниз и заезжает
+   обратно вниз при возврате в верх. Сама подложка перехватывает
+   все тапы, клики и наведения и НЕ пропускает их к элементам
+   под панелью. Кнопки на панели НЕ выезжают вместе с подложкой,
+   а просто плавно появляются/исчезают на уже выехавшей панели.
    ============================================================ */
 #bottom-bar {
   position: fixed; left: 0;
@@ -784,20 +786,33 @@ button:disabled, button.disabled { cursor: default; }
   padding: 0 clamp(18px, 4vw, 40px);
   padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
   padding-top: 14px;
-  opacity: 0;
-  pointer-events: none;
-  transition: none; /* появление/исчезновение мгновенное */
-  will-change: opacity;
-  /* Непроницаемая подложка на всю область панели — тапы, клики
-     и наведения не проходят вниз к контенту под панелью. */
+  /* Подложка глухая и непроницаемая, выезжает снизу. */
   background: #000;
+  pointer-events: none;
+  transform: translateY(100%); /* скрыта: заехала вниз */
+  transition: transform .22s ease-out;
+  will-change: transform;
   touch-action: none;
 }
 @media (max-width: 640px) {
   #bottom-bar { right: 0; padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 10px); }
 }
-#bottom-bar.visible { opacity: 1; pointer-events: auto; }
-.bottom-bar-center { display: flex; align-items: center; justify-content: center; gap: 22px; pointer-events: none; }
+#bottom-bar.visible {
+  transform: translateY(0); /* выехала наверх */
+  pointer-events: auto;
+}
+.bottom-bar-center {
+  display: flex; align-items: center; justify-content: center; gap: 22px;
+  /* Кнопки не выезжают с подложкой: контейнер не смещается,
+     кнопки плавно появляются/исчезают по прозрачности. */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .18s ease-out .18s; /* появляются после выезда панели */
+}
+#bottom-bar.visible .bottom-bar-center {
+  opacity: 1;
+  transition: opacity .18s ease-out .14s;
+}
 .bottom-bar-center > * { pointer-events: auto; }
 .bottom-icon {
   display: inline-flex; align-items: center; justify-content: center;
@@ -855,16 +870,16 @@ button:disabled, button.disabled { cursor: default; }
 
 /* ============================================================
    ПОЛОСЫ ЗАТУХАНИЯ СВЕРХУ И СНИЗУ
-   Верхняя полоса скрыта на самом верху и мгновенно появляется
+   Верхняя полоса скрыта на самом верху и мягко появляется
    при сдвиге страницы вниз на 1 пиксель и более.
-   Нижняя полоса появляется/исчезает мгновенно при сдвиге 1px.
+   Нижняя полоса появляется/исчезает мягко, но быстро (0.22s).
    ============================================================ */
 .lnd-fade-top {
   position: fixed; left: 0; right: 10px; pointer-events: none; z-index: 850;
   top: 0; height: 10px; display: flex; flex-direction: column;
   background: transparent;
   opacity: 0;
-  transition: none; /* мгновенно */
+  transition: opacity .2s ease-out; /* мягко, но быстро */
   will-change: opacity;
 }
 .lnd-fade-top.visible { opacity: 1; }
@@ -878,7 +893,7 @@ button:disabled, button.disabled { cursor: default; }
   position: fixed; left: 0; right: 10px; pointer-events: none; z-index: 850;
   bottom: 0; height: 60px; display: flex; flex-direction: column-reverse;
   background: transparent; opacity: 0;
-  transition: none; /* мгновенно */
+  transition: opacity .22s ease-out; /* мягко, но быстро */
   will-change: opacity;
 }
 @media (max-width: 640px) {
