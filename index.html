@@ -844,6 +844,20 @@ button:disabled, button.disabled { cursor: default; }
   -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,.95) 0%, rgba(0,0,0,.9) 10%, rgba(0,0,0,.7) 35%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.2) 82%, rgba(0,0,0,0) 100%);
   mask-image: linear-gradient(to top, rgba(0,0,0,.95) 0%, rgba(0,0,0,.9) 10%, rgba(0,0,0,.7) 35%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.2) 82%, rgba(0,0,0,0) 100%);
 }
+
+/* ============================================================
+   ЗОЛОТАЯ ЛИНИЯ В САМОМ ВЕРХУ (впритык к краю экрана)
+   Точно такая же, как линия над финальной секцией.
+   ============================================================ */
+.lnd-top-rule {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  pointer-events: none;
+  z-index: 860;
+  background: linear-gradient(to right, transparent 0%, rgba(255,203,43,.12) 18%, rgba(255,203,43,.12) 82%, transparent 100%);
+  box-shadow: 0 0 8px rgba(255,203,43,.25);
+}
 </style>
 </head>
 <body>
@@ -1079,6 +1093,9 @@ button:disabled, button.disabled { cursor: default; }
 <!-- Полосы затухания -->
 <div class="lnd-fade-top" id="lnd-fade-top" aria-hidden="true"></div>
 <div class="lnd-fade-bottom" id="lnd-fade-bottom" aria-hidden="true"></div>
+
+<!-- Золотая линия в самом верху, впритык к краю экрана -->
+<div class="lnd-top-rule" aria-hidden="true"></div>
 
 <!-- Нижняя панель иконок -->
 <div id="bottom-bar" aria-hidden="true">
