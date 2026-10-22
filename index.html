@@ -506,16 +506,17 @@ button:disabled, button.disabled { cursor: default; }
 /* Мобильный блок с текстом и кнопкой под картами */
 .lnd-mobile-cta { display: none; }
 @media (max-width: 859px) {
-  .lnd-hero-grid { display: flex; flex-direction: column; gap: clamp(18px, 4vw, 26px); }
-  .lnd-hero-visual { order: 1; width: 100%; margin-top: 0; }
-  .lnd-hero-copy { order: 2; width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .lnd-h1 { text-align: center; }
-  .lnd-sub { display: none; }
+  /* На мобильном: заголовок и текст сверху, под ними карты, под картами — текст и кнопка */
+  .lnd-hero-grid { display: flex; flex-direction: column; gap: clamp(16px, 3.6vw, 22px); }
+  .lnd-hero-copy { order: 1; width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .lnd-h1 { text-align: center; margin-bottom: clamp(10px, 2.4vw, 14px); }
+  .lnd-sub { display: block; text-align: center; margin-left: auto; margin-right: auto; margin-bottom: 0; max-width: 46ch; }
   .lnd-hero-actions { display: none; }
+  .lnd-hero-visual { order: 2; width: 100%; margin-top: 0; }
 
   .lnd-mobile-cta {
     display: flex; flex-direction: column; align-items: center;
-    gap: 14px; margin-top: 4px; width: 100%; order: 3;
+    gap: 14px; margin-top: 2px; width: 100%; order: 3;
   }
   .lnd-mobile-cta .lnd-sub-mobile {
     color: var(--muted-soft-2);
@@ -857,7 +858,7 @@ button:disabled, button.disabled { cursor: default; }
       <div class="lnd-brand-line" aria-hidden="true"></div>
     </div>
 
-    <!-- Сетка: слева заголовок и кнопка (на десктопе), справа карты; на мобильном карты сверху -->
+    <!-- Сетка hero -->
     <div class="lnd-inner lnd-hero-grid">
       <div class="lnd-hero-copy">
         <h1 class="lnd-h1" id="lnd-hero-title">Тренируй <span class="gold">логику</span> и <span class="gold">интуицию</span></h1>
