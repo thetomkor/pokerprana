@@ -394,7 +394,7 @@ button:disabled, button.disabled { cursor: default; }
 .lnd-btn:active { transform: scale(0.97); filter: brightness(1.1); box-shadow: 0 1px 0 #8a6508, inset 0 1px 0 rgba(255,255,255,.35); }
 
 /* ============================================================
-   HERO-СЕКЦИЯ: НАЗВАНИЕ СВЕРХУ, ПОД НИМ ЛИНИЯ И СЕТКА
+   HERO-СЕКЦИЯ: НАЗВАНИЕ СВЕРХУ, ПОД НИМ СЕТКА
    ============================================================ */
 #landing .lnd-hero {
   position: relative; z-index: 2;
@@ -433,20 +433,11 @@ button:disabled, button.disabled { cursor: default; }
   background: linear-gradient(180deg, #fff6d0 0%, var(--gold) 45%, #b8860b 100%);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
-  filter: drop-shadow(0 0 10px rgba(255,203,43,.35)) drop-shadow(0 0 26px rgba(255,203,43,.18));
   padding-left: 9px; /* компенсация letter-spacing справа, чтобы центр был ровный */
   white-space: nowrap;
 }
-.lnd-brand-line {
-  width: min(300px, 70%);
-  height: 1px;
-  margin-top: clamp(12px, 1.8vw, 16px);
-  background: linear-gradient(to right, transparent 0%, rgba(255,203,43,.55) 50%, transparent 100%);
-  box-shadow: 0 0 8px rgba(255,203,43,.25);
-}
 @media (max-width: 420px) {
   .lnd-brand-name { letter-spacing: 5px; font-size: clamp(18px, 5.2vmin, 22px); padding-left: 5px; }
-  .lnd-brand-line { width: 60%; }
 }
 
 .lnd-hero-grid {
@@ -766,9 +757,13 @@ button:disabled, button.disabled { cursor: default; }
 
 /* ============================================================
    НИЖНЯЯ ПАНЕЛЬ ИКОНОК (карты, сердце, Telegram)
+   На десктопе ограничена областью контента, чтобы не
+   перекрывать вертикальную полосу прокрутки справа.
+   Подсветка при наведении и нажатии — в цвете самих иконок.
    ============================================================ */
 #bottom-bar {
-  position: fixed; left: 0; right: 0;
+  position: fixed; left: 0;
+  right: 10px; /* на десктопе оставляем место под полосу прокрутки */
   bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
   z-index: 900;
   display: flex; align-items: center; justify-content: center;
@@ -778,7 +773,7 @@ button:disabled, button.disabled { cursor: default; }
   will-change: opacity;
 }
 @media (max-width: 640px) {
-  #bottom-bar { bottom: calc(env(safe-area-inset-bottom, 0px) + 10px); }
+  #bottom-bar { right: 0; bottom: calc(env(safe-area-inset-bottom, 0px) + 10px); }
 }
 #bottom-bar.visible { opacity: 1; pointer-events: auto; }
 .bottom-bar-center { display: flex; align-items: center; justify-content: center; gap: 22px; }
@@ -798,17 +793,31 @@ button:disabled, button.disabled { cursor: default; }
   color: var(--ph-heart-bright);
   filter: drop-shadow(0 0 5px rgba(198,154,82,.55)) drop-shadow(0 0 12px rgba(198,154,82,.38)) drop-shadow(0 0 22px rgba(198,154,82,.20));
 }
+/* Подсветка при наведении (десктоп): цвет свечения = цвет самих иконок */
+@media (hover: hover) {
+  .bottom-icon:hover {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(184,146,74,.75)) drop-shadow(0 0 14px rgba(184,146,74,.5)) drop-shadow(0 0 24px rgba(184,146,74,.28));
+  }
+  .bottom-icon.bottom-icon--heart:hover {
+    filter: drop-shadow(0 0 8px rgba(198,154,82,.85)) drop-shadow(0 0 18px rgba(198,154,82,.55)) drop-shadow(0 0 30px rgba(198,154,82,.3));
+  }
+}
+/* Нажатие: вдавливание + вспышка в цвете самой иконки */
+.bottom-icon:active {
+  transform: scale(0.86);
+  opacity: 1;
+  transition: opacity .08s ease, filter .08s ease, transform .08s ease;
+}
+.bottom-icon:active:not(.bottom-icon--heart) {
+  filter: drop-shadow(0 0 9px rgba(184,146,74,.95)) drop-shadow(0 0 20px rgba(184,146,74,.7)) drop-shadow(0 0 34px rgba(184,146,74,.42));
+}
 .bottom-icon.bottom-icon--heart:active {
-  transform: scale(0.9); opacity: 1;
-  filter: drop-shadow(0 0 9px rgba(184,146,74,.95)) drop-shadow(0 0 22px rgba(184,146,74,.6));
+  filter: drop-shadow(0 0 9px rgba(198,154,82,.95)) drop-shadow(0 0 20px rgba(198,154,82,.7)) drop-shadow(0 0 34px rgba(198,154,82,.42));
 }
 .bottom-icon svg { width: 26px; height: 26px; display: block; -webkit-user-drag: none; user-select: none; pointer-events: none; }
 .bottom-icon.bottom-icon-tg { width: 26px; height: 26px; }
 .bottom-icon.bottom-icon-tg svg { width: 38px; height: 38px; display: block; margin: -6px; transform: translateX(-6px); }
-.bottom-icon:active {
-  transform: scale(0.9); opacity: 1;
-  filter: drop-shadow(0 0 9px rgba(184,146,74,.95)) drop-shadow(0 0 22px rgba(184,146,74,.6));
-}
 
 /* ============================================================
    ПОЛОСЫ ЗАТУХАНИЯ СВЕРХУ И СНИЗУ
@@ -816,7 +825,7 @@ button:disabled, button.disabled { cursor: default; }
    при сдвиге страницы вниз на 2 пикселя и более.
    ============================================================ */
 .lnd-fade-top {
-  position: fixed; left: 0; right: 0; pointer-events: none; z-index: 850;
+  position: fixed; left: 0; right: 10px; pointer-events: none; z-index: 850;
   top: 0; height: 10px; display: flex; flex-direction: column;
   background: transparent;
   opacity: 0;
@@ -831,11 +840,14 @@ button:disabled, button.disabled { cursor: default; }
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,.9) 20%, rgba(0,0,0,.7) 40%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.2) 80%, rgba(0,0,0,0) 100%);
 }
 .lnd-fade-bottom {
-  position: fixed; left: 0; right: 0; pointer-events: none; z-index: 850;
+  position: fixed; left: 0; right: 10px; pointer-events: none; z-index: 850;
   bottom: 0; height: 60px; display: flex; flex-direction: column-reverse;
   background: transparent; opacity: 0;
   transition: opacity .75s cubic-bezier(.22,.61,.36,1);
   will-change: opacity;
+}
+@media (max-width: 640px) {
+  .lnd-fade-top, .lnd-fade-bottom { right: 0; }
 }
 .lnd-fade-bottom.visible { opacity: 1; }
 .lnd-fade-bottom::before { content: ""; display: block; height: 50px; background: #000; }
@@ -851,12 +863,15 @@ button:disabled, button.disabled { cursor: default; }
    ============================================================ */
 .lnd-top-rule {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0; left: 0; right: 10px;
   height: 1px;
   pointer-events: none;
   z-index: 860;
   background: linear-gradient(to right, transparent 0%, rgba(255,203,43,.12) 18%, rgba(255,203,43,.12) 82%, transparent 100%);
   box-shadow: 0 0 8px rgba(255,203,43,.25);
+}
+@media (max-width: 640px) {
+  .lnd-top-rule { right: 0; }
 }
 </style>
 </head>
@@ -883,7 +898,6 @@ button:disabled, button.disabled { cursor: default; }
     <!-- Название проекта: отдельный блок сверху, во всю ширину, по центру -->
     <div class="lnd-brand-top">
       <div class="lnd-brand-name">Poker Prana</div>
-      <div class="lnd-brand-line" aria-hidden="true"></div>
     </div>
 
     <!-- Сетка hero -->
