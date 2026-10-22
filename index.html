@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<!-- ============================================================
-     МЕТА-ИНФОРМАЦИЯ И SEO
-     Русская версия лендинга Poker Prana. Язык один, поэтому
-     hreflang и alternate-локаль не используются. Canonical
-     указывает на этот же URL.
-     ============================================================ -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="referrer" content="no-referrer" />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate, nocache" />
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+<meta name="google" content="notranslate" />
+<meta name="bingbot" content="noindex, nofollow, noarchive" />
+<meta name="yandex" content="noindex, nofollow, noarchive" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="format-detection" content="telephone=no,date=no,address=no,email=no" />
@@ -19,26 +17,8 @@
 <meta name="msapplication-navbutton-color" content="#000000" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="copyright" content="All rights reserved" />
-<title>Poker Prana — тренировка логики и интуиции за покерным столом</title>
-<meta name="description" content="Симулятор турнирного стола с ботами PRO и VIP, имитирующими поведение человека. Тренажёр для развития логики и интуиции за покерным столом. Бесплатно, без установки, без регистрации." />
-<link rel="canonical" href="https://thepokerway.thetomtot.workers.dev/" />
-<meta property="og:site_name" content="Poker Prana" />
-<meta property="og:type" content="website" />
-<meta property="og:locale" content="ru_RU" />
-<meta property="og:title" content="Poker Prana — тренировка логики и интуиции за покерным столом" />
-<meta property="og:description" content="Симулятор турнирного стола с ботами PRO и VIP. Бесплатно, без установки, без регистрации." />
-<meta property="og:url" content="https://thepokerway.thetomtot.workers.dev/" />
-<meta property="og:image" content="https://thepokerway.thetomtot.workers.dev/cover.jpg" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Poker Prana — тренировка логики и интуиции" />
-<meta name="twitter:description" content="Симулятор турнирного стола с ботами PRO и VIP." />
-<meta name="twitter:image" content="https://thepokerway.thetomtot.workers.dev/cover.jpg" />
+<title>Poker Trainer</title>
 <style>
-/* ============================================================
-   БАЗОВЫЙ СБРОС И ПЕРЕМЕННЫЕ ДИЗАЙН-СИСТЕМЫ
-   Единые цвета, отступы, безопасные зоны под вырез экрана
-   и системную панель мобильного устройства.
-   ============================================================ */
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 :root {
@@ -72,27 +52,66 @@ html, body {
   overflow: hidden;
   overscroll-behavior: none;
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   color-scheme: dark;
 }
 
-/* Скрываем полосы прокрутки на мобильных, но оставляем их на десктопе */
-html, body, #landing, #info-modal { scrollbar-width: none; -ms-overflow-style: none; }
-html::-webkit-scrollbar, body::-webkit-scrollbar,
-#landing::-webkit-scrollbar, #info-modal::-webkit-scrollbar,
-#landing *::-webkit-scrollbar, #info-modal *::-webkit-scrollbar {
-  width: 0 !important; height: 0 !important; display: none !important; background: transparent !important;
+html, body, #landing, #info-modal {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#landing::-webkit-scrollbar,
+#info-modal::-webkit-scrollbar,
+#landing *::-webkit-scrollbar,
+#info-modal *::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+  background: transparent !important;
 }
 
 @media (min-width: 641px) {
-  #landing { scrollbar-width: auto; -ms-overflow-style: auto; }
-  #landing::-webkit-scrollbar { width: 10px !important; height: 10px !important; display: block !important; background: #0a0a0a !important; }
-  #landing::-webkit-scrollbar-track { background: #0a0a0a !important; }
-  #landing::-webkit-scrollbar-thumb { background: #2a2520 !important; border-radius: 5px; border: 2px solid #0a0a0a; }
-  #landing::-webkit-scrollbar-thumb:hover { background: #3a3520 !important; }
-  #info-modal::-webkit-scrollbar, #landing *::-webkit-scrollbar { width: 0 !important; height: 0 !important; display: none !important; background: transparent !important; }
-  #info-modal { scrollbar-width: none; -ms-overflow-style: none; }
-  #landing * { scrollbar-width: none; -ms-overflow-style: none; }
+  #landing {
+    scrollbar-width: auto;
+    -ms-overflow-style: auto;
+  }
+  #landing::-webkit-scrollbar {
+    width: 10px !important;
+    height: 10px !important;
+    display: block !important;
+    background: #0a0a0a !important;
+  }
+  #landing::-webkit-scrollbar-track {
+    background: #0a0a0a !important;
+  }
+  #landing::-webkit-scrollbar-thumb {
+    background: #2a2520 !important;
+    border-radius: 5px;
+    border: 2px solid #0a0a0a;
+  }
+  #landing::-webkit-scrollbar-thumb:hover {
+    background: #3a3520 !important;
+  }
+  #info-modal::-webkit-scrollbar,
+  #landing *::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+    background: transparent !important;
+  }
+  #info-modal {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  #landing * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
 }
 
 html {
@@ -115,369 +134,1257 @@ body {
 }
 
 button { cursor: pointer; }
-button:disabled, button.disabled { cursor: default; }
-
-/* ============================================================
-   ЗАГЛУШКА КАРТИНОК (SVG-СЕРДЦЕ)
-   Используется, когда картинка не загрузилась или её нет.
-   НЕ ПУТАТЬ с кнопкой-сердцем — это разные вещи.
-   ============================================================ */
-.ph-fallback {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--ph-heart); background: var(--ph-bg);
-  pointer-events: none; user-select: none; opacity: .75;
+button:disabled { cursor: default; }
+button:disabled,
+button.disabled {
+  cursor: default;
 }
+
+.ph-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ph-heart);
+  background: var(--ph-bg);
+  pointer-events: none;
+  user-select: none;
+  opacity: .75;
+}
+
 .ph-fallback .ph-heart-svg {
-  width: 26px; height: 26px; display: block;
+  width: 26px;
+  height: 26px;
+  display: block;
   filter: drop-shadow(0 0 6px rgba(184,146,74,.75)) drop-shadow(0 0 14px rgba(184,146,74,.45));
 }
-.ph-fallback.lg .ph-heart-svg { width: 34px; height: 34px; }
-.ph-fallback.sm .ph-heart-svg { width: 20px; height: 20px; }
 
-/* ============================================================
-   ИНФО-МОДАЛКА (тапзоны «Логика», «Настройки» и т.д.)
-   ============================================================ */
-#info-modal {
-  position: fixed; inset: 0; z-index: 950;
-  display: none; align-items: center; justify-content: center;
-  padding: 20px; background: rgba(0,0,0,.82);
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+.ph-fallback.lg .ph-heart-svg {
+  width: 34px;
+  height: 34px;
+  filter: drop-shadow(0 0 8px rgba(184,146,74,.75)) drop-shadow(0 0 18px rgba(184,146,74,.45));
 }
-#info-modal.open { display: flex; animation: tgFadeIn .2s ease; }
+.ph-fallback.sm .ph-heart-svg {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 0 5px rgba(184,146,74,.75)) drop-shadow(0 0 12px rgba(184,146,74,.45));
+}
+
+#tg-feed {
+  position: relative;
+  z-index: 1;
+  background: #000;
+  padding: 16px 0 14px;
+  flex-shrink: 0;
+}
+
+#tg-feed::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: clamp(18px, 4vw, 40px);
+  right: clamp(18px, 4vw, 40px);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,203,43,.12) 18%,
+    rgba(255,203,43,.12) 82%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.tg-feed-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 1120px;
+  margin: 0 auto 12px;
+  padding: 0 clamp(18px, 4vw, 40px);
+}
+
+.tg-feed-channel {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.tg-feed-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--ph-bg);
+  border: 1px solid #3a3018;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ph-heart);
+  position: relative;
+  opacity: .75;
+}
+
+.tg-feed-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tg-feed-avatar .ph-heart-svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  filter: drop-shadow(0 0 5px rgba(184,146,74,.8)) drop-shadow(0 0 12px rgba(184,146,74,.5));
+}
+
+.tg-feed-avatar .fb {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ph-heart);
+}
+
+.tg-feed-name {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.tg-feed-name .n {
+  color: #fff;
+  font-size: clamp(14px, 2.1vmin, 16px);
+  font-weight: 900;
+  letter-spacing: .2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.15;
+}
+
+.tg-feed-name .u {
+  color: var(--muted);
+  font-size: clamp(11px, 1.6vmin, 12px);
+  font-weight: 600;
+  letter-spacing: .3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.tg-feed-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.tg-feed-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+  font-size: clamp(11px, 1.6vmin, 13px);
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.tg-feed-title .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(255,203,43,.7);
+  animation: tgPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes tgPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .5; transform: scale(.85); }
+}
+
+.lang-select { position: relative; }
+
+.lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #3a3018;
+  border-radius: 8px;
+  background: rgba(255,203,43,.04);
+  color: var(--text);
+  font-family: inherit;
+  font-size: clamp(11px, 1.6vmin, 13px);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease, transform .1s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lang-trigger:active { transform: scale(.96); }
+@media (hover: hover) { .lang-trigger:hover { border-color: #5a4a1a; background: rgba(255,203,43,.09); } }
+
+.lang-trigger .arrow {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--gold);
+  transition: transform .2s ease;
+  margin-left: 2px;
+}
+
+.lang-select.open .lang-trigger .arrow { transform: rotate(180deg); }
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 78px;
+  background: linear-gradient(180deg, #141414 0%, #0a0a0a 100%);
+  border: 1px solid #3a3018;
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.7), 0 0 0 1px rgba(255,203,43,.06);
+  padding: 4px;
+  display: none;
+  z-index: 5;
+  animation: langFadeIn .15s ease;
+}
+
+.lang-select.open .lang-menu { display: block; }
+
+@keyframes langFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.lang-option {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  color: var(--muted-soft-2);
+  font-family: inherit;
+  font-size: clamp(11px, 1.6vmin, 13px);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-align: left;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .lang-option:hover { background: rgba(255,203,43,.08); color: var(--text); }
+}
+
+.lang-option.active {
+  color: var(--gold);
+  background: rgba(255,203,43,.06);
+}
+
+.lang-option.inactive { opacity: .55; }
+
+.tg-feed-track-wrap {
+  overflow: hidden;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 clamp(18px, 4vw, 40px);
+  position: relative;
+  touch-action: pan-x;
+  overscroll-behavior: contain;
+  cursor: grab;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+}
+
+.tg-feed-track-wrap.dragging { cursor: grabbing; }
+
+.tg-feed-track {
+  display: flex;
+  gap: 14px;
+  padding-top: 2px;
+  transition: transform .55s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+  align-items: stretch;
+}
+
+.tg-feed-track.no-transition { transition: none; }
+
+.tg-card {
+  flex: 0 0 calc((100% - 28px) / 3);
+  min-width: 0;
+  height: 320px;
+  background: linear-gradient(180deg, #131313 0%, #0a0a0a 100%);
+  border: 1px solid #2a2520;
+  border-radius: 12px;
+  padding: 14px 14px 16px;
+  cursor: pointer;
+  transition: border-color .18s ease, box-shadow .18s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  color: inherit;
+  font-family: inherit;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.tg-card.active {
+  border-color: #5a4a1a;
+  box-shadow: 0 0 0 1px rgba(255,203,43,.18), 0 0 24px rgba(255,203,43,.08);
+}
+
+@media (hover: hover) {
+  .tg-card:hover {
+    border-color: #5a4a1a;
+    box-shadow: 0 0 0 1px rgba(255,203,43,.12), 0 12px 28px rgba(0,0,0,.5);
+  }
+  .tg-card:hover .tg-card-tap-icon { opacity: .55; }
+}
+
+.tg-card-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1a1a1a;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.tg-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tg-card-thumb .ph,
+.tg-card-thumb .ph-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ph-heart);
+  background: var(--ph-bg);
+  opacity: .75;
+}
+
+.tg-card-text-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  padding-right: 40px;
+  -webkit-mask-image: linear-gradient(to bottom,
+    #000 0,
+    #000 calc(100% - 3.4em),
+    rgba(0,0,0,.55) calc(100% - 1.9em),
+    rgba(0,0,0,.15) calc(100% - 0.7em),
+    transparent 100%);
+  mask-image: linear-gradient(to bottom,
+    #000 0,
+    #000 calc(100% - 3.4em),
+    rgba(0,0,0,.55) calc(100% - 1.9em),
+    rgba(0,0,0,.15) calc(100% - 0.7em),
+    transparent 100%);
+}
+
+.tg-card-text {
+  color: var(--muted-soft-2);
+  font-size: clamp(12px, 1.9vmin, 14px);
+  line-height: 1.55;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.tg-card-text .tg-card-lead {
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.tg-card-tap-icon {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 32px;
+  height: 32px;
+  opacity: .25;
+  color: var(--gold);
+  transition: opacity .18s ease;
+  pointer-events: none;
+  display: block;
+  z-index: 2;
+}
+
+.tg-feed-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.tg-feed-dots .d {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #333;
+  transition: background .2s ease, transform .2s ease;
+  cursor: pointer;
+}
+
+.tg-feed-dots .d.active {
+  background: var(--gold);
+  transform: scale(1.3);
+  box-shadow: 0 0 8px rgba(255,203,43,.6);
+}
+
+@media (max-width: 980px) {
+  .tg-card { flex: 0 0 calc((100% - 28px) / 3); }
+}
+@media (max-width: 640px) {
+  .tg-card { flex: 0 0 calc((100% - 14px) / 2); }
+}
+@media (max-width: 420px) {
+  .tg-card { flex: 0 0 100%; height: 320px; }
+}
+
+@media (max-width: 520px) {
+  .tg-feed-right { gap: 8px; }
+  .tg-feed-title { letter-spacing: 1.2px; }
+  .lang-trigger { height: 28px; padding: 0 8px; letter-spacing: 1px; }
+}
+
+#info-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0,0,0,.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+#info-modal.open {
+  display: flex;
+  animation: tgFadeIn .2s ease;
+}
+
 @keyframes tgFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .info-modal-box {
-  position: relative; width: 100%; max-width: 620px; max-height: 86vh;
-  overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  max-height: 86vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   background: linear-gradient(180deg, #141414 0%, #0a0a0a 100%);
-  border: 1px solid #3a3018; border-radius: 18px;
+  border: 1px solid #3a3018;
+  border-radius: 18px;
   padding: clamp(20px, 4vw, 32px);
   box-shadow: 0 30px 80px rgba(0,0,0,.8), 0 0 0 1px rgba(255,203,43,.08);
   animation: tgSlideUp .28s cubic-bezier(.22,.61,.36,1);
 }
+
 @keyframes tgSlideUp {
   from { transform: translateY(24px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
 .info-modal-title {
-  color: #fff; font-size: clamp(18px, 3.4vmin, 24px);
-  font-weight: 900; line-height: 1.2; margin-bottom: 16px;
+  color: #fff;
+  font-size: clamp(18px, 3.4vmin, 24px);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 16px;
 }
-.info-modal-title.title-normal-case { text-transform: none; text-align: left; }
+
+.info-modal-title.title-normal-case {
+  text-transform: none;
+  text-align: left;
+}
 
 .info-modal-body {
   color: var(--muted-soft-2);
-  font-size: clamp(13px, 2vmin, 15px); line-height: 1.65;
-  word-wrap: break-word; overflow-wrap: break-word;
-  user-select: text; -webkit-user-select: text;
+  font-size: clamp(13px, 2vmin, 15px);
+  line-height: 1.65;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  user-select: text;
+  -webkit-user-select: text;
 }
-.info-modal-body p { margin: 0 0 14px; }
-.info-modal-body p:last-child { margin-bottom: 0; }
+
+.info-modal-body p {
+  margin: 0 0 14px;
+}
+
+.info-modal-body p:last-child {
+  margin-bottom: 0;
+}
 
 .info-modal-box.info-modal-box--support {
   max-width: 380px;
-  padding: clamp(20px, 4vmin, 28px) clamp(18px, 3.6vmin, 26px) clamp(20px, 4vmin, 28px);
+  padding: clamp(20px, 4vmin, 28px) clamp(18px, 3.6vmin, 26px);
 }
+
 .info-modal-box--support .info-modal-title {
   color: var(--gold);
   font-size: clamp(13px, 1.8vmin, 15px);
-  text-transform: uppercase; letter-spacing: 1px; text-align: center;
-  font-weight: 900; margin-bottom: clamp(16px, 2.4vmin, 18px);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: clamp(16px, 2.4vmin, 18px);
 }
 
-/* ============================================================
-   КАРТОЧКИ ПОДДЕРЖКИ (GGPoker + USDT)
-   Вертикальный стек с перелистыванием свайпом.
-   ============================================================ */
-.support-card-stack {
-  position: relative; width: 100%;
-  aspect-ratio: 1.586 / 1; padding-bottom: 8px;
-  box-sizing: content-box;
-  margin-bottom: clamp(16px, 2.4vmin, 18px);
-  touch-action: none; user-select: none; -webkit-user-select: none;
+.support-belcard-stack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.586 / 1;
+  margin-bottom: calc(clamp(14px, 2.4vmin, 20px) + 8px + 8px + 6px);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
   overflow: visible;
 }
-.support-card {
-  position: absolute; left: 0; right: 0; top: 0;
-  width: 100%; aspect-ratio: 1.586 / 1;
-  border-radius: clamp(10px, 1.8vmin, 14px); overflow: hidden;
+
+.support-belcard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  aspect-ratio: 1.586 / 1;
+  border-radius: clamp(10px, 1.8vmin, 14px);
+  overflow: hidden;
   padding: clamp(12px, 2.2vmin, 18px);
-  display: flex; flex-direction: column; justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   color: #ffffff;
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   will-change: transform;
   transition: transform .38s cubic-bezier(.22,.61,.36,1);
 }
-.support-card-stack.dragging .support-card { transition: none; }
 
-.support-card.support-card-violet {
+.support-belcard-stack.dragging .support-belcard {
+  transition: none;
+}
+
+.support-belcard.belcard-blue {
+  background: linear-gradient(135deg, #18387e 0%, #224ba1 45%, #4373c1 100%);
+  box-shadow:
+    0 12px 22px -8px rgba(0,0,0,.75),
+    0 6px 10px -4px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+.support-belcard.belcard-green {
+  background: linear-gradient(135deg, #195630 0%, #246b41 45%, #3d8c55 100%);
+  box-shadow:
+    0 12px 22px -8px rgba(0,0,0,.65),
+    0 6px 10px -4px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+.support-belcard.belcard-gray {
   background: linear-gradient(135deg, #3d3548 0%, #4a3f57 45%, #5b4e6b 100%);
-  box-shadow: 0 12px 22px -8px rgba(0,0,0,.55), 0 6px 10px -4px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.2);
-}
-.support-card.support-card-gold {
-  background: linear-gradient(135deg, #4a3a10 0%, #6b5418 45%, #8a6f24 100%);
-  box-shadow: 0 12px 22px -8px rgba(0,0,0,.55), 0 6px 10px -4px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.2);
-}
-.support-card::before {
-  content: ""; position: absolute; top: -30%; right: -10%;
-  width: 65%; height: 160%;
-  background: rgba(255,255,255,0.08);
-  transform: rotate(22deg); pointer-events: none;
-}
-.support-card::after {
-  content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at 20% 15%, rgba(255,255,255,0.18) 0%, transparent 45%);
-  pointer-events: none; border-radius: inherit;
+  box-shadow:
+    0 12px 22px -8px rgba(0,0,0,.55),
+    0 6px 10px -4px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(255,255,255,.2);
 }
 
-.support-card-top { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-start; }
-.support-card-bank.support-card-gg-wrap { transform: translateY(-3px); }
-.support-card-bank {
-  font-size: clamp(11px, 1.55vmin, 12.5px); font-weight: 800;
-  letter-spacing: 1.2px; text-transform: uppercase; opacity: 0.9;
+.support-belcard.belcard-gold {
+  background: linear-gradient(135deg, #4a3a10 0%, #6b5418 45%, #8a6f24 100%);
+  box-shadow:
+    0 12px 22px -8px rgba(0,0,0,.55),
+    0 6px 10px -4px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(255,255,255,.2);
 }
-.support-card-club-top {
-  font-size: clamp(13px, 1.9vmin, 17px); font-weight: 900;
-  letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.95;
-  text-align: right; line-height: 1.2; text-shadow: 0 1px 2px rgba(0,0,0,.35);
+
+.support-belcard::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 65%;
+  height: 160%;
+  background: rgba(255,255,255,0.08);
+  transform: rotate(22deg);
+  pointer-events: none;
 }
-.support-card-chip {
-  position: absolute; top: clamp(30px, 4.7vmin, 40px); left: clamp(12px, 2.2vmin, 18px);
-  width: clamp(27px, 4.1vmin, 35px); height: clamp(21px, 3.1vmin, 27px);
+.support-belcard::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 20% 15%, rgba(255,255,255,0.18) 0%, transparent 45%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.support-belcard-top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.support-belcard-bank.support-gold-gg-wrap {
+  transform: translateY(-3px);
+}
+
+.support-belcard-bank {
+  font-size: clamp(11px, 1.55vmin, 12.5px);
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.support-belcard-club-top {
+  font-size: clamp(13px, 1.9vmin, 17px);
+  font-weight: 900;
+  font-style: normal;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.95;
+  text-align: right;
+  line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(0,0,0,.35);
+}
+
+.support-belcard-chip {
+  position: absolute;
+  top: clamp(30px, 4.7vmin, 40px);
+  left: clamp(12px, 2.2vmin, 18px);
+  width: clamp(27px, 4.1vmin, 35px);
+  height: clamp(21px, 3.1vmin, 27px);
   border-radius: 4px;
   background: linear-gradient(135deg, #e8d9a0 0%, #c9b46a 50%, #a89040 100%);
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.25);
   z-index: 2;
 }
-.support-card-chip::before {
-  content: ""; position: absolute;
+.support-belcard-chip::before {
+  content: "";
+  position: absolute;
   top: 20%; left: 10%; right: 10%; bottom: 20%;
-  border: 1px solid rgba(0,0,0,.25); border-radius: 2px;
+  border: 1px solid rgba(0,0,0,.25);
+  border-radius: 2px;
 }
+
+.support-belcard-number-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px;
+  margin-top: auto;
+  margin-bottom: clamp(6px, 1.2vmin, 10px);
+}
+
 .support-copy-text {
-  position: relative; display: inline-block; padding-right: 14px;
-  cursor: pointer; user-select: none; -webkit-user-select: none; -webkit-user-drag: none;
+  position: relative;
+  display: inline-block;
+  padding-right: 14px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 .support-copy-text:active { color: var(--gold); }
+
 .support-copy-icon {
-  position: absolute; right: 0; top: 0; width: 7px; height: 7px; pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  pointer-events: none;
 }
-.support-copy-icon::before, .support-copy-icon::after {
-  content: ""; position: absolute;
-  border: 1px solid #ffffff; border-radius: 1px; background: #8a8a8a;
+.support-copy-icon::before,
+.support-copy-icon::after {
+  content: "";
+  position: absolute;
+  border: 1px solid #ffffff;
+  border-radius: 1px;
+  background: transparent;
 }
-.support-copy-icon::before { width: 5px; height: 5px; left: 2px; top: 0; z-index: 1; }
-.support-copy-icon::after  { width: 5px; height: 5px; left: 0; top: 2px; z-index: 2; }
+.support-copy-icon::before {
+  width: 5px;
+  height: 5px;
+  left: 0;
+  top: 2px;
+}
+.support-copy-icon::after {
+  width: 5px;
+  height: 5px;
+  left: 2px;
+  top: 0;
+}
 
-.support-card-usdt-line {
-  position: relative; z-index: 2; margin-top: auto;
-  margin-bottom: clamp(6px, 1.2vmin, 10px);
-  text-align: left; white-space: nowrap;
-  font-size: clamp(11px, 1.9vmin, 13px); font-weight: 700;
-  letter-spacing: 0.2px; text-shadow: 0 1px 2px rgba(0,0,0,.4);
-  display: block; width: 100%;
+.support-belcard-number {
+  font-size: clamp(14px, 2.2vmin, 17px);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.4);
+  align-self: flex-end;
+  white-space: nowrap;
 }
-.support-card-bottom-line {
-  position: relative; z-index: 2; white-space: nowrap;
-  font-size: clamp(12px, 1.85vmin, 14.5px); font-weight: 700; letter-spacing: 1px;
+
+.support-belcard-bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px;
 }
-.support-card-bottom {
-  position: relative; z-index: 2; display: flex; justify-content: space-between;
-  align-items: flex-end; gap: 8px;
+
+.support-belcard-name {
+  font-size: clamp(12px, 1.85vmin, 14.5px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
-.support-card-copied {
-  position: absolute; left: 50%; top: 50%;
+
+.support-belcard-currencies-top {
+  font-size: clamp(11px, 1.65vmin, 12.5px);
+  font-weight: 700;
+  letter-spacing: .6px;
+  text-align: right;
+  opacity: 0.95;
+  white-space: nowrap;
+  align-self: flex-end;
+  line-height: 1;
+  transform: translateY(-2px);
+}
+
+.support-belcard-paysend {
+  position: absolute;
+  left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(20, 18, 16, 0.95); color: var(--gold);
-  font-weight: 800; font-size: clamp(14px, 1.85vmin, 16.5px);
-  padding: 10px 20px; border-radius: 10px;
-  border: 1px solid #8a6508; box-shadow: 0 4px 12px rgba(0,0,0,.8);
-  opacity: 0; pointer-events: none; transition: opacity .18s ease;
-  z-index: 5; white-space: nowrap;
+  font-size: clamp(15px, 2.2vmin, 19px);
+  font-weight: 900;
+  font-style: normal;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.95;
+  text-align: center;
+  color: #ffffff;
+  text-decoration: none;
+  line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(0,0,0,.35);
+  z-index: 4;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
 }
-.support-card-copied.visible { opacity: 1; }
-.support-card-gg { font-size: calc(clamp(11px, 1.55vmin, 12.5px) + 3px); }
-.support-card-name-label {
-  font-size: clamp(12px, 1.85vmin, 14.5px); font-weight: 700;
-  letter-spacing: 1px; text-transform: none;
-  display: inline-block; vertical-align: bottom; line-height: 1;
+.support-belcard-paysend:link,
+.support-belcard-paysend:visited,
+.support-belcard-paysend:hover,
+.support-belcard-paysend:active {
+  color: #ffffff;
+  text-decoration: none;
 }
-.support-card-name-value {
-  font-size: calc(clamp(12px, 1.85vmin, 14.5px) + 2px); font-weight: 800;
-  letter-spacing: 1px; text-shadow: 0 1px 2px rgba(0,0,0,.55);
-  display: inline-block; vertical-align: bottom; line-height: 1;
-}
-.support-card-nickname-row {
-  position: relative; z-index: 2; margin-top: auto;
+
+.support-belcard-usdt-line {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
   margin-bottom: clamp(6px, 1.2vmin, 10px);
-  text-align: left; white-space: nowrap; font-weight: 700;
-  letter-spacing: 0.2px; display: block; width: 100%; line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+  font-size: clamp(11px, 1.9vmin, 13px);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.4);
+  display: block;
+  width: 100%;
 }
+
+.support-belcard-bottom-line {
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  font-size: clamp(12px, 1.85vmin, 14.5px);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.support-belcard-copied {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(20, 18, 16, 0.95);
+  color: var(--gold);
+  font-weight: 800;
+  font-size: clamp(14px, 1.85vmin, 16.5px);
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #8a6508;
+  box-shadow: 0 4px 12px rgba(0,0,0,.8);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
+  z-index: 5;
+  white-space: nowrap;
+}
+.support-belcard-copied.visible { opacity: 1; }
+
+.support-gold-gg {
+  font-size: calc(clamp(11px, 1.55vmin, 12.5px) + 3px);
+}
+
+.support-gold-name-label {
+  font-size: clamp(12px, 1.85vmin, 14.5px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: none;
+  display: inline-block;
+  vertical-align: bottom;
+  line-height: 1;
+}
+
+.support-gold-name-value {
+  font-size: calc(clamp(12px, 1.85vmin, 14.5px) + 2px);
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.55);
+  display: inline-block;
+  vertical-align: bottom;
+  line-height: 1;
+}
+
+.support-gold-nickname-row {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  margin-bottom: clamp(6px, 1.2vmin, 10px);
+  text-align: left;
+  white-space: nowrap;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  display: block;
+  width: 100%;
+  line-height: 1;
+}
+
 .support-thanks {
-  text-align: center; color: var(--muted-soft-2);
-  font-size: clamp(13px, 1.85vmin, 14.5px); line-height: 1.5; letter-spacing: .3px;
+  text-align: center;
+  color: var(--muted-soft-2);
+  font-size: clamp(13px, 1.85vmin, 14.5px);
+  line-height: 1.5;
+  margin-top: clamp(16px, 2.8vmin, 20px);
+  letter-spacing: .3px;
 }
 
-@media (min-width: 641px) {
-  .support-card-bank { font-size: clamp(10px, 1.4vmin, 11.5px); }
-  .support-card-club-top { font-size: clamp(12px, 1.75vmin, 16px); }
-  .support-card-usdt-line { font-size: clamp(10px, 1.75vmin, 12px); }
-  .support-card-bottom-line { font-size: clamp(11px, 1.7vmin, 13.5px); }
-  .support-card-copied { font-size: clamp(13px, 1.7vmin, 15.5px); }
-  .support-card-gg { font-size: calc(clamp(10px, 1.4vmin, 11.5px) + 3px); }
-  .support-card-name-label { font-size: clamp(11px, 1.7vmin, 13.5px); }
-  .support-card-name-value { font-size: calc(clamp(11px, 1.7vmin, 13.5px) + 2px); }
-}
-
-/* ============================================================
-   ЛЕНДИНГ: КОНТЕЙНЕР, СЕКЦИИ, ОБЩИЕ ЭЛЕМЕНТЫ
-   ============================================================ */
 #landing {
-  position: fixed; inset: 0; z-index: 500;
-  background: var(--bg); color: var(--text);
-  overflow-y: auto; overflow-x: hidden;
-  overscroll-behavior: none; -webkit-overflow-scrolling: touch;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--bg);
+  color: var(--text);
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
-  display: flex; flex-direction: column;
+  display: flex;
+  flex-direction: column;
   padding-bottom: calc(env(safe-area-inset-bottom, 0px));
 }
+
 #landing.hidden { display: none !important; }
-.lnd-inner { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px); }
-.lnd-section { padding: clamp(40px, 8vw, 84px) 0; position: relative; }
+
+.lnd-inner {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 clamp(18px, 4vw, 40px);
+}
+
+.lnd-section {
+  padding: clamp(40px, 8vw, 84px) 0;
+  position: relative;
+}
 
 .lnd-section + .lnd-section::before,
 #landing .lnd-hero + .lnd-section::before {
-  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(to right, transparent 0%, rgba(255,255,255,.05) 18%, rgba(255,255,255,.05) 82%, transparent 100%);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,255,255,.05) 18%,
+    rgba(255,255,255,.05) 82%,
+    transparent 100%
+  );
   pointer-events: none;
 }
 
 .lnd-kicker {
-  color: var(--gold); font-size: clamp(11px, 1.6vmin, 13px); font-weight: 800;
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 20px; opacity: .9;
+  color: var(--gold);
+  font-size: clamp(11px, 1.6vmin, 13px);
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: .9;
 }
+
 .lnd-h2 {
-  font-size: clamp(24px, 5vmin, 40px); font-weight: 900; line-height: 1.12;
-  letter-spacing: -.3px; margin-bottom: 14px; color: #fff;
+  font-size: clamp(24px, 5vmin, 40px);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: -.3px;
+  margin-bottom: 14px;
+  color: #fff;
 }
+
 .lnd-h2 .gold { color: var(--gold); }
+
 .lnd-lead {
-  color: var(--muted); font-size: clamp(14px, 2.2vmin, 17px);
-  line-height: 1.55; max-width: 62ch; margin-bottom: 10px;
+  color: var(--muted);
+  font-size: clamp(14px, 2.2vmin, 17px);
+  line-height: 1.55;
+  max-width: 62ch;
+  margin-bottom: 10px;
 }
+
 .lnd-p {
-  color: var(--muted-soft-2); font-size: clamp(13px, 2vmin, 15px);
-  line-height: 1.6; max-width: 66ch; margin-bottom: 12px;
+  color: var(--muted-soft-2);
+  font-size: clamp(13px, 2vmin, 15px);
+  line-height: 1.6;
+  max-width: 66ch;
+  margin-bottom: 12px;
 }
+
 .lnd-p b, .lnd-p strong { color: var(--text); font-weight: 700; }
 .lnd-p .gold { color: var(--gold); font-weight: 700; }
 
 .lnd-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  border: none; border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 12px;
   background: linear-gradient(180deg, var(--gold) 0%, var(--gold-2) 100%);
-  color: #1a1a1a; font-family: inherit; font-weight: 900;
-  font-size: clamp(13px, 2vmin, 15px); letter-spacing: 1px; text-transform: uppercase;
-  padding: 16px 28px; min-height: 52px;
+  color: #1a1a1a;
+  font-family: inherit;
+  font-weight: 900;
+  font-size: clamp(13px, 2vmin, 15px);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 16px 28px;
+  min-height: 52px;
   box-shadow: 0 3px 0 #8a6508, inset 0 1px 0 rgba(255,255,255,.35);
   touch-action: manipulation;
   transition: transform .08s ease, filter .08s ease, box-shadow .08s ease;
-  text-decoration: none; cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
   outline: none;
 }
-.lnd-btn:focus, .lnd-btn:focus-visible { outline: none; box-shadow: 0 3px 0 #8a6508, inset 0 1px 0 rgba(255,255,255,.35); }
-.lnd-btn:active { transform: scale(0.97); filter: brightness(1.1); box-shadow: 0 1px 0 #8a6508, inset 0 1px 0 rgba(255,255,255,.35); }
 
-/* ============================================================
-   HERO-СЕКЦИЯ: НАЗВАНИЕ СВЕРХУ, ПОД НИМ СЕТКА
-   ============================================================ */
+.lnd-btn:focus,
+.lnd-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 3px 0 #8a6508, inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+.lnd-btn:active {
+  transform: scale(0.97);
+  filter: brightness(1.1);
+  box-shadow: 0 1px 0 #8a6508, inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+.lnd-btn.ghost {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid #5a4a1a;
+  box-shadow: none;
+}
+
+.lnd-btn.ghost:active {
+  background: rgba(255,203,43,.06);
+  box-shadow: none;
+}
+
+.lnd-btn.small {
+  padding: 12px 20px;
+  min-height: 44px;
+  font-size: clamp(11px, 1.7vmin, 13px);
+}
+
+/* ===== HERO ===== */
 #landing .lnd-hero {
-  position: relative; z-index: 2;
-  padding: 0; padding-bottom: calc(clamp(28px, 6vw, 56px) + 10px);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  padding: 0;
+  padding-bottom: calc(clamp(28px, 6vw, 56px) + 10px);
   overflow: visible;
 }
+
 #landing .lnd-hero::before {
-  content: ""; position: absolute; top: 0; left: 50%;
-  width: 90vmin; height: 90vmin; transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 90vmin;
+  height: 90vmin;
+  transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(255,203,43,.10) 0%, transparent 60%);
-  pointer-events: none; z-index: 0; clip-path: inset(50% 0 0 0);
-}
-#landing .lnd-hero::after {
-  content: ""; position: absolute; bottom: -30%; left: -30%;
-  width: 70vmin; height: 70vmin;
-  background: radial-gradient(circle, rgba(255,203,43,.05) 0%, transparent 65%);
-  pointer-events: none; z-index: 0;
+  pointer-events: none;
+  z-index: 0;
+  clip-path: inset(50% 0 0 0);
 }
 
-/* Название проекта — отдельный блок в самом верху, во всю ширину, по центру.
-   Сверху отступ от верхнего края экрана + 10px (по просьбе). */
-.lnd-brand-top {
-  position: relative; z-index: 1;
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: calc(clamp(18px, 2.6vw, 28px) + env(safe-area-inset-top, 0px) + 10px) clamp(18px, 4vw, 40px) 0;
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center;
-}
-.lnd-brand-name {
-  font-weight: 900;
-  font-size: clamp(22px, 3.6vmin, 34px);
-  letter-spacing: 9px;
-  text-transform: uppercase;
-  line-height: 1.1;
-  background: linear-gradient(180deg, #fff6d0 0%, var(--gold) 45%, #b8860b 100%);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-  padding-left: 9px; /* компенсация letter-spacing справа, чтобы центр был ровный */
-  white-space: nowrap;
-}
-@media (max-width: 420px) {
-  .lnd-brand-name { letter-spacing: 5px; font-size: clamp(18px, 5.2vmin, 22px); padding-left: 5px; }
+#landing .lnd-hero::after {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  left: -30%;
+  width: 70vmin;
+  height: 70vmin;
+  background: radial-gradient(circle, rgba(255,203,43,.05) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .lnd-hero-grid {
-  position: relative; z-index: 1; display: grid; grid-template-columns: 1fr;
-  gap: clamp(28px, 6vw, 48px); align-items: center;
-  margin-top: clamp(22px, 3.4vw, 34px);
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 6vw, 48px);
+  align-items: center;
+  padding-top: calc(clamp(10px, 1.6vw, 16px) + 8px);
   width: 100%;
 }
-@media (min-width: 860px) { .lnd-hero-grid { grid-template-columns: 1.15fr .85fr; } }
+
+@media (min-width: 860px) {
+  .lnd-hero-grid {
+    grid-template-columns: 1.15fr .85fr;
+  }
+}
+
+.lnd-logo-row {
+  position: relative;
+  display: block;
+  margin-bottom: 20px;
+  width: 100%;
+  min-height: 26px;
+}
+
+.lnd-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  font-size: clamp(12px, 1.8vmin, 14px);
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.lnd-heart-btn {
+  position: absolute;
+  top: calc(clamp(10px, 1.6vw, 16px) + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: var(--ph-heart);
+  opacity: .75;
+  line-height: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  filter: drop-shadow(0 0 6px rgba(184,146,74,.75)) drop-shadow(0 0 14px rgba(184,146,74,.45));
+  transition: opacity .18s ease, filter .18s ease, transform .12s ease;
+  z-index: 3;
+  height: 26px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.lnd-heart-btn:focus,
+.lnd-heart-btn:focus-visible {
+  outline: none;
+}
+
+.lnd-heart-btn .ph-heart-svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+  filter: none;
+}
+
+@media (hover: hover) {
+  .lnd-heart-btn:hover {
+    opacity: .95;
+    filter: drop-shadow(0 0 8px rgba(184,146,74,.85)) drop-shadow(0 0 18px rgba(184,146,74,.55));
+  }
+}
+
+.lnd-heart-btn:active {
+  transform: translateX(-50%) scale(0.94);
+  opacity: 1;
+  filter: drop-shadow(0 0 9px rgba(184,146,74,.95)) drop-shadow(0 0 22px rgba(184,146,74,.6));
+}
+
+@media (max-width: 520px) {
+  .lnd-logo-row {
+    margin-bottom: 20px;
+  }
+  .lnd-heart-btn {
+    height: 22px;
+  }
+  .lnd-heart-btn .ph-heart-svg {
+    width: 22px;
+    height: 22px;
+  }
+}
 
 .lnd-h1 {
-  font-size: clamp(24px, 5vmin, 40px); font-weight: 900; line-height: 1.12;
-  letter-spacing: -.3px; margin-bottom: 14px; color: #fff;
+  font-size: clamp(24px, 5vmin, 40px);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: -.3px;
+  margin-bottom: 14px;
+  color: #fff;
 }
-.lnd-h1 .gold { color: var(--gold); text-shadow: 0 0 26px rgba(255,203,43,.22); }
-.lnd-sub {
-  color: var(--muted-soft-2); font-size: clamp(14px, 2.2vmin, 17px);
-  line-height: 1.6; max-width: 54ch; margin-bottom: clamp(24px, 4vw, 34px);
-}
-.lnd-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: -4px; }
 
-.lnd-card-fan { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-.lnd-hero-visual {
-  position: relative; height: clamp(220px, 42vw, 380px);
-  display: flex; align-items: center; justify-content: center; perspective: 900px;
+.lnd-h1 .gold {
+  color: var(--gold);
+  text-shadow: 0 0 26px rgba(255,203,43,.22);
 }
+
+.lnd-sub {
+  color: var(--muted-soft-2);
+  font-size: clamp(14px, 2.2vmin, 17px);
+  line-height: 1.6;
+  max-width: 54ch;
+  margin-bottom: clamp(24px, 4vw, 34px);
+}
+
+.lnd-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: -4px;
+}
+
+.lnd-card-fan {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lnd-hero-visual {
+  position: relative;
+  height: clamp(220px, 42vw, 380px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 900px;
+}
+
 .lnd-play-card {
-  position: absolute; width: clamp(78px, 16vw, 130px); height: clamp(110px, 22vw, 184px);
+  position: absolute;
+  width: clamp(78px, 16vw, 130px);
+  height: clamp(110px, 22vw, 184px);
   border-radius: clamp(8px, 1.6vw, 12px);
-  background: #fafafa; color: #1a1a1a;
-  box-shadow: 0 10px 30px rgba(0,0,0,.7), 0 0 0 1px rgba(0,0,0,.1), 0 0 40px rgba(255,203,43,.10);
-  display: flex; flex-direction: column; justify-content: space-between;
-  padding: clamp(8px, 1.6vw, 14px); font-weight: 800;
+  background: #fafafa;
+  color: #1a1a1a;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.7),
+    0 0 0 1px rgba(0,0,0,.1),
+    0 0 40px rgba(255,203,43,.10);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(8px, 1.6vw, 14px);
+  font-weight: 800;
   transform-origin: 50% 110%;
   transition: transform .4s cubic-bezier(.22,.61,.36,1);
   will-change: transform;
 }
-.lnd-play-card .rank { font-size: clamp(18px, 3.4vw, 28px); line-height: 1; }
-.lnd-play-card .suit-big { font-size: clamp(30px, 6vw, 52px); line-height: 1; align-self: flex-end; }
+
+.lnd-play-card .rank {
+  font-size: clamp(18px, 3.4vw, 28px);
+  line-height: 1;
+}
+
+.lnd-play-card .suit-big {
+  font-size: clamp(30px, 6vw, 52px);
+  line-height: 1;
+  align-self: flex-end;
+}
+
 .lnd-play-card.ten-diamonds { color: #d63535; transform: rotate(-22deg) translate(-92%, 10%); }
 .lnd-play-card.jack-diamonds { color: #d63535; transform: rotate(-11deg) translate(-64%, 5%); }
 .lnd-play-card.queen-diamonds { color: #d63535; transform: rotate(0deg) translate(-32%, 0%); }
@@ -485,74 +1392,61 @@ button:disabled, button.disabled { cursor: default; }
 .lnd-play-card.ace-diamonds { color: #d63535; transform: rotate(22deg) translate(32%, 5%); }
 
 .lnd-chip {
-  position: absolute; width: clamp(44px, 9vw, 66px); height: clamp(44px, 9vw, 66px);
+  position: absolute;
+  width: clamp(44px, 9vw, 66px);
+  height: clamp(44px, 9vw, 66px);
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #fff6d0 0%, var(--gold) 45%, #b8860b 100%);
-  box-shadow: 0 6px 18px rgba(0,0,0,.7), 0 0 26px rgba(255,203,43,.35), inset 0 0 0 3px rgba(138,101,8,.7), inset 0 0 0 6px rgba(255,246,208,.35);
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.7),
+    0 0 26px rgba(255,203,43,.35),
+    inset 0 0 0 3px rgba(138,101,8,.7),
+    inset 0 0 0 6px rgba(255,246,208,.35);
   z-index: 3;
 }
+
 .lnd-chip.c1 { bottom: 4%; left: 4%; }
 .lnd-chip.c2 { bottom: 14%; left: 26%; width: clamp(30px, 6vw, 44px); height: clamp(30px, 6vw, 44px); opacity: .9; }
 .lnd-chip.c3 { bottom: 0%; right: 6%; width: clamp(36px, 7vw, 52px); height: clamp(36px, 7vw, 52px); opacity: .95; }
 
-/* Мобильный блок с текстом и кнопкой под картами */
-.lnd-mobile-cta { display: none; }
-/* Отдельная мобильная версия текста под заголовком без фразы «Бесплатно...» */
-.lnd-sub-mobile-copy { display: none; }
-
-@media (max-width: 859px) {
-  /* На мобильном: заголовок и текст сверху (по левому краю), под ними карты, под картами — текст и кнопка */
-  .lnd-hero-grid { display: flex; flex-direction: column; gap: clamp(16px, 3.6vw, 22px); }
-  .lnd-hero-copy { order: 1; width: 100%; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
-  .lnd-h1 { text-align: left; margin-bottom: clamp(10px, 2.4vw, 14px); }
-  /* Основной текст скрываем, показываем мобильный вариант без концовки */
-  .lnd-sub { display: none; }
-  .lnd-sub-mobile-copy { display: block; text-align: left; margin: 0; max-width: 100%; color: var(--muted-soft-2); font-size: clamp(14px, 2.2vmin, 17px); line-height: 1.6; }
-  .lnd-hero-actions { display: none; }
-  .lnd-hero-visual { order: 2; width: 100%; margin-top: 0; }
-
-  /* Блок под картами: текст над кнопкой, кнопка ещё ниже, с заметным отступом */
-  .lnd-mobile-cta {
-    display: flex; flex-direction: column; align-items: center;
-    gap: clamp(20px, 5vw, 28px);
-    margin-top: clamp(22px, 6vw, 34px);
-    width: 100%; order: 3;
-  }
-  .lnd-mobile-cta .lnd-sub-mobile {
-    color: var(--muted-soft-2);
-    font-size: clamp(13px, 3.4vmin, 15px);
-    line-height: 1.55;
-    text-align: center;
-    max-width: 40ch;
-    margin: 0;
-  }
-  .lnd-mobile-cta .lnd-btn { width: 100%; max-width: 340px; }
-}
-
-/* ============================================================
-   СЕТКИ И КАРТОЧКИ СЕКЦИЙ
-   ============================================================ */
 .lnd-grid-3 {
-  display: grid; grid-template-columns: 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: clamp(14px, 2.4vw, 22px);
   margin-top: clamp(22px, 4vw, 34px);
 }
-@media (min-width: 700px) { .lnd-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+@media (min-width: 700px) {
+  .lnd-grid-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
 .lnd-grid-3-sections {
-  display: grid; grid-template-columns: 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: clamp(14px, 2.4vw, 22px);
   margin-top: clamp(18px, 3vw, 28px);
 }
-@media (min-width: 760px) { .lnd-grid-3-sections { grid-template-columns: repeat(3, 1fr); } }
+
+@media (min-width: 760px) {
+  .lnd-grid-3-sections { grid-template-columns: repeat(3, 1fr); }
+}
 
 .lnd-card {
   background: linear-gradient(180deg, #131313 0%, #0a0a0a 100%);
-  border: 1px solid #2a2520; border-radius: 16px;
+  border: 1px solid #2a2520;
+  border-radius: 16px;
   padding: clamp(18px, 3vw, 26px);
-  position: relative; overflow: hidden;
+  position: relative;
+  overflow: hidden;
   transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
-.lnd-card:not(.tappable):hover { border-color: #2a2520; box-shadow: none; transform: none; }
+
+.lnd-card:not(.tappable):hover {
+  border-color: #2a2520;
+  box-shadow: none;
+  transform: none;
+}
+
 @media (hover: hover) {
   .lnd-card.tappable:hover {
     border-color: #4a3f18;
@@ -561,116 +1455,350 @@ button:disabled, button.disabled { cursor: default; }
   }
   .lnd-card.tappable:hover .lnd-card-tap-icon { opacity: .55; }
 }
+
 .lnd-card.tappable {
-  cursor: pointer; text-align: left; color: inherit; font-family: inherit;
-  display: flex; flex-direction: column; gap: 8px; width: 100%;
-  -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none;
-  -webkit-user-select: none; user-select: none; outline: none;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  outline: none;
 }
-.lnd-card.tappable:focus, .lnd-card.tappable:focus-visible { outline: none; }
-.lnd-card.tappable:active { transform: translateY(0); }
+
+.lnd-card.tappable:focus,
+.lnd-card.tappable:focus-visible {
+  outline: none;
+}
+
+.lnd-card.tappable:active {
+  transform: translateY(0);
+}
+
 @media (hover: none) {
-  .lnd-card.tappable:active {
+  .lnd-card.tappable:active,
+  .tg-card:active {
     border-color: #5a4a1a;
     box-shadow: 0 0 0 1px rgba(255,203,43,.20), 0 0 28px rgba(255,203,43,.14);
     background: linear-gradient(180deg, #1a1710 0%, #0f0d08 100%);
   }
 }
+
 .lnd-card-tap-icon {
-  position: absolute; right: 10px; bottom: 10px;
-  width: 16px; height: 16px; opacity: .25; color: var(--gold);
-  transition: opacity .18s ease; pointer-events: none; display: block;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 16px;
+  height: 16px;
+  opacity: .25;
+  color: var(--gold);
+  transition: opacity .18s ease;
+  pointer-events: none;
+  display: block;
 }
+
 .lnd-card.gold-edge {
   border-color: #5a4a1a;
   box-shadow: 0 0 0 1px rgba(255,203,43,.08);
   transition: none;
 }
-.lnd-card.gold-edge:hover, .lnd-card.gold-edge:active {
+
+.lnd-card.gold-edge:hover,
+.lnd-card.gold-edge:active {
   border-color: #5a4a1a;
   box-shadow: 0 0 0 1px rgba(255,203,43,.08);
-  transform: none; background: linear-gradient(180deg, #131313 0%, #0a0a0a 100%);
+  transform: none;
+  background: linear-gradient(180deg, #131313 0%, #0a0a0a 100%);
 }
+
 .lnd-card .icon {
-  width: 44px; height: 44px; border-radius: 12px;
-  background: rgba(255,203,43,.08); border: 1px solid #3a3018;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px; color: var(--gold);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255,203,43,.08);
+  border: 1px solid #3a3018;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--gold);
 }
+
 .lnd-card .icon svg { width: 22px; height: 22px; display: block; }
+
 .lnd-card h3 {
-  color: #fff; font-size: clamp(15px, 2.4vmin, 18px); font-weight: 800;
-  margin-bottom: 8px; letter-spacing: .2px;
+  color: #fff;
+  font-size: clamp(15px, 2.4vmin, 18px);
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: .2px;
 }
-.lnd-card p { color: var(--muted-soft-2); font-size: clamp(12px, 1.9vmin, 14px); line-height: 1.55; }
+
+.lnd-card p {
+  color: var(--muted-soft-2);
+  font-size: clamp(12px, 1.9vmin, 14px);
+  line-height: 1.55;
+}
+
 .lnd-card p + p { margin-top: 8px; }
 
-/* ============================================================
-   СЕКЦИЯ «ПРОТИВ КОГО ТЫ ИГРАЕШЬ»: БОТЫ PRO И VIP
-   ============================================================ */
 .lnd-bot-group { margin-top: clamp(22px, 4vw, 34px); }
+
 .lnd-bot-group-title {
-  display: flex; align-items: center; gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 14px;
-  font-size: clamp(13px, 2vmin, 15px); font-weight: 800;
-  letter-spacing: 1.5px; text-transform: uppercase; color: #fff;
+  font-size: clamp(13px, 2vmin, 15px);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #fff;
 }
+
 .lnd-bot-group-title .dot {
-  width: 8px; height: 8px; border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
   background: var(--pro-color);
-  box-shadow: 0 0 6px rgba(74,58,104,1), 0 0 16px rgba(74,58,104,.85), 0 0 28px rgba(74,58,104,.55);
+  box-shadow:
+    0 0 6px rgba(74,58,104,1),
+    0 0 16px rgba(74,58,104,.85),
+    0 0 28px rgba(74,58,104,.55);
 }
+
 .lnd-bot-group-title .dot.vip {
   background: var(--vip-color);
-  box-shadow: 0 0 6px rgba(50,74,110,1), 0 0 16px rgba(50,74,110,.85), 0 0 28px rgba(50,74,110,.55);
+  box-shadow:
+    0 0 6px rgba(50,74,110,1),
+    0 0 16px rgba(50,74,110,.85),
+    0 0 28px rgba(50,74,110,.55);
 }
-.lnd-bot-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-@media (min-width: 700px) { .lnd-bot-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1040px) { .lnd-bot-grid.cols-4 { grid-template-columns: repeat(4, 1fr); } }
+
+.lnd-bot-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 700px) {
+  .lnd-bot-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1040px) {
+  .lnd-bot-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
 
 .lnd-bot {
   background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
-  border: 1px solid #262220; border-radius: 14px;
-  padding: 16px 16px 18px; position: relative;
+  border: 1px solid #262220;
+  border-radius: 14px;
+  padding: 16px 16px 18px;
+  position: relative;
 }
-.lnd-bot .badge {
-  display: inline-block; font-size: 10px; font-weight: 800;
-  letter-spacing: 1px; padding: 4px 9px; border-radius: 5px;
-  color: #fff; margin-bottom: 12px; text-transform: uppercase;
-  border: none; box-shadow: none;
-}
-.badge.pro-gto, .badge.pro-solver, .badge.pro-icm, .badge.pro-lag { background: var(--pro-color); }
-.badge.vip-taglite, .badge.vip-loose, .badge.vip-rock, .badge.vip-maniac { background: var(--vip-color); }
-.lnd-bot h4 { color: #fff; font-size: clamp(13px, 2vmin, 15px); font-weight: 800; margin-bottom: 7px; }
-.lnd-bot p { color: var(--muted-soft-2); font-size: clamp(12px, 1.8vmin, 13.5px); line-height: 1.5; }
 
-/* ============================================================
-   СЕКЦИЯ «ЧТО ВНУТРИ ПРИЛОЖЕНИЯ»: СПИСОК ФИЧ
-   ============================================================ */
+.lnd-bot .badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 4px 9px;
+  border-radius: 5px;
+  color: #fff;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  border: none;
+  box-shadow: none;
+}
+
+.badge.pro-gto,
+.badge.pro-solver,
+.badge.pro-icm,
+.badge.pro-lag {
+  background: var(--pro-color);
+}
+
+.badge.vip-taglite,
+.badge.vip-loose,
+.badge.vip-rock,
+.badge.vip-maniac {
+  background: var(--vip-color);
+}
+
+.lnd-bot h4 {
+  color: #fff;
+  font-size: clamp(13px, 2vmin, 15px);
+  font-weight: 800;
+  margin-bottom: 7px;
+}
+
+.lnd-bot p {
+  color: var(--muted-soft-2);
+  font-size: clamp(12px, 1.8vmin, 13.5px);
+  line-height: 1.5;
+}
+
 .lnd-features {
-  display: grid; grid-template-columns: 1fr; gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
   margin-top: clamp(20px, 3.4vw, 30px);
 }
+
 @media (min-width: 620px) { .lnd-features { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 980px) { .lnd-features { grid-template-columns: repeat(3, 1fr); } }
+
 .lnd-feature {
-  display: flex; align-items: flex-start; gap: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
   padding: 14px 16px;
   background: linear-gradient(180deg, #101010, #0a0a0a);
-  border: 1px solid #222; border-radius: 12px;
+  border: 1px solid #222;
+  border-radius: 12px;
 }
+
 .lnd-feature .tick {
-  flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
-  background: rgba(255,203,43,.10); border: 1px solid #4a3f18;
-  color: var(--gold); display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 900; margin-top: 1px;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255,203,43,.10);
+  border: 1px solid #4a3f18;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  margin-top: 1px;
 }
-.lnd-feature span { color: var(--muted-soft-2); font-size: clamp(12px, 1.9vmin, 14px); line-height: 1.5; }
+
+.lnd-feature span {
+  color: var(--muted-soft-2);
+  font-size: clamp(12px, 1.9vmin, 14px);
+  line-height: 1.5;
+}
+
 .lnd-feature span b { color: var(--text); font-weight: 700; }
 
-.lnd-bot-cta { display: flex; justify-content: center; margin-top: clamp(22px, 4vw, 34px); }
-.lnd-bot-cta .lnd-btn { min-width: 240px; }
-@media (max-width: 640px) { .lnd-bot-cta .lnd-btn { width: auto; min-width: 0; } }
+.lnd-bot-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(22px, 4vw, 34px);
+}
+
+.lnd-bot-cta .lnd-btn {
+  min-width: 240px;
+}
+
+@media (max-width: 640px) {
+  .lnd-bot-cta .lnd-btn {
+    width: auto;
+    min-width: 0;
+  }
+}
+
+.lnd-final {
+  position: relative;
+  text-align: center;
+  padding: clamp(46px, 9vw, 90px) 0 clamp(60px, 11vw, 120px);
+}
+
+.lnd-final-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 90vmin;
+  height: 90vmin;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,203,43,.10) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  clip-path: inset(50% 0 0 0);
+}
+
+.lnd-final .lnd-h2,
+.lnd-final .lnd-p,
+.lnd-final .lnd-btn {
+  position: relative;
+  z-index: 1;
+}
+
+.lnd-final .lnd-h2 { margin-left: auto; margin-right: auto; max-width: 18ch; }
+.lnd-final .lnd-p { margin-left: auto; margin-right: auto; }
+
+.lnd-final-rule {
+  position: absolute;
+  top: 0;
+  left: clamp(18px, 4vw, 40px);
+  right: clamp(18px, 4vw, 40px);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,203,43,.12) 18%,
+    rgba(255,203,43,.12) 82%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.lnd-footer {
+  position: relative;
+  flex-shrink: 0;
+  padding: clamp(28px, 5vw, 44px) 0 calc(clamp(40px, 8vw, 60px) + env(safe-area-inset-bottom, 0px));
+  color: var(--muted);
+  font-size: clamp(11px, 1.7vmin, 13px);
+  line-height: 1.6;
+}
+
+.lnd-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,255,255,.06) 18%,
+    rgba(255,255,255,.06) 82%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.lnd-footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lnd-footer .brand {
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: clamp(11px, 1.7vmin, 13px);
+}
+
+.lnd-footer .copy { color: #555; }
+
+.lnd-footer .disclaimer {
+  max-width: 58ch;
+  color: var(--muted);
+}
 
 .lnd-mobile-note {
   margin-top: clamp(18px, 3vw, 26px);
@@ -679,489 +1807,1058 @@ button:disabled, button.disabled { cursor: default; }
   border: 1px solid #5a4a1a;
   background: linear-gradient(180deg, #101010, #0a0a0a);
   box-shadow: 0 0 0 1px rgba(255,203,43,.08), 0 0 40px rgba(255,203,43,.05);
-  display: flex; align-items: flex-start; gap: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
 }
+
 .lnd-mobile-note .ic {
-  flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px;
-  background: rgba(255,203,43,.08); border: 1px solid #3a3018;
-  display: flex; align-items: center; justify-content: center; color: var(--gold);
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255,203,43,.08);
+  border: 1px solid #3a3018;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
 }
+
 .lnd-mobile-note .ic svg { width: 20px; height: 20px; display: block; }
-.lnd-mobile-note .txt { color: var(--muted-soft-2); font-size: clamp(12px, 1.9vmin, 14px); line-height: 1.55; }
+
+.lnd-mobile-note .txt {
+  color: var(--muted-soft-2);
+  font-size: clamp(12px, 1.9vmin, 14px);
+  line-height: 1.55;
+}
+
 .lnd-mobile-note .txt b { color: var(--text); font-weight: 700; }
 
 @media (max-width: 520px) {
-  .lnd-hero-actions { flex-direction: column; align-items: stretch; }
-  .lnd-hero-actions .lnd-btn { width: 100%; }
+  .lnd-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .lnd-hero-actions .lnd-btn {
+    width: 100%;
+  }
 }
+
 @media (max-width: 859px) {
-  .lnd-hero-visual { height: clamp(180px, 42vw, 280px); margin-top: -10px; }
-  .lnd-card-fan { position: relative; }
+  .lnd-hero-visual {
+    height: clamp(180px, 42vw, 280px);
+    margin-top: -10px;
+  }
+  .lnd-card-fan {
+    position: relative;
+  }
   .lnd-play-card.ten-diamonds { transform: rotate(-22deg) translate(calc(-92% + 32%), 10%); }
   .lnd-play-card.jack-diamonds { transform: rotate(-11deg) translate(calc(-64% + 32%), 5%); }
   .lnd-play-card.queen-diamonds { transform: rotate(0deg) translate(calc(-32% + 32%), 0%); }
   .lnd-play-card.king-diamonds { transform: rotate(11deg) translate(calc(0% + 32%), 0%); }
   .lnd-play-card.ace-diamonds { transform: rotate(22deg) translate(calc(32% + 32%), 5%); }
 }
+
 @media (prefers-reduced-motion: reduce) {
   #landing { scroll-behavior: auto; }
+  .lnd-reveal { transition: none; opacity: 1; transform: none; }
   .lnd-play-card { transition: none; }
 }
 
-/* ============================================================
-   ФИНАЛЬНАЯ СЕКЦИЯ CTA
-   ============================================================ */
-.lnd-final {
-  position: relative; text-align: center;
-  padding: clamp(46px, 9vw, 90px) 0 clamp(60px, 11vw, 120px);
-}
-.lnd-final-glow {
-  position: absolute; top: 0; left: 50%; width: 90vmin; height: 90vmin;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255,203,43,.10) 0%, transparent 60%);
-  pointer-events: none; z-index: 0; clip-path: inset(50% 0 0 0);
-}
-.lnd-final .lnd-h2, .lnd-final .lnd-p, .lnd-final .lnd-btn { position: relative; z-index: 1; }
-.lnd-final .lnd-h2 { margin-left: auto; margin-right: auto; max-width: 18ch; }
-.lnd-final .lnd-p { margin-left: auto; margin-right: auto; }
-.lnd-final-rule {
-  position: absolute; top: 0;
-  left: clamp(18px, 4vw, 40px); right: clamp(18px, 4vw, 40px);
-  height: 1px;
-  background: linear-gradient(to right, transparent 0%, rgba(255,203,43,.12) 18%, rgba(255,203,43,.12) 82%, transparent 100%);
-  pointer-events: none; z-index: 2;
+#landing,
+#landing *:not(button):not(.lnd-btn):not(.tg-card):not(.lang-trigger):not(.lang-option):not(.lnd-card.tappable) {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  -webkit-touch-callout: default;
 }
 
-/* ============================================================
-   ФУТЕР
-   ============================================================ */
-.lnd-footer {
-  position: relative; flex-shrink: 0;
-  padding: clamp(28px, 5vw, 44px) 0 calc(clamp(40px, 8vw, 60px) + 16px + env(safe-area-inset-bottom, 0px));
-  color: var(--muted); font-size: clamp(11px, 1.7vmin, 13px); line-height: 1.6;
+#landing .lnd-h1,
+#landing .lnd-h2,
+#landing .lnd-lead,
+#landing .lnd-p,
+#landing .lnd-sub,
+#landing .lnd-kicker,
+#landing .lnd-card p,
+#landing .lnd-card h3,
+#landing .lnd-bot p,
+#landing .lnd-bot h4,
+#landing .lnd-feature span,
+#landing .lnd-mobile-note .txt,
+#landing .lnd-footer,
+#landing .disclaimer {
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
 }
-.lnd-footer::before {
-  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(to right, transparent 0%, rgba(255,255,255,.06) 18%, rgba(255,255,255,.06) 82%, transparent 100%);
-  pointer-events: none;
-}
-.lnd-footer .row {
-  display: flex; flex-wrap: wrap; gap: 10px 20px;
-  justify-content: space-between; align-items: center;
-}
-.lnd-footer .brand {
-  color: #fff; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
-  font-size: clamp(11px, 1.7vmin, 13px);
-}
-.lnd-footer .copy { color: #555; }
-.lnd-footer .disclaimer { max-width: 58ch; color: var(--muted); }
 
-/* ============================================================
-   НИЖНЯЯ ПАНЕЛЬ ИКОНОК (карты, сердце, Telegram)
-   На десктопе ограничена областью контента, чтобы не
-   перекрывать вертикальную полосу прокрутки справа.
-   Подсветка при наведении и нажатии — в цвете самих иконок,
-   радиус свечения компактный (без дальнего прозрачного слоя).
-   ============================================================ */
 #bottom-bar {
-  position: fixed; left: 0;
-  right: 10px; /* на десктопе оставляем место под полосу прокрутки */
+  position: fixed;
+  left: 0;
+  right: 0;
   bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
   z-index: 900;
-  display: flex; align-items: center; justify-content: center;
-  gap: 22px; padding: 0 clamp(18px, 4vw, 40px);
-  opacity: 0; pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 0 clamp(18px, 4vw, 40px);
+  opacity: 0;
+  pointer-events: none;
   transition: opacity .75s cubic-bezier(.22,.61,.36,1);
   will-change: opacity;
 }
+
 @media (max-width: 640px) {
-  #bottom-bar { right: 0; bottom: calc(env(safe-area-inset-bottom, 0px) + 10px); }
+  #bottom-bar {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
+  }
 }
-#bottom-bar.visible { opacity: 1; pointer-events: auto; }
-.bottom-bar-center { display: flex; align-items: center; justify-content: center; gap: 22px; }
+
+#bottom-bar.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bottom-bar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
 .bottom-icon {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 26px; height: 26px; padding: 0; margin: 0; border: none; outline: none;
-  background: transparent; box-shadow: none;
-  color: var(--ph-heart); opacity: .75; cursor: pointer; line-height: 0;
-  -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none;
-  -webkit-user-select: none; user-select: none; -webkit-user-drag: none;
-  filter: drop-shadow(0 0 4px rgba(184,146,74,.35));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+  color: var(--ph-heart);
+  opacity: .75;
+  cursor: pointer;
+  line-height: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 0 4px rgba(184,146,74,.35)) drop-shadow(0 0 8px rgba(184,146,74,.2));
   transition: opacity .18s ease, filter .18s ease, transform .12s ease;
-  text-decoration: none; overflow: visible;
-  -webkit-appearance: none; appearance: none; touch-action: manipulation;
+  text-decoration: none;
+  overflow: visible;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
 }
+
+/* ==== СЕРДЕЧКО В НИЖНЕЙ ПАНЕЛИ ====
+   Постоянное свечение — усиленное (чуть ярче карт и самолётика).
+   При наведении и нажатии — ровно такое же, как у карт и самолётика. */
 .bottom-icon.bottom-icon--heart {
   color: var(--ph-heart-bright);
-  filter: drop-shadow(0 0 5px rgba(198,154,82,.55));
+  filter: drop-shadow(0 0 5px rgba(198,154,82,.55)) drop-shadow(0 0 12px rgba(198,154,82,.38)) drop-shadow(0 0 22px rgba(198,154,82,.20));
 }
-/* Подсветка при наведении (десктоп): компактный радиус, цвет = цвет иконки */
+
+@media (hover: hover) {
+  .bottom-icon.bottom-icon--heart:hover {
+    opacity: .95;
+    filter: drop-shadow(0 0 8px rgba(184,146,74,.85)) drop-shadow(0 0 18px rgba(184,146,74,.55));
+  }
+}
+
+.bottom-icon.bottom-icon--heart:active {
+  transform: scale(0.9);
+  opacity: 1;
+  filter: drop-shadow(0 0 9px rgba(184,146,74,.95)) drop-shadow(0 0 22px rgba(184,146,74,.6));
+}
+
+.bottom-icon:focus,
+.bottom-icon:focus-visible,
+.bottom-icon:active,
+.bottom-icon:hover {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.bottom-icon svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.bottom-icon.bottom-icon-tg {
+  width: 26px;
+  height: 26px;
+}
+
+.bottom-icon.bottom-icon-tg svg {
+  width: 38px;
+  height: 38px;
+  display: block;
+  margin: -6px;
+  transform: translateX(-6px);
+}
+
+.bottom-icon:active {
+  transform: scale(0.9);
+  opacity: 1;
+  filter: drop-shadow(0 0 9px rgba(184,146,74,.95)) drop-shadow(0 0 22px rgba(184,146,74,.6));
+}
+
+.bottom-icon.bottom-icon-tg:active {
+  filter: drop-shadow(0 0 9px rgba(184,146,74,.95)) drop-shadow(0 0 22px rgba(184,146,74,.6)) drop-shadow(0 0 32px rgba(184,146,74,.45));
+}
+
 @media (hover: hover) {
   .bottom-icon:hover {
-    opacity: 1;
-    filter: drop-shadow(0 0 5px rgba(184,146,74,.75)) drop-shadow(0 0 10px rgba(184,146,74,.45));
-  }
-  .bottom-icon.bottom-icon--heart:hover {
-    filter: drop-shadow(0 0 6px rgba(198,154,82,.85)) drop-shadow(0 0 12px rgba(198,154,82,.5));
+    opacity: .95;
+    filter: drop-shadow(0 0 8px rgba(184,146,74,.85)) drop-shadow(0 0 18px rgba(184,146,74,.55));
   }
 }
-/* Нажатие (мышь): вдавливание + компактная вспышка в цвете иконки */
-.bottom-icon:active {
-  transform: scale(0.86);
-  opacity: 1;
-  transition: opacity .08s ease, filter .08s ease, transform .08s ease;
-}
-.bottom-icon:active:not(.bottom-icon--heart) {
-  filter: drop-shadow(0 0 6px rgba(184,146,74,.95)) drop-shadow(0 0 12px rgba(184,146,74,.65));
-}
-.bottom-icon.bottom-icon--heart:active {
-  filter: drop-shadow(0 0 7px rgba(198,154,82,.95)) drop-shadow(0 0 14px rgba(198,154,82,.65));
-}
-/* Нажатие (касание на мобильном): то же самое */
-.bottom-icon.is-pressed {
-  transform: scale(0.86);
-  opacity: 1;
-  transition: opacity .08s ease, filter .08s ease, transform .08s ease;
-}
-.bottom-icon.is-pressed:not(.bottom-icon--heart) {
-  filter: drop-shadow(0 0 6px rgba(184,146,74,.95)) drop-shadow(0 0 12px rgba(184,146,74,.65));
-}
-.bottom-icon.bottom-icon--heart.is-pressed {
-  filter: drop-shadow(0 0 7px rgba(198,154,82,.95)) drop-shadow(0 0 14px rgba(198,154,82,.65));
-}
-.bottom-icon svg { width: 26px; height: 26px; display: block; -webkit-user-drag: none; user-select: none; pointer-events: none; }
-.bottom-icon.bottom-icon-tg { width: 26px; height: 26px; }
-.bottom-icon.bottom-icon-tg svg { width: 38px; height: 38px; display: block; margin: -6px; transform: translateX(-6px); }
 
-/* ============================================================
-   ПОЛОСЫ ЗАТУХАНИЯ СВЕРХУ И СНИЗУ
-   Верхняя полоса скрыта на самом верху и плавно появляется
-   при сдвиге страницы вниз на 2 пикселя и более.
-   ============================================================ */
-.lnd-fade-top {
-  position: fixed; left: 0; right: 10px; pointer-events: none; z-index: 850;
-  top: 0; height: 10px; display: flex; flex-direction: column;
-  background: transparent;
-  opacity: 0;
-  transition: opacity .35s ease;
-  will-change: opacity;
+@media (hover: hover) {
+  .bottom-icon.bottom-icon-tg:hover {
+    filter: drop-shadow(0 0 8px rgba(184,146,74,.85)) drop-shadow(0 0 18px rgba(184,146,74,.55)) drop-shadow(0 0 28px rgba(184,146,74,.4));
+  }
 }
-.lnd-fade-top.visible { opacity: 1; }
-.lnd-fade-top::before { content: ""; display: block; height: 3px; background: #000; }
-.lnd-fade-top::after {
-  content: ""; display: block; height: 7px; background: #000;
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,.9) 20%, rgba(0,0,0,.7) 40%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.2) 80%, rgba(0,0,0,0) 100%);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,.9) 20%, rgba(0,0,0,.7) 40%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.2) 80%, rgba(0,0,0,0) 100%);
-}
+
+/* ===== ЗАТУХАНИЕ СОДЕРЖИМОГО СВЕРХУ И СНИЗУ ===== */
+
 .lnd-fade-bottom {
-  position: fixed; left: 0; right: 10px; pointer-events: none; z-index: 850;
-  bottom: 0; height: 60px; display: flex; flex-direction: column-reverse;
-  background: transparent; opacity: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 850;
+  opacity: 0;
   transition: opacity .75s cubic-bezier(.22,.61,.36,1);
   will-change: opacity;
 }
-@media (max-width: 640px) {
-  .lnd-fade-top, .lnd-fade-bottom { right: 0; }
-}
-.lnd-fade-bottom.visible { opacity: 1; }
-.lnd-fade-bottom::before { content: ""; display: block; height: 50px; background: #000; }
-.lnd-fade-bottom::after {
-  content: ""; display: block; height: 10px; background: #000;
-  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,.95) 0%, rgba(0,0,0,.9) 10%, rgba(0,0,0,.7) 35%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.2) 82%, rgba(0,0,0,0) 100%);
-  mask-image: linear-gradient(to top, rgba(0,0,0,.95) 0%, rgba(0,0,0,.9) 10%, rgba(0,0,0,.7) 35%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.2) 82%, rgba(0,0,0,0) 100%);
+
+.lnd-fade-bottom.visible {
+  opacity: 1;
 }
 
-/* ============================================================
-   ЗОЛОТАЯ ЛИНИЯ В САМОМ ВЕРХУ (впритык к краю экрана)
-   Точно такая же, как линия над финальной секцией.
-   ============================================================ */
-.lnd-top-rule {
+.lnd-fade-top {
   position: fixed;
-  top: 0; left: 0; right: 10px;
-  height: 1px;
+  left: 0;
+  right: 0;
   pointer-events: none;
-  z-index: 860;
-  background: linear-gradient(to right, transparent 0%, rgba(255,203,43,.12) 18%, rgba(255,203,43,.12) 82%, transparent 100%);
-  box-shadow: 0 0 8px rgba(255,203,43,.25);
+  z-index: 850;
+  top: 0;
+  height: 10px;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
 }
-@media (max-width: 640px) {
-  .lnd-top-rule { right: 0; }
+
+.lnd-fade-top::before {
+  content: "";
+  display: block;
+  height: 3px;
+  background: #000;
+}
+
+.lnd-fade-top::after {
+  content: "";
+  display: block;
+  height: 7px;
+  background: #000;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 4%,
+    rgba(0,0,0,.99) 10%,
+    rgba(0,0,0,.97) 16%,
+    rgba(0,0,0,.95) 22%,
+    rgba(0,0,0,.92) 28%,
+    rgba(0,0,0,.88) 34%,
+    rgba(0,0,0,.84) 40%,
+    rgba(0,0,0,.79) 46%,
+    rgba(0,0,0,.73) 52%,
+    rgba(0,0,0,.66) 58%,
+    rgba(0,0,0,.58) 63%,
+    rgba(0,0,0,.5) 68%,
+    rgba(0,0,0,.42) 73%,
+    rgba(0,0,0,.34) 78%,
+    rgba(0,0,0,.26) 82%,
+    rgba(0,0,0,.19) 86%,
+    rgba(0,0,0,.13) 90%,
+    rgba(0,0,0,.08) 93%,
+    rgba(0,0,0,.05) 95%,
+    rgba(0,0,0,.028) 96.5%,
+    rgba(0,0,0,.014) 97.5%,
+    rgba(0,0,0,.006) 98.4%,
+    rgba(0,0,0,.002) 99.1%,
+    rgba(0,0,0,.0008) 99.6%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 4%,
+    rgba(0,0,0,.99) 10%,
+    rgba(0,0,0,.97) 16%,
+    rgba(0,0,0,.95) 22%,
+    rgba(0,0,0,.92) 28%,
+    rgba(0,0,0,.88) 34%,
+    rgba(0,0,0,.84) 40%,
+    rgba(0,0,0,.79) 46%,
+    rgba(0,0,0,.73) 52%,
+    rgba(0,0,0,.66) 58%,
+    rgba(0,0,0,.58) 63%,
+    rgba(0,0,0,.5) 68%,
+    rgba(0,0,0,.42) 73%,
+    rgba(0,0,0,.34) 78%,
+    rgba(0,0,0,.26) 82%,
+    rgba(0,0,0,.19) 86%,
+    rgba(0,0,0,.13) 90%,
+    rgba(0,0,0,.08) 93%,
+    rgba(0,0,0,.05) 95%,
+    rgba(0,0,0,.028) 96.5%,
+    rgba(0,0,0,.014) 97.5%,
+    rgba(0,0,0,.006) 98.4%,
+    rgba(0,0,0,.002) 99.1%,
+    rgba(0,0,0,.0008) 99.6%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+.lnd-fade-bottom {
+  bottom: 0;
+  height: 60px;
+  display: flex;
+  flex-direction: column-reverse;
+  background: transparent;
+}
+
+.lnd-fade-bottom::before {
+  content: "";
+  display: block;
+  height: 50px;
+  background: #000;
+}
+
+.lnd-fade-bottom::after {
+  content: "";
+  display: block;
+  height: 10px;
+  background: #000;
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(0,0,0,.95) 0%,
+    rgba(0,0,0,.93) 4%,
+    rgba(0,0,0,.90) 9%,
+    rgba(0,0,0,.85) 15%,
+    rgba(0,0,0,.79) 21%,
+    rgba(0,0,0,.73) 27%,
+    rgba(0,0,0,.66) 33%,
+    rgba(0,0,0,.58) 39%,
+    rgba(0,0,0,.50) 44%,
+    rgba(0,0,0,.42) 49%,
+    rgba(0,0,0,.34) 54%,
+    rgba(0,0,0,.27) 59%,
+    rgba(0,0,0,.20) 64%,
+    rgba(0,0,0,.145) 68%,
+    rgba(0,0,0,.098) 72%,
+    rgba(0,0,0,.062) 76%,
+    rgba(0,0,0,.037) 80%,
+    rgba(0,0,0,.021) 83.5%,
+    rgba(0,0,0,.011) 86.5%,
+    rgba(0,0,0,.0055) 89%,
+    rgba(0,0,0,.0025) 91.5%,
+    rgba(0,0,0,.0011) 93.5%,
+    rgba(0,0,0,.0005) 95%,
+    rgba(0,0,0,.0002) 96.5%,
+    rgba(0,0,0,.00007) 97.8%,
+    rgba(0,0,0,.000025) 98.8%,
+    rgba(0,0,0,.000008) 99.4%,
+    rgba(0,0,0,.000002) 99.8%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to top,
+    rgba(0,0,0,.95) 0%,
+    rgba(0,0,0,.93) 4%,
+    rgba(0,0,0,.90) 9%,
+    rgba(0,0,0,.85) 15%,
+    rgba(0,0,0,.79) 21%,
+    rgba(0,0,0,.73) 27%,
+    rgba(0,0,0,.66) 33%,
+    rgba(0,0,0,.58) 39%,
+    rgba(0,0,0,.50) 44%,
+    rgba(0,0,0,.42) 49%,
+    rgba(0,0,0,.34) 54%,
+    rgba(0,0,0,.27) 59%,
+    rgba(0,0,0,.20) 64%,
+    rgba(0,0,0,.145) 68%,
+    rgba(0,0,0,.098) 72%,
+    rgba(0,0,0,.062) 76%,
+    rgba(0,0,0,.037) 80%,
+    rgba(0,0,0,.021) 83.5%,
+    rgba(0,0,0,.011) 86.5%,
+    rgba(0,0,0,.0055) 89%,
+    rgba(0,0,0,.0025) 91.5%,
+    rgba(0,0,0,.0011) 93.5%,
+    rgba(0,0,0,.0005) 95%,
+    rgba(0,0,0,.0002) 96.5%,
+    rgba(0,0,0,.00007) 97.8%,
+    rgba(0,0,0,.000025) 98.8%,
+    rgba(0,0,0,.000008) 99.4%,
+    rgba(0,0,0,.000002) 99.8%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+.lnd-hero-copy .lnd-h1 {
+  margin-top: -4px;
 }
 </style>
 </head>
 <body>
 
-<!-- ============================================================
-     ИНФО-МОДАЛКА (скрыта по умолчанию, открывается тапзонами)
-     ============================================================ -->
-<div id="info-modal" role="dialog" aria-modal="true" aria-labelledby="info-modal-title-el">
-  <div class="info-modal-box">
-    <h2 class="info-modal-title" id="info-modal-title-el"></h2>
-    <div class="info-modal-body" id="info-modal-body"></div>
+  <div id="info-modal" role="dialog" aria-modal="true" aria-labelledby="info-modal-title-el">
+    <div class="info-modal-box">
+      <h2 class="info-modal-title" id="info-modal-title-el"></h2>
+      <div class="info-modal-body" id="info-modal-body"></div>
+    </div>
   </div>
-</div>
 
-<!-- ============================================================
-     ЛЕНДИНГ
-     ============================================================ -->
-<div id="landing" aria-label="Poker Prana — лендинг">
+  <div id="landing" aria-label="Poker Trainer — лендинг">
 
-  <!-- Hero-секция -->
-  <section class="lnd-hero" aria-labelledby="lnd-hero-title">
+    <section id="tg-feed" aria-label="Последние посты из Telegram">
+      <div class="tg-feed-head">
+        <a class="tg-feed-channel" href="https://t.me/ThePokerWay" target="_blank" rel="noopener noreferrer" aria-label="Открыть канал The Poker Way">
+          <span class="tg-feed-avatar" id="tg-feed-avatar">
+            <span class="fb" id="tg-feed-avatar-fb"></span>
+          </span>
+          <span class="tg-feed-name">
+            <span class="n" id="tg-feed-name">The Poker Way</span>
+            <span class="u" id="tg-feed-username">@ThePokerWay</span>
+          </span>
+        </a>
 
-    <!-- Название проекта: отдельный блок сверху, во всю ширину, по центру -->
-    <div class="lnd-brand-top">
-      <div class="lnd-brand-name">Poker Prana</div>
-    </div>
+        <div class="tg-feed-right">
+          <div class="tg-feed-title"><span class="dot"></span> Из Telegram</div>
 
-    <!-- Сетка hero -->
-    <div class="lnd-inner lnd-hero-grid">
-      <div class="lnd-hero-copy">
-        <h1 class="lnd-h1" id="lnd-hero-title">Тренируй <span class="gold">логику</span> и <span class="gold">интуицию</span></h1>
-        <!-- Десктопная версия текста (полная) -->
-        <p class="lnd-sub">Симулятор турнирного стола с ботами PRO и VIP, имитирующими поведение человека. Тренажёр для развития логики и интуиции за покерным столом. Бесплатно. Без установки. Без регистрации.</p>
-        <!-- Мобильная версия текста (без фразы «Бесплатно...» — она ниже, над кнопкой) -->
-        <p class="lnd-sub-mobile-copy">Симулятор турнирного стола с ботами PRO и VIP, имитирующими поведение человека. Тренажёр для развития логики и интуиции за покерным столом.</p>
-        <div class="lnd-hero-actions">
-          <a class="lnd-btn" href="/app.html" aria-label="Начать тренировку">Начать тренировку</a>
+          <div class="lang-select" id="lang-select">
+            <button type="button" class="lang-trigger" id="lang-trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span id="lang-current">RU</span>
+              <span class="arrow" aria-hidden="true"></span>
+            </button>
+            <div class="lang-menu" role="listbox" aria-label="Выбор языка">
+              <button type="button" class="lang-option active" data-lang="ru" role="option" aria-selected="true">RU</button>
+              <button type="button" class="lang-option inactive" data-lang="en" role="option" aria-selected="false">EN</button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="lnd-hero-visual" aria-hidden="true">
-        <div class="lnd-card-fan">
-          <div class="lnd-play-card ten-diamonds"><span class="rank">10</span><span class="suit-big">♥</span></div>
-          <div class="lnd-play-card jack-diamonds"><span class="rank">J</span><span class="suit-big">♥</span></div>
-          <div class="lnd-play-card queen-diamonds"><span class="rank">Q</span><span class="suit-big">♥</span></div>
-          <div class="lnd-play-card king-diamonds"><span class="rank">K</span><span class="suit-big">♥</span></div>
-          <div class="lnd-play-card ace-diamonds"><span class="rank">A</span><span class="suit-big">♥</span></div>
-          <div class="lnd-chip c1"></div><div class="lnd-chip c2"></div><div class="lnd-chip c3"></div>
+      <div class="tg-feed-track-wrap" id="tg-feed-wrap">
+        <div class="tg-feed-track" id="tg-feed-track"></div>
+      </div>
+      <div class="tg-feed-dots" id="tg-feed-dots"></div>
+    </section>
+
+    <section class="lnd-hero" aria-labelledby="lnd-hero-title">
+      <button class="lnd-heart-btn" type="button" data-action="open-support" aria-label="Поддержать автора">
+        <svg class="ph-heart-svg" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 28.5C16 28.5 3.5 20.4 3.5 11.9C3.5 7.5 6.9 4.1 11 4.1C13.2 4.1 15.1 5.1 16 6.6C16.9 5.1 18.8 4.1 21 4.1C25.1 4.1 28.5 7.5 28.5 11.9C28.5 20.4 16 28.5 16 28.5Z"/>
+        </svg>
+      </button>
+
+      <div class="lnd-inner lnd-hero-grid">
+        <div class="lnd-hero-copy lnd-reveal">
+          <div class="lnd-logo-row">
+            <div class="lnd-logo">
+              <span>Poker Trainer</span>
+            </div>
+          </div>
+
+          <h1 class="lnd-h1" id="lnd-hero-title">
+            Тренируй <span class="gold">логику</span> и <span class="gold">интуицию</span>
+          </h1>
+
+          <p class="lnd-sub">
+            Симулятор турнирного стола с ботами PRO и VIP, имитирующими поведение человека.
+            Тренажёр для развития логики и интуиции за покерным столом.
+            Бесплатно. Без установки. Без регистрации.
+          </p>
+
+          <div class="lnd-hero-actions">
+            <button class="lnd-btn" type="button" data-action="enter-app" aria-label="Начать тренировку">
+              Начать тренировку
+            </button>
+          </div>
+        </div>
+
+        <div class="lnd-hero-visual lnd-reveal" aria-hidden="true">
+          <div class="lnd-card-fan">
+            <div class="lnd-play-card ten-diamonds">
+              <span class="rank">10</span>
+              <span class="suit-big">♥</span>
+            </div>
+            <div class="lnd-play-card jack-diamonds">
+              <span class="rank">J</span>
+              <span class="suit-big">♥</span>
+            </div>
+            <div class="lnd-play-card queen-diamonds">
+              <span class="rank">Q</span>
+              <span class="suit-big">♥</span>
+            </div>
+            <div class="lnd-play-card king-diamonds">
+              <span class="rank">K</span>
+              <span class="suit-big">♥</span>
+            </div>
+            <div class="lnd-play-card ace-diamonds">
+              <span class="rank">A</span>
+              <span class="suit-big">♥</span>
+            </div>
+            <div class="lnd-chip c1"></div>
+            <div class="lnd-chip c2"></div>
+            <div class="lnd-chip c3"></div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Мобильный блок: текст над кнопкой, кнопка ниже под картами -->
-      <div class="lnd-mobile-cta">
-        <p class="lnd-sub-mobile">Бесплатно. Без установки. Без регистрации.</p>
-        <a class="lnd-btn" href="/app.html" aria-label="Начать тренировку">Начать тренировку</a>
-      </div>
-    </div>
-  </section>
+    <section class="lnd-section" aria-labelledby="lnd-why-title">
+      <div class="lnd-inner">
+        <div class="lnd-reveal">
+          <div class="lnd-kicker">Почему это работает</div>
+          <h2 class="lnd-h2" id="lnd-why-title">Солвер даёт правильный ответ. <span class="gold">Тренажёр учит точной игре</span></h2>
+          <p class="lnd-lead">
+            Солверы, калькуляторы эквити и GTO-тренажёры отвечают на вопрос «как играть правильно в вакууме».
+            Но в турнире вакуума нет. Есть оппонент с памятью, страхом, тильтом и привычками.
+            Против него «правильная» игра часто проигрывает «точной» — той, что строится под его ошибки.
+          </p>
+        </div>
 
-  <!-- Секция «Почему это работает» -->
-  <section class="lnd-section" aria-labelledby="lnd-why-title">
-    <div class="lnd-inner">
-      <div>
-        <div class="lnd-kicker">Почему это работает</div>
-        <h2 class="lnd-h2" id="lnd-why-title">Солвер даёт правильный ответ. <span class="gold">Тренажёр учит точной игре</span></h2>
-        <p class="lnd-lead">Солверы, калькуляторы эквити и GTO-тренажёры отвечают на вопрос «как играть правильно в вакууме». Но в турнире вакуума нет. Есть оппонент с памятью, страхом, тильтом и привычками. Против него «правильная» игра часто проигрывает «точной» — той, что строится под его ошибки.</p>
-      </div>
-      <div class="lnd-grid-3">
-        <button class="lnd-card tappable" type="button" data-info-title-key="modal.logic.title" data-info-body-key="modal.logic.body">
-          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
-          <h3>Логика</h3>
-          <p>Выстроить линию так, чтобы оппонент совершил ошибку, а не просто «сыграл по чарту». Каждое действие — осознанный ответ на вопрос «зачем».</p>
-          <svg class="lnd-card-tap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/></svg>
-        </button>
-        <button class="lnd-card tappable" type="button" data-info-title-key="modal.intuition.title" data-info-body-key="modal.intuition.body">
-          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-          <h3>Интуиция</h3>
-          <p>Считать исход раздачи из поля информации до того, как карты открылись. Читать линию поведения и замечать повторяющиеся ошибки.</p>
-          <svg class="lnd-card-tap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/></svg>
-        </button>
-        <button class="lnd-card tappable" type="button" data-info-title-key="modal.link.title" data-info-body-key="modal.link.body">
-          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg></div>
-          <h3>Связка логики и интуиции</h3>
-          <p>Мало знать, кто сильнее на вскрытии. Нужно выстроить действия так, чтобы выиграть максимум фишек, а не просто забрать банк.</p>
-          <svg class="lnd-card-tap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/></svg>
-        </button>
-      </div>
-    </div>
-  </section>
+        <div class="lnd-grid-3">
+          <button class="lnd-card lnd-reveal tappable" type="button"
+                  data-info-title="Логика"
+                  data-info-body="Логика в покере — это не про правильные решения «по чарту», а про построение линии, при которой оппонент совершает ошибку. Каждое ваше действие должно иметь цель: заставить его сделать колл, когда он позади, фолд, когда он впереди, или рейз, когда он блефует.
 
-  <!-- Секция «Против кого ты играешь» -->
-  <section class="lnd-section" aria-labelledby="lnd-bots-title">
-    <div class="lnd-inner">
-      <div>
-        <div class="lnd-kicker">Против кого ты играешь</div>
-        <h2 class="lnd-h2" id="lnd-bots-title">Боты с <span class="gold">памятью и характером</span>, а не таблицы и расчёты</h2>
-        <p class="lnd-lead">За столом Poker Prana нет абстрактных «ботов». Есть характеры, повторяющие реальных игроков турниров. Два класса — PRO и VIP, четыре типа игроков в каждом классе.</p>
-      </div>
-      <div class="lnd-bot-group">
-        <div class="lnd-bot-group-title"><span class="dot"></span> <span>Класс PRO — сильные соперники</span></div>
-        <div class="lnd-bot-grid cols-4">
-          <article class="lnd-bot"><span class="badge pro-lag">PRO · 1</span><h4>LAG-Pro</h4><p>Топ мирового уровня. Постоянное давление, смена образа, ловушки, тонкие вэлью-беты, точные блефы. Тренирует умение строить ловушку — для неё нужна безупречная логика.</p></article>
-          <article class="lnd-bot"><span class="badge pro-icm">PRO · 2</span><h4>ICM-Exploiter</h4><p>Чистый турнирный расчёт. На бабле тайтовее, в призах давит на короткие стеки. Тренирует турнирные решения: когда риск оправдан, а когда — нет. Каждое решение имеет свою цену.</p></article>
-          <article class="lnd-bot"><span class="badge pro-solver">PRO · 3</span><h4>Solver-Hybrid</h4><p>Быстро читает вас и адаптируется. Тренирует вариативность: как только он понял ваш паттерн — вы уже проиграли раздачу. Учитесь не давать паттерн и оставаться непредсказуемым.</p></article>
-          <article class="lnd-bot"><span class="badge pro-gto">PRO · 4</span><h4>GTO-Reg</h4><p>Честный крепкий регуляр. Играет ровно, не разваливается под давлением, не делает лишних ошибок. Тренирует точную игру и дисциплину. Точность важнее блефа и риска.</p></article>
+Вы учитесь задавать вопрос «зачем» перед каждым действием. Не «что я должен сделать по GTO», а «что я хочу, чтобы сделал оппонент после моего действия». Это ключевое отличие «правильной» игры от «точной».
+
+За столом Poker Trainer логика тренируется через анализ линии каждого бота: почему LAG-Pro рейзит именно тут, почему ICM-Exploiter на баббле играет тайтовее, почему Solver-Hybrid меняет паттерн против вас. Вы начинаете видеть логику за чужими решениями — и строить свою так, чтобы управлять чужой.">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              </svg>
+            </div>
+            <h3>Логика</h3>
+            <p>Выстроить линию так, чтобы оппонент совершил ошибку, а не просто «сыграл по чарту». Каждое действие — осознанный ответ на вопрос «зачем».</p>
+            <svg class="lnd-card-tap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/>
+            </svg>
+          </button>
+
+          <button class="lnd-card lnd-reveal tappable" type="button"
+                  data-info-title="Интуиция"
+                  data-info-body="Интуиция в покере — это способность считать исход раздачи из поля информации до того, как карты открылись. Это не мистика и не «чуйка». Это накопленный опыт, который мозг обрабатывает быстрее, чем сознание успевает сформулировать.
+
+Вы учитесь читать линию поведения оппонента: темп ставок, размеры, повторяющиеся ошибки, смену образа. Замечать, когда он блефует в третий раз за орбиту. Чувствовать, когда «слишком тихо» — это сила, а не слабость.
+
+В Poker Trainer интуиция тренируется через многократное повторение и наблюдение. Боты играют по-разному каждый раз, но их характеры стабильны — и со временем вы начинаете «узнавать» их решения ещё до того, как они сделаны. Это и есть интуиция в чистом виде: быстрое считывание повторяющегося поведения.">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <h3>Интуиция</h3>
+            <p>Считать исход раздачи из поля информации до того, как карты открылись. Читать линию поведения и замечать повторяющиеся ошибки.</p>
+            <svg class="lnd-card-tap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/>
+            </svg>
+          </button>
+
+          <button class="lnd-card lnd-reveal tappable" type="button"
+                  data-info-title="Связка логики и интуиции"
+                  data-info-body="Логика и интуиция в покере — не два отдельных навыка, а два конца одной линии. Логика говорит: «здесь я должен ставить 60% банка, чтобы у оппонента не было правильных шансов на колл». Интуиция говорит: «этот конкретный игрок на этой конкретной улице на такую ставку выкинет».
+
+Проблема в том, что по отдельности оба навыка ограничены. Чистая логика без интуиции превращается в игру по чарту — она правильная, но не эксплуатирует ошибки. Чистая интуиция без логики превращается в догадки — иногда гениальные, иногда катастрофические.
+
+В Poker Trainer вы тренируете связку: сначала считаете логически, какое действие должно быть «правильным в вакууме», потом через интуицию корректируете его под конкретного оппонента. И в этот момент ваша игра из «правильной» становится «точной» — она не просто соответствует теории, она забирает максимум фишек именно у этого игрока именно сейчас.">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/>
+                <path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/>
+              </svg>
+            </div>
+            <h3>Связка логики и интуиции</h3>
+            <p>Мало знать, кто сильнее на вскрытии. Нужно выстроить действия так, чтобы выиграть максимум фишек, а не просто забрать банк.</p>
+            <svg class="lnd-card-tap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/>
+            </svg>
+          </button>
         </div>
       </div>
-      <div class="lnd-bot-group">
-        <div class="lnd-bot-group-title"><span class="dot vip"></span> <span>Класс VIP — слабые соперники</span></div>
-        <div class="lnd-bot-grid cols-4">
-          <article class="lnd-bot"><span class="badge vip-taglite">VIP · 1</span><h4>TAG-Lite</h4><p>Знает базу, но играет роботизированно. Слаб на ривере, его 3-беты предсказуемы. Тренирует ломать шаблон: баррелить там, где он фолдит, и блефовать там, где не ждёт.</p></article>
-          <article class="lnd-bot"><span class="badge vip-loose">VIP · 2</span><h4>Loose-Passive</h4><p>Коллит широко, агрессии почти нет, его рейз — всегда сила. Тренирует дисциплину: не блефовать, плотно вэлью-бетить и не тратить фишки там, где он не выкидывает.</p></article>
-          <article class="lnd-bot"><span class="badge vip-rock">VIP · 3</span><h4>Rock</h4><p>Только премиум-руки, абсолютно предсказуем. Вошёл — у него рука. Тренирует читать слабость и забирать бесплатно: стилить блайнды и фолдить против его крупных ставок.</p></article>
-          <article class="lnd-bot"><span class="badge vip-maniac">VIP · 4</span><h4>Maniac</h4><p>Рейзит всё, блефует на всех улицах, играет на эмоциях. Тренирует терпение и хладнокровие: ждать свою руку, плотно вэлью-бетить и никогда не блефовать в ответ.</p></article>
+    </section>
+
+    <section class="lnd-section" aria-labelledby="lnd-bots-title">
+      <div class="lnd-inner">
+        <div class="lnd-reveal">
+          <div class="lnd-kicker">Против кого ты играешь</div>
+          <h2 class="lnd-h2" id="lnd-bots-title">Боты с <span class="gold">памятью и характером</span>, а не таблицы и расчёты</h2>
+          <p class="lnd-lead">
+            За столом Poker Trainer нет абстрактных «ботов». Есть характеры, повторяющие реальных игроков турниров.
+            Два класса — PRO и VIP, четыре типа игроков в каждом классе.
+          </p>
+        </div>
+
+        <div class="lnd-bot-group lnd-reveal">
+          <div class="lnd-bot-group-title"><span class="dot"></span> Класс PRO — сильные соперники</div>
+          <div class="lnd-bot-grid cols-4">
+            <article class="lnd-bot">
+              <span class="badge pro-lag">PRO · 1</span>
+              <h4>LAG-Pro</h4>
+              <p>Топ мирового уровня. Постоянное давление, смена образа, ловушки, тонкие вэлью-беты, точные блефы. Тренирует умение строить ловушку — для неё нужна безупречная логика.</p>
+            </article>
+
+            <article class="lnd-bot">
+              <span class="badge pro-icm">PRO · 2</span>
+              <h4>ICM-Exploiter</h4>
+              <p>Чистый турнирный расчёт. На бабле тайтовеет, в призах давит на короткие стеки. Тренирует турнирные решения: когда риск оправдан, а когда — нет. Каждое решение имеет свою цену.</p>
+            </article>
+
+            <article class="lnd-bot">
+              <span class="badge pro-solver">PRO · 3</span>
+              <h4>Solver-Hybrid</h4>
+              <p>Быстро читает вас и адаптируется. Тренирует вариативность: как только он понял ваш паттерн — вы уже проиграли раздачу. Учитесь не давать паттерн и оставаться непредсказуемым.</p>
+            </article>
+
+            <article class="lnd-bot">
+              <span class="badge pro-gto">PRO · 4</span>
+              <h4>GTO-Reg</h4>
+              <p>Честный крепкий регуляр. Играет ровно, не разваливается под давлением, не делает лишних ошибок. Тренирует точную игру и дисциплину. Точность важнее блефа и риска.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="lnd-bot-group lnd-reveal">
+          <div class="lnd-bot-group-title"><span class="dot vip"></span> Класс VIP — слабые соперники</div>
+          <div class="lnd-bot-grid cols-4">
+            <article class="lnd-bot">
+              <span class="badge vip-taglite">VIP · 1</span>
+              <h4>TAG-Lite</h4>
+              <p>Знает базу, но играет роботизированно. Не адаптируется, слаб на ривере, 3-беты предсказуемы. Учит ломать шаблон: баррелить там, где он фолдит, и блефовать там, где не ждёт.</p>
+            </article>
+
+            <article class="lnd-bot">
+              <span class="badge vip-loose">VIP · 2</span>
+              <h4>Loose-Passive</h4>
+              <p>Коллит широко, агрессии почти нет, его рейз — всегда сила. Учит дисциплине: не блефовать и вэлью-бетить плотно. Не тратить фишки там, где он не выкидывает.</p>
+            </article>
+
+            <article class="lnd-bot">
+              <span class="badge vip-rock">VIP · 3</span>
+              <h4>Rock</h4>
+              <p>Только премиум-руки, абсолютно предсказуем. Вошёл — у него рука. Учит читать слабость и забирать бесплатно: стилить блайнды и фолдить против крупных ставок.</p>
+            </article>
+
+            <article class="lnd-bot">
+              <span class="badge vip-maniac">VIP · 4</span>
+              <h4>Maniac</h4>
+              <p>Рейзит всё, блефует на всех улицах, играет на эмоциях. Учит терпению и хладнокровию: ждать руку, плотно вэлью-бетить и никогда не блефовать против него.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="lnd-bot-cta lnd-reveal">
+          <button class="lnd-btn" type="button" data-action="enter-app" aria-label="Начать тренировку">
+            Начать тренировку
+          </button>
         </div>
       </div>
-      <div class="lnd-bot-cta"><a class="lnd-btn" href="/app.html" aria-label="Начать тренировку">Начать тренировку</a></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Секция «Чему ты научишься» -->
-  <section class="lnd-section" aria-labelledby="lnd-benefit-title">
-    <div class="lnd-inner">
-      <div>
-        <div class="lnd-kicker">Чему ты научишься</div>
-        <h2 class="lnd-h2" id="lnd-benefit-title">Польза <span class="gold">для всех игроков</span></h2>
-      </div>
-      <div class="lnd-grid-3">
-        <article class="lnd-card"><h3>Начинающему</h3><p>Научиться думать за столом, а не запоминать руки. Понять, что покер — это не карты, а оппоненты и их решения. Научиться задавать себе вопрос перед каждым действием.</p></article>
-        <article class="lnd-card"><h3>Опытному</h3><p>Перестать играть «по учебнику» и начать играть против конкретного оппонента. Увидеть, где чарты вас ограничивают. Читать людей и обыгрывать их ошибки, а не их карты.</p></article>
-        <article class="lnd-card"><h3>Профессионалу</h3><p>Уйти от перегруженных математических решений к чистой логике и абсолютной интуиции. Найти то, что не считается в солвере: момент, ритм, образ, ловушку.</p></article>
-      </div>
-      <div style="margin-top:30px;">
-        <div class="lnd-card gold-edge">
-          <h3>Почему тренировка против ботов учит играть против людей</h3>
-          <p>Навык, который вы развиваете в приложении, работает против любого соперника — и против человека, и против программы. Читать линию поведения, замечать ошибки, выстраивать действия под чужое мышление — всё это не зависит от того, кто сидит напротив.</p>
-          <p>Живой оппонент отличается от идеального калькулятора не тем, что он человек, а тем, что у него есть повторяющиеся ошибки. Он помнит прошлые раздачи, меняет стиль, ловит вас на паттерне, ошибается под давлением. Всё это — поведение. Поведение можно воспроизвести. Именно это и делают боты Poker Prana.</p>
+    <section class="lnd-section" aria-labelledby="lnd-benefit-title">
+      <div class="lnd-inner">
+        <div class="lnd-reveal">
+          <div class="lnd-kicker">Чему ты научишься</div>
+          <h2 class="lnd-h2" id="lnd-benefit-title">Польза <span class="gold">для всех игроков</span></h2>
+        </div>
+
+        <div class="lnd-grid-3">
+          <article class="lnd-card lnd-reveal">
+            <h3>Начинающему</h3>
+            <p>Научиться думать за столом, а не запоминать руки. Понять, что покер — это не карты, а оппоненты и их решения. Научиться задавать себе вопрос перед каждым действием.</p>
+          </article>
+
+          <article class="lnd-card lnd-reveal">
+            <h3>Опытному</h3>
+            <p>Перестать играть «по учебнику» и начать играть против конкретного оппонента. Увидеть, где чарты вас ограничивают. Читать людей и обыгрывать их ошибки, а не их карты.</p>
+          </article>
+
+          <article class="lnd-card lnd-reveal">
+            <h3>Профессионалу</h3>
+            <p>Уйти от перегруженных математических решений к чистой логике и абсолютной интуиции. Найти то, что не считается в солвере: момент, ритм, образ, ловушку.</p>
+          </article>
+        </div>
+
+        <div class="lnd-reveal" style="margin-top:30px;">
+          <div class="lnd-card gold-edge">
+            <h3>Почему тренировка против ботов учит играть против людей</h3>
+            <p>
+              Навык, который вы развиваете в приложении, работает против любого соперника — и против человека, и против программы. Читать линию поведения, замечать ошибки, выстраивать действия под чужое мышление — всё это не зависит от того, кто сидит напротив.
+            </p>
+            <p>
+              Живой оппонент отличается от идеального калькулятора не тем, что он человек, а тем, что у него есть повторяющиеся ошибки. Он помнит прошлые раздачи, меняет стиль, ловит вас на паттерне, ошибается под давлением. Всё это — поведение. Поведение можно воспроизвести. Именно это и делают боты Poker Trainer.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Секция «Как устроена игра» -->
-  <section class="lnd-section" aria-labelledby="lnd-how-title">
-    <div class="lnd-inner">
-      <div>
-        <div class="lnd-kicker">Как устроена игра</div>
-        <h2 class="lnd-h2" id="lnd-how-title">Sit &amp; Go, 8 игроков, <span class="gold">призовая структура на 3 места</span></h2>
-        <p class="lnd-lead">Вы садитесь за стол из восьми игроков (вы и семь ботов) и играете турнир Sit &amp; Go. Каждая раздача — это отдельный урок. Каждое действие бота — информация для вас.</p>
+    <section class="lnd-section" aria-labelledby="lnd-how-title">
+      <div class="lnd-inner">
+        <div class="lnd-reveal">
+          <div class="lnd-kicker">Как устроена игра</div>
+          <h2 class="lnd-h2" id="lnd-how-title">Sit &amp; Go, 8 игроков, <span class="gold">призовая структура на 3 места</span></h2>
+          <p class="lnd-lead">
+            Вы садитесь за стол из восьми игроков (вы и семь ботов) и играете турнир Sit &amp; Go.
+            Каждая раздача — это отдельный урок. Каждое действие бота — информация для вас.
+          </p>
+        </div>
+
+        <div class="lnd-grid-3">
+          <article class="lnd-card lnd-reveal">
+            <h3>Каждая раздача — урок</h3>
+            <p>Каждый ваш ход — попытка направить мышление оппонента туда, где он примет неверное решение и ошибётся в вашу пользу.</p>
+          </article>
+
+          <article class="lnd-card lnd-reveal">
+            <h3>Честная обратная связь</h3>
+            <p>WIN или LOSS, плюс или минус фишек. Никаких подсказок, никаких оценок. Только результат — как в реальном покере.</p>
+          </article>
+
+          <article class="lnd-card lnd-reveal">
+            <h3>Турнирная логика</h3>
+            <p>ICM на баббле и в призах. Давление на короткие стеки. Решения, когда риск оправдан, а когда нет — в условиях реальной структуры выплат.</p>
+          </article>
+        </div>
+
+        <div class="lnd-mobile-note lnd-reveal">
+          <div class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="2" width="12" height="20" rx="2"/>
+              <line x1="12" y1="18" x2="12" y2="18"/>
+            </svg>
+          </div>
+          <div class="txt">
+            Приложение оптимизировано под мобильные устройства. Управление одной рукой, безопасные отступы под вырез экрана и системную панель, свайпы открывают панели, тапы и удержания по стеку и картам, крупные зоны нажатия. Бесплатно, без регистрации и установки — работает прямо в браузере.
+          </div>
+        </div>
+
+        <div class="lnd-reveal" style="margin-top:26px; text-align:center;">
+          <button class="lnd-btn" type="button" data-action="enter-app" aria-label="Начать тренировку">
+            Начать тренировку
+          </button>
+        </div>
       </div>
-      <div class="lnd-grid-3">
-        <article class="lnd-card"><h3>Каждая раздача — урок</h3><p>Каждый ваш ход — попытка направить мышление оппонента туда, где он примет неверное решение и ошибётся в вашу пользу.</p></article>
-        <article class="lnd-card"><h3>Честная обратная связь</h3><p>WIN или LOSS, плюс или минус фишек. Никаких подсказок, никаких оценок. Только результат — как в реальном покере.</p></article>
-        <article class="lnd-card"><h3>Турнирная логика</h3><p>ICM на баббле и в призах. Давление на короткие стеки. Решения, когда риск оправдан, а когда нет — в условиях реальной структуры выплат.</p></article>
+    </section>
+
+    <section class="lnd-section" aria-labelledby="lnd-features-title">
+      <div class="lnd-inner">
+        <div class="lnd-reveal">
+          <div class="lnd-kicker">Что внутри приложения</div>
+          <h2 class="lnd-h2" id="lnd-features-title">Инструменты <span class="gold">точной игры</span></h2>
+        </div>
+
+        <div class="lnd-features">
+          <div class="lnd-feature lnd-reveal"><span class="tick">✓</span><span><b>Турнирный стол 8-max</b>, Texas Hold'em, Sit &amp; Go с призовой структурой на 3 места.</span></div>
+          <div class="lnd-feature lnd-reveal"><span class="tick">✓</span><span><b>Боты с памятью и адаптацией</b> (PRO) и эксплуатируемые слабые боты (VIP).</span></div>
+          <div class="lnd-feature lnd-reveal"><span class="tick">✓</span><span><b>Слайдер ставок</b>, быстрые проценты банка, BB-пресеты — всё под большой палец.</span></div>
+          <div class="lnd-feature lnd-reveal"><span class="tick">✓</span><span><b>Таймер на ход</b> и тонкие настройки: сложность, стеки, рост блайндов, показ карт.</span></div>
+          <div class="lnd-feature lnd-reveal"><span class="tick">✓</span><span><b>Реплей раздачи по шагам</b> — увидеть линию со стороны и найти свою ошибку.</span></div>
+          <div class="lnd-feature lnd-reveal"><span class="tick">✓</span><span><b>ICM-логика</b> на баббле и в призах — турнирные решения, а не кэш-игра.</span></div>
+        </div>
       </div>
-      <div class="lnd-mobile-note">
-        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div>
-        <div class="txt">Приложение оптимизировано под мобильные устройства. Управление одной рукой, безопасные отступы под вырез экрана и системную панель, свайпы открывают панели, тапы и удержания по стеку и картам, крупные зоны нажатия. Бесплатно, без регистрации и установки — работает прямо в браузере.</div>
+    </section>
+
+    <section class="lnd-section" aria-labelledby="lnd-sections-title">
+      <div class="lnd-inner">
+        <div class="lnd-reveal">
+          <div class="lnd-kicker">Разделы и режимы</div>
+          <h2 class="lnd-h2" id="lnd-sections-title">Как <span class="gold">ориентироваться</span> внутри</h2>
+        </div>
+
+        <div class="lnd-grid-3-sections">
+          <button class="lnd-card lnd-reveal tappable" type="button"
+                  data-info-title="Настройки"
+                  data-info-body="В разделе «Настройки» вы полностью управляете условиями тренировки. Язык интерфейса — русский или английский, сложность — от мягкой игры с VIP до жёсткого стола с PRO.
+
+Стеки отображаются в BB или в фишках — как удобнее для конкретного спота. Стиль карт — 2-цветный для классического вида или 4-цветный для быстрого считывания мастей.
+
+Рост блайндов идёт по числу сыгранных раздач. Время на ход выбирается под ваш темп: 10 секунд или без ограничения. Бейджи типов игроков показывают, против кого вы играете за столом.">
+            <h3>Настройки</h3>
+            <p>Язык, уровень сложности, стеки (BB/фишки), стиль карт (2/4-цветные), рост блайндов, время на ход, типы игроков, показ карт (скрытие/открытие).</p>
+            <svg class="lnd-card-tap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/>
+            </svg>
+          </button>
+
+          <button class="lnd-card lnd-reveal tappable" type="button"
+                  data-info-title="Управление"
+                  data-info-body="Всё управление построено под большой палец — тренировка на телефоне не уступает большому экрану. Свайпы вверх и вниз открывают и закрывают настройки, не отрывая руку от стола.
+
+Слайдер ставки регулируется одним движением — точный размер бета без ручного ввода цифр. Тапы по стеку, картам и таймеру срабатывают мгновенно, без двойных кликов.
+
+Долгое нажатие на кнопках процентов захватывает слайдер, движения вверх и вниз задают сумму ставки. Долгое нажатие на картах героя скрывает их для тренировки интуитивного восприятия.">
+            <h3>Управление</h3>
+            <p>Всё управление строится под большой палец для удобной тренировки с телефона: свайпы, слайдеры, тапы по активным зонам, тапы и удержания.</p>
+            <svg class="lnd-card-tap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/>
+            </svg>
+          </button>
+
+          <button class="lnd-card lnd-reveal tappable" type="button"
+                  data-info-title="Поддержка"
+                  data-info-body="Poker Trainer — некоммерческий проект. Без подписок, без рекламы, без платы за доступ. Проект существует и развивается исключительно на средства от ваших донатов.
+
+Адреса для переводов: GGPoker (перевод через покер-рум), USDT TRC20 (криптовалюта в сети Tron), VISA (карта для переводов в долларах и других валютах) или запрос в Telegram.
+
+Контакты в Telegram — основной канал связи. Через него можно задать вопрос, предложить идею, сообщить об ошибке или просто поделиться впечатлениями от тренировки.">
+            <h3>Поддержка</h3>
+            <p>Poker Trainer — некоммерческий проект. Без подписок, без рекламы, без платы за доступ. Проект существует и развивается исключительно на средства от ваших донатов.</p>
+            <svg class="lnd-card-tap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/>
+            </svg>
+          </button>
+        </div>
       </div>
-      <div style="margin-top:26px; text-align:center;"><a class="lnd-btn" href="/app.html" aria-label="Начать тренировку">Начать тренировку</a></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Секция «Что внутри приложения» -->
-  <section class="lnd-section" aria-labelledby="lnd-features-title">
-    <div class="lnd-inner">
-      <div>
-        <div class="lnd-kicker">Что внутри приложения</div>
-        <h2 class="lnd-h2" id="lnd-features-title">Инструменты <span class="gold">точной игры</span></h2>
+    <section class="lnd-section lnd-final" aria-labelledby="lnd-final-title">
+      <div class="lnd-final-glow" aria-hidden="true"></div>
+      <div class="lnd-final-rule" aria-hidden="true"></div>
+      <div class="lnd-inner">
+        <h2 class="lnd-h2 lnd-reveal" id="lnd-final-title">
+          Готов тренировать <span class="gold">логику</span> и <span class="gold">интуицию</span>?
+        </h2>
+        <p class="lnd-p lnd-reveal" style="margin-left:auto;margin-right:auto;">
+          Бесплатно. Без установки. Без регистрации.
+        </p>
+        <div class="lnd-reveal" style="margin-top:26px;">
+          <button class="lnd-btn" type="button" data-action="enter-app" aria-label="Начать тренировку">
+            Начать тренировку
+          </button>
+        </div>
       </div>
-      <div class="lnd-features">
-        <div class="lnd-feature"><span class="tick">✓</span><span><b>Турнирный стол 8-max</b>, Texas Hold'em, Sit &amp; Go с призовой структурой на 3 места.</span></div>
-        <div class="lnd-feature"><span class="tick">✓</span><span><b>Боты с памятью и адаптацией</b> (PRO) и эксплуатируемые слабые боты (VIP).</span></div>
-        <div class="lnd-feature"><span class="tick">✓</span><span><b>Слайдер ставок</b>, быстрые проценты банка, BB-пресеты — всё под большой палец.</span></div>
-        <div class="lnd-feature"><span class="tick">✓</span><span><b>Таймер на ход</b> и тонкие настройки: сложность, стеки, рост блайндов, показ карт.</span></div>
-        <div class="lnd-feature"><span class="tick">✓</span><span><b>Реплей раздачи по шагам</b> — увидеть линию со стороны и найти свою ошибку.</span></div>
-        <div class="lnd-feature"><span class="tick">✓</span><span><b>ICM-логика</b> на баббле и в призах — турнирные решения, а не кэш-игра.</span></div>
+    </section>
+
+    <footer class="lnd-footer">
+      <div class="lnd-inner">
+        <div class="row">
+          <div class="brand">Poker Trainer</div>
+          <div class="copy">© Все права защищены</div>
+        </div>
+        <p class="disclaimer" style="margin-top:14px;">
+          Тренажёр для тренировки покерных навыков.
+          Некоммерческий проект.
+          Не является азартной игрой на реальные деньги.
+        </p>
       </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- Секция «Разделы и режимы» -->
-  <section class="lnd-section" aria-labelledby="lnd-sections-title">
-    <div class="lnd-inner">
-      <div>
-        <div class="lnd-kicker">Разделы и режимы</div>
-        <h2 class="lnd-h2" id="lnd-sections-title">Как <span class="gold">ориентироваться</span> внутри</h2>
-      </div>
-      <div class="lnd-grid-3-sections">
-        <button class="lnd-card tappable" type="button" data-info-title-key="modal.settings.title" data-info-body-key="modal.settings.body">
-          <h3>Настройки</h3>
-          <p>Язык, уровень сложности, стеки (BB/фишки), стиль карт (2/4-цветные), рост блайндов, время на ход, типы игроков, показ карт (скрытие/открытие).</p>
-          <svg class="lnd-card-tap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/></svg>
-        </button>
-        <button class="lnd-card tappable" type="button" data-info-title-key="modal.control.title" data-info-body-key="modal.control.body">
-          <h3>Управление</h3>
-          <p>Всё управление строится под большой палец для удобной тренировки с телефона: свайпы, слайдеры, тапы по активным зонам, тапы и удержания.</p>
-          <svg class="lnd-card-tap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/></svg>
-        </button>
-        <button class="lnd-card tappable" type="button" data-info-title-key="modal.support.title" data-info-body-key="modal.support.body">
-          <h3>Поддержка</h3>
-          <p>Poker Prana — некоммерческий проект. Без подписок, без рекламы, без платы за доступ. Проект существует на средства от вашей поддержки.</p>
-          <svg class="lnd-card-tap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/></svg>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Финальный CTA -->
-  <section class="lnd-section lnd-final" aria-labelledby="lnd-final-title">
-    <div class="lnd-final-glow" aria-hidden="true"></div>
-    <div class="lnd-final-rule" aria-hidden="true"></div>
-    <div class="lnd-inner">
-      <h2 class="lnd-h2" id="lnd-final-title">Готов тренировать <span class="gold">логику</span> и <span class="gold">интуицию</span>?</h2>
-      <p class="lnd-p" style="margin-left:auto;margin-right:auto;">Бесплатно. Без установки. Без регистрации.</p>
-      <div style="margin-top:26px;"><a class="lnd-btn" href="/app.html" aria-label="Начать тренировку">Начать тренировку</a></div>
-    </div>
-  </section>
-
-  <!-- Футер -->
-  <footer class="lnd-footer">
-    <div class="lnd-inner">
-      <div class="row">
-        <div class="brand">Poker Prana</div>
-        <div class="copy">© Все права защищены</div>
-      </div>
-      <p class="disclaimer" style="margin-top:14px;">Тренажёр для тренировки покерных навыков. Некоммерческий проект. Не является азартной игрой на реальные деньги.</p>
-    </div>
-  </footer>
-
-</div>
-
-<!-- Полосы затухания -->
-<div class="lnd-fade-top" id="lnd-fade-top" aria-hidden="true"></div>
-<div class="lnd-fade-bottom" id="lnd-fade-bottom" aria-hidden="true"></div>
-
-<!-- Золотая линия в самом верху, впритык к краю экрана -->
-<div class="lnd-top-rule" aria-hidden="true"></div>
-
-<!-- Нижняя панель иконок -->
-<div id="bottom-bar" aria-hidden="true">
-  <div class="bottom-bar-center">
-    <a class="bottom-icon" href="/app.html" aria-label="Начать тренировку">
-      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="4" y="6" width="14" height="20" rx="2" transform="rotate(-8 11 16)" fill="#3a2c10"/>
-        <rect x="14" y="6" width="14" height="20" rx="2" transform="rotate(8 21 16)" fill="#3a2c10"/>
-      </svg>
-    </a>
-    <button class="bottom-icon bottom-icon--heart" type="button" data-action="open-support" aria-label="Поддержать автора">
-      <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-        <path d="M16 28.5C16 28.5 3.5 20.4 3.5 11.9C3.5 7.5 6.9 4.1 11 4.1C13.2 4.1 15.1 5.1 16 6.6C16.9 5.1 18.8 4.1 21 4.1C25.1 4.1 28.5 7.5 28.5 11.9C28.5 20.4 16 28.5 16 28.5Z"/>
-      </svg>
-    </button>
-    <a class="bottom-icon bottom-icon-tg" href="https://t.me/thepokerway" target="_blank" rel="noopener noreferrer" aria-label="Открыть канал в Telegram">
-      <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-        <path d="M23.06 9.07 8.32 14.76c-.98.4-.97 1.78.01 2.17l3.66 1.4 1.4 4.5c.2.64 1.02.82 1.48.32l1.98-2.14 3.86 2.83c.55.4 1.34.11 1.49-.56l2.66-12.62c.16-.75-.6-1.35-1.8-1.59zM12.7 17.36l8.02-5.02-6.55 6.14-.18 2.55-1.29-3.67z"/>
-      </svg>
-    </a>
   </div>
-</div>
+
+  <div class="lnd-fade-top" id="lnd-fade-top" aria-hidden="true"></div>
+  <div class="lnd-fade-bottom" id="lnd-fade-bottom" aria-hidden="true"></div>
+
+  <div id="bottom-bar" aria-hidden="true">
+    <div class="bottom-bar-center">
+      <button class="bottom-icon" type="button" data-action="enter-app" aria-label="Начать тренировку">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="4" y="6" width="14" height="20" rx="2" transform="rotate(-8 11 16)" fill="#3a2c10"/>
+          <rect x="14" y="6" width="14" height="20" rx="2" transform="rotate(8 21 16)" fill="#3a2c10"/>
+        </svg>
+      </button>
+      <button class="bottom-icon bottom-icon--heart" type="button" data-action="open-support" aria-label="Поддержать автора">
+        <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 28.5C16 28.5 3.5 20.4 3.5 11.9C3.5 7.5 6.9 4.1 11 4.1C13.2 4.1 15.1 5.1 16 6.6C16.9 5.1 18.8 4.1 21 4.1C25.1 4.1 28.5 7.5 28.5 11.9C28.5 20.4 16 28.5 16 28.5Z"/>
+        </svg>
+      </button>
+      <a class="bottom-icon bottom-icon-tg" href="https://t.me/ThePokerWay" target="_blank" rel="noopener noreferrer" aria-label="Открыть канал в Telegram">
+        <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M23.06 9.07 8.32 14.76c-.98.4-.97 1.78.01 2.17l3.66 1.4 1.4 4.5c.2.64 1.02.82 1.48.32l1.98-2.14 3.86 2.83c.55.4 1.34.11 1.49-.56l2.66-12.62c.16-.75-.6-1.35-1.8-1.59zM12.7 17.36l8.02-5.02-6.55 6.14-.18 2.55-1.29-3.67z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
 
 <script>
-/* ============================================================
-   ОБРАБОТКА ОШИБОК КАРТИНОК: ЗАМЕНА НА SVG-СЕРДЦЕ
-   Если картинка не загрузилась — вставляем заглушку.
-   ============================================================ */
 (function() {
-  var HEART_SVG = '<svg class="ph-heart-svg" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 28.5C16 28.5 3.5 20.4 3.5 11.9C3.5 7.5 6.9 4.1 11 4.1C13.2 4.1 15.1 5.1 16 6.6C16.9 5.1 18.8 4.1 21 4.1C25.1 4.1 28.5 7.5 28.5 11.9C28.5 20.4 16 28.5 16 28.5Z"/></svg>';
-  function makeFallback() {
+  try {
+    console.log('%cSTOP!', 'color:#e63946;font-size:48px;font-weight:900;text-shadow:2px 2px 0 #000;');
+    console.log('%cЭтот код защищён авторским правом.', 'color:#ffcb2b;font-size:16px;font-weight:700;');
+    console.log('%cКопирование, распространение и использование без разрешения автора запрещено.', 'color:#ffcb2b;font-size:14px;');
+    console.log('%c© Все права защищены.', 'color:#8a8a8a;font-size:12px;');
+  } catch (e) {}
+})();
+
+(function() {
+  try {
+    document.addEventListener('contextmenu', (e) => { e.preventDefault(); return false; }, { capture: true });
+    document.addEventListener('dragstart', (e) => { e.preventDefault(); return false; }, { capture: true });
+
+    document.addEventListener('keydown', (e) => {
+      const k = (e.key || '').toLowerCase();
+      if (e.key === 'F12') { e.preventDefault(); return false; }
+      if (e.ctrlKey && e.shiftKey && (k === 'i' || k === 'j' || k === 'c' || k === 'k')) { e.preventDefault(); return false; }
+      if (e.metaKey && e.altKey && (k === 'i' || k === 'j' || k === 'c' || k === 'k')) { e.preventDefault(); return false; }
+      if ((e.ctrlKey || e.metaKey) && k === 'u') { e.preventDefault(); return false; }
+    }, { capture: true });
+  } catch (e) {}
+})();
+
+(function() {
+  try {
+    const VIEWPORT_LOCK = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover';
+
+    function forceViewportLock() {
+      try {
+        let meta = document.querySelector('meta[name="viewport"]');
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.setAttribute('name', 'viewport');
+          document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', VIEWPORT_LOCK);
+      } catch (e) {}
+    }
+
+    function resetZoomToDefault() {
+      try {
+        forceViewportLock();
+        try {
+          const old = document.querySelector('meta[name="viewport"]');
+          if (old && old.parentNode) {
+            const fresh = document.createElement('meta');
+            fresh.setAttribute('name', 'viewport');
+            fresh.setAttribute('content', VIEWPORT_LOCK);
+            old.parentNode.removeChild(old);
+            document.head.appendChild(fresh);
+          }
+        } catch (e) {}
+        try {
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        } catch (e) {}
+      } catch (e) {}
+    }
+
+    forceViewportLock();
+
+    document.addEventListener('wheel', (e) => {
+      if (e.ctrlKey) { e.preventDefault(); return false; }
+    }, { passive: false, capture: true });
+
+    document.addEventListener('keydown', (e) => {
+      if (!(e.ctrlKey || e.metaKey)) return;
+      const k = e.key;
+      if (k === '+' || k === '-' || k === '=' || k === '0' || k === '_' ||
+          k === 'Add' || k === 'Subtract' || k === 'NumpadAdd' || k === 'NumpadSubtract' ||
+          e.code === 'Equal' || e.code === 'Minus' || e.code === 'Digit0' ||
+          e.code === 'NumpadAdd' || e.code === 'NumpadSubtract' || e.code === 'Numpad0') {
+        e.preventDefault();
+        return false;
+      }
+    }, { capture: true });
+
+    document.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length > 1) { e.preventDefault(); return false; }
+    }, { passive: false, capture: true });
+
+    document.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches.length > 1) { e.preventDefault(); return false; }
+    }, { passive: false, capture: true });
+
+    document.addEventListener('touchend', (e) => {
+      if (e.touches && e.touches.length > 1) { e.preventDefault(); return false; }
+    }, { passive: false, capture: true });
+
+    document.addEventListener('gesturestart', (e) => { e.preventDefault(); return false; }, { passive: false, capture: true });
+    document.addEventListener('gesturechange', (e) => { e.preventDefault(); return false; }, { passive: false, capture: true });
+    document.addEventListener('gestureend', (e) => { e.preventDefault(); return false; }, { passive: false, capture: true });
+
+    document.addEventListener('dblclick', (e) => { e.preventDefault(); return false; }, { passive: false, capture: true });
+
+    function checkZoomAndFix() {
+      try {
+        const vv = window.visualViewport;
+        if (vv && vv.scale && vv.scale > 1.01) { resetZoomToDefault(); }
+      } catch (e) {}
+    }
+
+    let zoomGuardTimer = null;
+    function scheduleZoomGuard() {
+      if (zoomGuardTimer) clearTimeout(zoomGuardTimer);
+      zoomGuardTimer = setTimeout(checkZoomAndFix, 60);
+    }
+
+    document.addEventListener('touchend', (e) => { scheduleZoomGuard(); }, { passive: true, capture: true });
+
+    window.addEventListener('load', () => {
+      resetZoomToDefault();
+      setTimeout(resetZoomToDefault, 50);
+      setTimeout(resetZoomToDefault, 250);
+      setTimeout(checkZoomAndFix, 500);
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) { resetZoomToDefault(); setTimeout(checkZoomAndFix, 100); }
+    });
+
+    window.addEventListener('focus', () => { resetZoomToDefault(); setTimeout(checkZoomAndFix, 100); });
+    window.addEventListener('pageshow', () => { resetZoomToDefault(); setTimeout(checkZoomAndFix, 100); });
+
+    if (window.visualViewport) {
+      try {
+        window.visualViewport.addEventListener('resize', () => {
+          if (window.visualViewport.scale > 1.01) { resetZoomToDefault(); }
+        });
+      } catch (e) {}
+    }
+  } catch (e) {}
+})();
+</script>
+
+<script>
+(function() {
+  'use strict';
+
+  var HEART_SVG =
+    '<svg class="ph-heart-svg" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">' +
+      '<path d="M16 28.5C16 28.5 3.5 20.4 3.5 11.9C3.5 7.5 6.9 4.1 11 4.1C13.2 4.1 15.1 5.1 16 6.6C16.9 5.1 18.8 4.1 21 4.1C25.1 4.1 28.5 7.5 28.5 11.9C28.5 20.4 16 28.5 16 28.5Z"/>' +
+    '</svg>';
+
+  function makeFallback(extraClass) {
     var el = document.createElement('div');
-    el.className = 'ph-fallback';
+    el.className = 'ph-fallback' + (extraClass ? ' ' + extraClass : '');
     el.setAttribute('aria-hidden', 'true');
     el.innerHTML = HEART_SVG;
     return el;
   }
-  function handleImg(img) {
+
+  function handleImgError(img) {
     if (!img || img.dataset.phDone === '1') return;
     img.dataset.phDone = '1';
     var parent = img.parentNode;
@@ -1169,83 +2866,293 @@ button:disabled, button.disabled { cursor: default; }
     while (parent.firstChild) parent.removeChild(parent.firstChild);
     parent.appendChild(makeFallback());
   }
+
   document.addEventListener('error', function(e) {
     var t = e.target;
-    if (t && t.tagName === 'IMG') handleImg(t);
+    if (t && t.tagName === 'IMG') {
+      handleImgError(t);
+    }
   }, true);
-  window.PT_HEART_SVG = HEART_SVG;
-})();
 
-/* ============================================================
-   ИНФО-МОДАЛКИ И МОДАЛКА «ПОДДЕРЖАТЬ АВТОРА»
-   ============================================================ */
+  window.addEventListener('load', function() {
+    var imgs = document.querySelectorAll('img');
+    for (var i = 0; i < imgs.length; i++) {
+      var img = imgs[i];
+      if (img.complete && img.naturalWidth === 0 && img.src) {
+        handleImgError(img);
+      }
+    }
+  });
+
+  window.POKER_HEART_SVG = HEART_SVG;
+})();
+</script>
+
+<script>
 (function() {
   'use strict';
+
+  var landing = document.getElementById('landing');
+  var stickyCta = document.getElementById('landing-sticky-cta');
+
+  if (!landing) return;
+
+  var entered = false;
+
+  function enterApp() {
+    if (entered) return;
+    entered = true;
+
+    if (stickyCta) {
+      stickyCta.classList.remove('visible');
+      stickyCta.classList.add('hidden');
+    }
+
+    alert('Это лендинг Poker Trainer. Игровой тренажёр доступен в полной версии приложения.');
+  }
+
+  landing.addEventListener('click', function(e) {
+    var target = e.target;
+    if (!target) return;
+    var trigger = target.closest ? target.closest('[data-action="enter-app"]') : null;
+    if (!trigger) return;
+    e.preventDefault();
+    e.stopPropagation();
+    enterApp();
+  });
+
+  if (stickyCta) {
+    stickyCta.addEventListener('click', function(e) {
+      var target = e.target;
+      if (!target) return;
+      var trigger = target.closest ? target.closest('[data-action="enter-app"]') : null;
+      if (!trigger) return;
+      e.preventDefault();
+      e.stopPropagation();
+      enterApp();
+    });
+  }
+
+  var revealObserver = null;
+  var heroObserver = null;
+
+  function initObservers() {
+    if ('IntersectionObserver' in window) {
+      revealObserver = new IntersectionObserver(function(entries) {
+        for (var i = 0; i < entries.length; i++) {
+          var en = entries[i];
+          if (en.isIntersecting) {
+            en.target.classList.add('in-view');
+            revealObserver.unobserve(en.target);
+          }
+        }
+      }, { root: landing, rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+      var reveals = landing.querySelectorAll('.lnd-reveal');
+      for (var j = 0; j < reveals.length; j++) revealObserver.observe(reveals[j]);
+
+      var hero = landing.querySelector('.lnd-hero');
+      if (hero) {
+        heroObserver = new IntersectionObserver(function(entries) {
+          for (var k = 0; k < entries.length; k++) {
+            var en = entries[k];
+            if (stickyCta && !entered) {
+              if (!en.isIntersecting) stickyCta.classList.add('visible');
+              else stickyCta.classList.remove('visible');
+            }
+          }
+        }, { root: landing, threshold: 0.25 });
+        heroObserver.observe(hero);
+      }
+    } else {
+      var all = landing.querySelectorAll('.lnd-reveal');
+      for (var m = 0; m < all.length; m++) all[m].classList.add('in-view');
+      if (stickyCta) stickyCta.classList.add('visible');
+    }
+  }
+
+  function boot() {
+    initObservers();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+
+  window.addEventListener('pagehide', function() {
+    if (revealObserver) revealObserver.disconnect();
+    if (heroObserver) heroObserver.disconnect();
+  });
+
+})();
+</script>
+
+<script>
+(function() {
+  'use strict';
+
+  var select = document.getElementById('lang-select');
+  var trigger = document.getElementById('lang-trigger');
+  var current = document.getElementById('lang-current');
+  var options = document.querySelectorAll('.lang-option');
+
+  if (!select || !trigger || !options.length) return;
+
+  function close() {
+    select.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  function open() {
+    select.classList.add('open');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+
+  function setLang(lang) {
+    for (var i = 0; i < options.length; i++) {
+      var o = options[i];
+      var isActive = o.getAttribute('data-lang') === lang;
+      o.classList.toggle('active', isActive);
+      o.classList.toggle('inactive', !isActive);
+      o.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    }
+    if (current) current.textContent = lang.toUpperCase();
+  }
+
+  trigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (select.classList.contains('open')) close();
+    else open();
+  });
+
+  for (var i = 0; i < options.length; i++) {
+    (function(opt) {
+      opt.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        setLang(opt.getAttribute('data-lang'));
+        close();
+      });
+    })(options[i]);
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!select.classList.contains('open')) return;
+    if (select.contains(e.target)) return;
+    close();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && select.classList.contains('open')) close();
+  });
+
+  window.addEventListener('pagehide', close);
+})();
+</script>
+
+<script>
+(function() {
+  'use strict';
+
   var infoModal = document.getElementById('info-modal');
   var infoTitle = document.getElementById('info-modal-title-el');
   var infoBody = document.getElementById('info-modal-body');
   var infoBox = infoModal ? infoModal.querySelector('.info-modal-box') : null;
+
   if (!infoModal || !infoBox) return;
+
   var isSupportOpen = false;
 
-  /* Тексты инфо-модалок (русские) */
-  var I18N = {
-    'modal.logic.title': 'Логика',
-    'modal.logic.body': 'Логика в покере — это не про «правильные» решения по чарту, а про построение линии, при которой оппонент совершает ошибку. Каждое ваше действие должно иметь цель: заставить его сделать колл, когда он позади; фолд, когда он впереди; рейз, когда он блефует. Без этой цели действие превращается в угадывание, и вы теряете контроль над раздачей.\n\nВы учитесь задавать вопрос «зачем» перед каждым ходом. Не «что я должен сделать по GTO», а «что я хочу, чтобы сделал оппонент после моего действия». В этом и есть ключевое отличие правильной игры от точной: первая соответствует теории, вторая — управляет чужим решением и заставляет его ошибиться именно там, где вам выгодно.\n\nЗа столом Poker Prana логика тренируется через анализ линии каждого бота. Почему LAG-Pro рейзит именно здесь, почему ICM-Exploiter на баббле играет тайтовее, почему Solver-Hybrid меняет паттерн именно против вас. Вы начинаете видеть логику за чужими решениями — и постепенно строите свою так, чтобы управлять чужой.',
-    'modal.intuition.title': 'Интуиция',
-    'modal.intuition.body': 'Интуиция в покере — это способность считать исход раздачи из поля информации до того, как карты открылись. Это не мистика и не «чуйка». Это опыт, который мозг обрабатывает быстрее, чем сознание успевает облечь его в слова. Она работает не вместо логики, а поверх неё — там, где логика уже посчитала варианты и осталось выбрать точный.\n\nВы учитесь читать линию поведения оппонента: темп ставок, их размеры, ошибки, смену образа. Замечать, когда он блефует третий раз за один круг за столом. Чувствовать слоуплей — когда игрок, который только что давил, вдруг начинает чекать и коллировать — это не слабость, а приманка, и опытный игрок отличает одно от другого мгновенно.\n\nВ Poker Prana интуиция тренируется через многократное повторение и наблюдение. Боты играют по-разному каждый раз, но их характеры стабильны — и со временем вы начинаете узнавать их решения ещё до того, как они сделаны. Это и есть интуиция в чистом виде: быстрое считывание повторяющегося поведения, отточенное до автоматизма.',
-    'modal.link.title': 'Связка логики и интуиции',
-    'modal.link.body': 'Логика и интуиция в покере — не два отдельных навыка, а два конца одной линии. Логика говорит: «здесь я должен ставить 60% банка, чтобы у оппонента не было правильных шансов на колл». Интуиция говорит: «этот конкретный игрок на этой конкретной улице на такую ставку выкинет». Одно без другого теряет силу, только вместе они дают точное решение.\n\nПроблема в том, что по отдельности оба навыка ограничены. Чистая логика без интуиции превращается в игру по чарту — она правильная, но не эксплуатирует ошибки. Чистая интуиция без логики превращается в догадки — иногда гениальные, иногда катастрофические. Сила появляется только там, где одно подкрепляет другое.\n\nВ Poker Prana вы тренируете именно связку. Сначала считаете логически, какое действие было бы правильным в вакууме, потом через интуицию корректируете его под конкретного оппонента. И в этот момент ваша игра из правильной становится точной — она не просто соответствует теории, она забирает максимум фишек именно у этого игрока именно сейчас.',
-    'modal.settings.title': 'Настройки',
-    'modal.settings.body': 'В разделе «Настройки» вы управляете условиями тренировки. Язык интерфейса — русский или английский, сложность — от мягкой игры с VIP до жёсткого стола с PRO.\n\nСтеки отображаются в BB или в фишках — как удобнее для конкретного спота. Стиль карт — 2-цветный для классического вида или 4-цветный для быстрого считывания мастей.\n\nБлайнды растут по числу сыгранных раздач. Время на ход выбирается под ваш темп: 10 секунд или без ограничения. Бейджи типов игроков показывают, против кого вы играете.',
-    'modal.control.title': 'Управление',
-    'modal.control.body': 'Всё управление — под большой палец. Свайпы вверх и вниз открывают и закрывают настройки, не отрываясь от игры. Тренировка на телефоне — удобнее большого экрана.\n\nСлайдер ставки регулируется одним движением — точный размер бета без ручного ввода цифр. Тапы по стеку, картам и таймеру срабатывают мгновенно, без двойных кликов.\n\nНажатие на кнопках захватывает слайдер, а движение вверх или вниз задаёт сумму ставки. Долгое нажатие на картах героя скрывает их для тренировки интуиции.',
-    'modal.support.title': 'Поддержка',
-    'modal.support.body': 'Poker Prana — некоммерческий проект. Без подписок, без рекламы, без платы за доступ. Проект существует исключительно на средства от вашей поддержки.\n\nАдреса для переводов: GGPoker (перевод через покер-рум), USDT TRC20 (криптовалюта в сети Tron), VISA (карта для переводов в долларах и других валютах) или запрос в Telegram.\n\nКонтакты в Telegram — основной канал связи. Через него можно задать вопрос, предложить идею, сообщить об ошибке или просто поделиться впечатлениями от тренировки.',
-    'modal.supportAuthor.title': 'ПОДДЕРЖИ АВТОРА',
-    'modal.supportThanks': 'Благодарю за поддержку',
-    'modal.copiedText': 'Скопировано'
-  };
-
-  var NICK = 'LuckyLinka';
-  var WALLET = 'TAD6zXLvHEbUJvCjjeKLkm7MVkwyTbVLTu';
-
-  /* HTML для карточек поддержки (GGPoker + USDT) */
-  function buildSupportHtml() {
-    return '<div class="support-card-stack" id="support-card-stack">' +
-      '<div class="support-card support-card-gold" data-card="gold">' +
-        '<div class="support-card-top"><div class="support-card-bank support-card-gg-wrap" translate="no"><span class="support-card-gg">GG</span>POKER</div><div class="support-card-club-top" translate="no">Transfer</div></div>' +
-        '<div class="support-card-chip"></div>' +
-        '<div class="support-card-nickname-row" translate="no"><span class="support-card-name-label">Nickname:</span> <span class="support-copy-text support-card-name-value" data-copy-value="' + NICK + '">' + NICK + '<span class="support-copy-icon"></span></span></div>' +
-        '<div class="support-card-bottom"><div class="support-card-bottom-line" translate="no">Balance: $</div></div>' +
-        '<div class="support-card-copied" data-i18n="modal.copiedText">Скопировано</div>' +
+  var SUPPORT_HTML =
+    '<div class="support-belcard-stack" id="support-belcard-stack">' +
+      '<div class="support-belcard belcard-gold" data-card="gold">' +
+        '<div class="support-belcard-top">' +
+          '<div class="support-belcard-bank support-gold-gg-wrap" translate="no"><span class="support-gold-gg">GG</span>POKER</div>' +
+          '<div class="support-belcard-club-top" translate="no">Transfer</div>' +
+        '</div>' +
+        '<div class="support-belcard-chip"></div>' +
+        '<div class="support-gold-nickname-row" translate="no">' +
+          '<span class="support-gold-name-label">Nickname:</span> ' +
+          '<span class="support-copy-text support-gold-name-value" data-copy-value="***** *****">***** *****<span class="support-copy-icon"></span></span>' +
+        '</div>' +
+        '<div class="support-belcard-bottom">' +
+          '<div class="support-belcard-bottom-line" translate="no">Balance: $</div>' +
+        '</div>' +
+        '<div class="support-belcard-copied" data-copied="en">Copied</div>' +
       '</div>' +
-      '<div class="support-card support-card-violet" data-card="violet">' +
-        '<div class="support-card-top"><div class="support-card-bank" translate="no">Cryptocurrency</div><div class="support-card-club-top" translate="no">Tether</div></div>' +
-        '<div class="support-card-chip"></div>' +
-        '<div class="support-card-usdt-line" translate="no"><span class="support-copy-text" data-copy-value="' + WALLET + '">' + WALLET + '<span class="support-copy-icon"></span></span></div>' +
-        '<div class="support-card-bottom"><div class="support-card-bottom-line" translate="no">USDT Tether → TRON (TRC20)</div></div>' +
-        '<div class="support-card-copied" data-i18n="modal.copiedText">Скопировано</div>' +
-      '</div></div>' +
-      '<div class="support-thanks" data-i18n="modal.supportThanks">Благодарю за поддержку</div>';
-  }
+      '<div class="support-belcard belcard-gray" data-card="gray">' +
+        '<div class="support-belcard-top">' +
+          '<div class="support-belcard-bank" translate="no">Cryptocurrency</div>' +
+          '<div class="support-belcard-club-top" translate="no">Tether</div>' +
+        '</div>' +
+        '<div class="support-belcard-chip"></div>' +
+        '<div class="support-belcard-usdt-line" translate="no">' +
+          '<span class="support-copy-text" data-copy-value="TNxHP8tVZUFhFyAxGGtmKEqEm9Cjhbck3A">TNxHP8tVZUFhFyAxGGtmKEqEm9Cjhbck3A<span class="support-copy-icon"></span></span>' +
+        '</div>' +
+        '<div class="support-belcard-bottom">' +
+          '<div class="support-belcard-bottom-line" translate="no">USDT Tether → TRON (TRC20)</div>' +
+        '</div>' +
+        '<div class="support-belcard-copied" data-copied="en">Copied</div>' +
+      '</div>' +
+      '<div class="support-belcard belcard-blue" data-card="blue">' +
+        '<div class="support-belcard-top">' +
+          '<div class="support-belcard-bank" translate="no">BELARUSBANK</div>' +
+          '<div class="support-belcard-club-top" translate="no">VISA</div>' +
+        '</div>' +
+        '<div class="support-belcard-chip"></div>' +
+        '<a class="support-belcard-paysend" href="https://paysend.com/send" target="_blank" rel="noopener noreferrer" translate="no">PAYSEND</a>' +
+        '<div class="support-belcard-number-row">' +
+          '<div class="support-belcard-number" translate="no">' +
+            '<span class="support-copy-text" data-copy-value="4255 1901 3916 7251">4255 1901 3916 7251<span class="support-copy-icon"></span></span>' +
+          '</div>' +
+          '<div class="support-belcard-currencies-top" translate="no">USD / EUR</div>' +
+        '</div>' +
+        '<div class="support-belcard-bottom">' +
+          '<div class="support-belcard-name" translate="no">' +
+            '<span class="support-copy-text" data-copy-value="TOM TOT">TOM TOT<span class="support-copy-icon"></span></span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="support-belcard-copied" data-copied="en">Copied</div>' +
+      '</div>' +
+      '<div class="support-belcard belcard-green" data-card="green">' +
+        '<div class="support-belcard-top">' +
+          '<div class="support-belcard-bank" translate="no">БЕЛАРУСБАНК</div>' +
+          '<div class="support-belcard-club-top" translate="no">БЕЛКАРТ</div>' +
+        '</div>' +
+        '<div class="support-belcard-chip"></div>' +
+        '<div class="support-belcard-number-row">' +
+          '<div class="support-belcard-number" translate="no">' +
+            '<span class="support-copy-text" data-copy-value="9112 3801 6012 8254">9112 3801 6012 8254<span class="support-copy-icon"></span></span>' +
+          '</div>' +
+          '<div class="support-belcard-currencies-top" translate="no">BYN / RUB</div>' +
+        '</div>' +
+        '<div class="support-belcard-bottom">' +
+          '<div class="support-belcard-name" translate="no">' +
+            '<span class="support-copy-text" data-copy-value="TOM TOT">TOM TOT<span class="support-copy-icon"></span></span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="support-belcard-copied" data-copied="ru">Скопировано</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="support-thanks">Благодарю за поддержку</div>';
 
-  /* Открытие модалки: инфо или поддержка */
-  function openInfo(titleKey, bodyKey, isSupport) {
+  function openInfo(title, body, isSupport) {
     if (isSupport) {
       isSupportOpen = true;
-      infoTitle.textContent = I18N['modal.supportAuthor.title'];
+      infoTitle.textContent = 'ПОДДЕРЖИ АВТОРА';
       infoTitle.classList.remove('title-normal-case');
       infoBox.classList.add('info-modal-box--support');
-      infoBody.innerHTML = buildSupportHtml();
-      initSupportCards();
+      infoBody.innerHTML = SUPPORT_HTML;
+      initBelcardSupport();
     } else {
       isSupportOpen = false;
+      infoTitle.textContent = title || '';
       infoTitle.classList.add('title-normal-case');
       infoBox.classList.remove('info-modal-box--support');
-      infoTitle.textContent = I18N[titleKey] || titleKey || '';
-      var bodyText = I18N[bodyKey] || '';
-      var paragraphs = String(bodyText).split('\n\n');
+      var paragraphs = String(body || '').split('\n\n');
       var html = '';
       for (var i = 0; i < paragraphs.length; i++) {
         var p = paragraphs[i].trim();
@@ -1254,9 +3161,11 @@ button:disabled, button.disabled { cursor: default; }
       }
       infoBody.innerHTML = html || '<p></p>';
     }
+
     infoModal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
+
   function closeInfo() {
     infoModal.classList.remove('open');
     document.body.style.overflow = '';
@@ -1264,244 +3173,845 @@ button:disabled, button.disabled { cursor: default; }
   }
 
   infoModal.addEventListener('click', function(e) {
-    if (isSupportOpen) { if (e.target === infoModal) closeInfo(); return; }
+    if (isSupportOpen) {
+      if (e.target === infoModal) closeInfo();
+      return;
+    }
     closeInfo();
   });
-  infoBox.addEventListener('click', function(e) { if (isSupportOpen) e.stopPropagation(); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && infoModal.classList.contains('open')) closeInfo(); });
 
-  /* Привязка тапзон (карточки «Логика», «Настройки» и т.д.) */
+  infoBox.addEventListener('click', function(e) {
+    if (isSupportOpen) {
+      e.stopPropagation();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && infoModal.classList.contains('open')) closeInfo();
+  });
+
   var tappables = document.querySelectorAll('.lnd-card.tappable');
   for (var i = 0; i < tappables.length; i++) {
     (function(card) {
       card.addEventListener('click', function(e) {
-        e.preventDefault(); e.stopPropagation();
-        openInfo(card.getAttribute('data-info-title-key') || '', card.getAttribute('data-info-body-key') || '', false);
+        e.preventDefault();
+        e.stopPropagation();
+        var t = card.getAttribute('data-info-title') || '';
+        var b = card.getAttribute('data-info-body') || '';
+        openInfo(t, b, false);
       });
     })(tappables[i]);
   }
 
-  /* Кнопка-сердце (в нижней панели) открывает модалку поддержки */
   document.addEventListener('click', function(e) {
     var btn = e.target.closest ? e.target.closest('[data-action="open-support"]') : null;
     if (!btn) return;
-    e.preventDefault(); e.stopPropagation();
-    openInfo('modal.support.title', 'modal.support.body', true);
+    e.preventDefault();
+    e.stopPropagation();
+    openInfo('Поддержка', '', true);
   });
 
-  /* Стек банковских карточек: свайп вверх для перелистывания */
-  function initSupportCards() {
-    var stack = document.getElementById('support-card-stack');
+  function initBelcardSupport() {
+    var stack = document.getElementById('support-belcard-stack');
     if (!stack) return;
-    var OFFSET = 8, LIFT = 8, SWIPE_THRESHOLD = 8;
-    var gold = stack.querySelector('.support-card-gold');
-    var violet = stack.querySelector('.support-card-violet');
-    if (!gold || !violet) return;
-    var cards = { gold: gold, violet: violet };
-    var order = ['gold', 'violet'];
-    var startY = 0, dragging = false, currentLift = 0, isAnimating = false;
+
+    var OFFSET = 8;
+    var LIFT = 8;
+    var SWIPE_THRESHOLD = 8;
+
+    var gold = stack.querySelector('.belcard-gold');
+    var gray = stack.querySelector('.belcard-gray');
+    var blue = stack.querySelector('.belcard-blue');
+    var green = stack.querySelector('.belcard-green');
+    if (!gold || !gray || !blue || !green) return;
+
+    var cards = { gold: gold, gray: gray, blue: blue, green: green };
+    var order = ['gold', 'gray', 'blue', 'green'];
+
+    var startY = 0;
+    var dragging = false;
+    var currentLift = 0;
+    var isAnimating = false;
+
     function topKey() { return order[0]; }
-    function zFor(pos) { return 2 - pos; }
+    function zFor(pos) { return 4 - pos; }
     function yFor(pos) { return OFFSET * pos; }
+
     function applyPositions(animated) {
       for (var i = 0; i < order.length; i++) {
-        var node = cards[order[i]];
+        var key = order[i];
+        var node = cards[key];
         if (!node) continue;
-        node.style.transition = animated ? 'transform .38s cubic-bezier(.22,.61,.36,1)' : 'none';
+        if (!animated) node.style.transition = 'none';
+        else node.style.transition = 'transform .38s cubic-bezier(.22,.61,.36,1)';
         node.style.transform = 'translateY(' + yFor(i) + 'px)';
         node.style.zIndex = String(zFor(i));
       }
-      if (!animated) requestAnimationFrame(function() {
-        for (var j = 0; j < order.length; j++) { var nd = cards[order[j]]; if (nd) nd.style.transition = ''; }
-      });
+      if (!animated) {
+        requestAnimationFrame(function() {
+          for (var j = 0; j < order.length; j++) {
+            var k = order[j];
+            var nd = cards[k];
+            if (nd) nd.style.transition = '';
+          }
+        });
+      }
     }
-    function beginDragLift() { var n = cards[topKey()]; if (!n) return; n.style.transition = 'none'; n.style.transform = 'translateY(' + (-currentLift) + 'px)'; }
-    function snapBackTop() { var n = cards[topKey()]; if (!n) return; n.style.transition = 'transform .26s cubic-bezier(.22,.61,.36,1)'; n.style.transform = 'translateY(' + yFor(0) + 'px)'; }
+
+    function beginDragLift() {
+      var node = cards[topKey()];
+      if (!node) return;
+      node.style.transition = 'none';
+      node.style.transform = 'translateY(' + (-currentLift) + 'px)';
+    }
+
+    function snapBackTop() {
+      var node = cards[topKey()];
+      if (!node) return;
+      node.style.transition = 'transform .26s cubic-bezier(.22,.61,.36,1)';
+      node.style.transform = 'translateY(' + yFor(0) + 'px)';
+    }
+
     function rotateOnce() {
-      if (isAnimating) return; isAnimating = true;
-      var top = cards[order[0]], second = cards[order[1]];
-      var newOrder = [order[1], order[0]];
-      top.style.transition = 'transform .38s cubic-bezier(.22,.61,.36,1)';
-      second.style.transition = 'transform .38s cubic-bezier(.22,.61,.36,1)';
-      top.style.transform = 'translateY(' + OFFSET + 'px)';
-      second.style.transform = 'translateY(0px)';
-      top.style.zIndex = '1'; second.style.zIndex = '2';
+      if (isAnimating) return;
+      isAnimating = true;
+
+      var topNode = cards[order[0]];
+      var secondNode = cards[order[1]];
+      var thirdNode = cards[order[2]];
+      var fourthNode = cards[order[3]];
+
+      var newOrder = [order[1], order[2], order[3], order[0]];
+
+      topNode.style.transition = 'transform .38s cubic-bezier(.22,.61,.36,1)';
+      secondNode.style.transition = 'transform .38s cubic-bezier(.22,.61,.36,1)';
+      thirdNode.style.transition = 'transform .38s cubic-bezier(.22,.61,.36,1)';
+      fourthNode.style.transition = 'transform .38s cubic-bezier(.22,.61,.36,1)';
+
+      topNode.style.transform = 'translateY(' + (OFFSET * 3) + 'px)';
+      secondNode.style.transform = 'translateY(0px)';
+      thirdNode.style.transform = 'translateY(' + OFFSET + 'px)';
+      fourthNode.style.transform = 'translateY(' + (OFFSET * 2) + 'px)';
+
+      topNode.style.zIndex = '1';
+      secondNode.style.zIndex = '4';
+      thirdNode.style.zIndex = '3';
+      fourthNode.style.zIndex = '2';
+
       order = newOrder;
+
       setTimeout(function() {
-        for (var j = 0; j < order.length; j++) { var nd = cards[order[j]]; if (nd) nd.style.transition = ''; }
-        applyPositions(false); isAnimating = false;
+        for (var j = 0; j < order.length; j++) {
+          var k = order[j];
+          var nd = cards[k];
+          if (nd) nd.style.transition = '';
+        }
+        applyPositions(false);
+        isAnimating = false;
       }, 390);
+
       currentLift = 0;
     }
+
     function isTopCard(el) { return el === cards[order[0]]; }
-    var lastCopyTs = 0, COPY_COOLDOWN = 400;
+
+    var lastCopyTs = 0;
+    var COPY_COOLDOWN = 400;
+
     stack.addEventListener('click', function(e) {
+      var paysend = e.target.closest('.support-belcard-paysend');
+      if (paysend) return;
+
       var copyEl = e.target.closest('.support-copy-text');
       if (!copyEl) return;
-      var card = copyEl.closest('.support-card');
-      if (!card || !isTopCard(card)) return;
+
+      var card = copyEl.closest('.support-belcard');
+      if (!card) return;
+      if (!isTopCard(card)) return;
+
       var now = Date.now();
       if (now - lastCopyTs < COPY_COOLDOWN) return;
       lastCopyTs = now;
-      copySupportText(copyEl.getAttribute('data-copy-value') || '', card);
+
+      var text = copyEl.getAttribute('data-copy-value') || copyEl.textContent.trim();
+      copySupportText(text, card);
     });
+
     function showCopied(cardEl) {
       if (!cardEl) return;
-      var hint = cardEl.querySelector('.support-card-copied');
+      var hint = cardEl.querySelector('.support-belcard-copied');
       if (!hint) return;
       hint.classList.add('visible');
       clearTimeout(hint._timer);
-      hint._timer = setTimeout(function() { hint.classList.remove('visible'); }, 1200);
+      hint._timer = setTimeout(function() {
+        hint.classList.remove('visible');
+      }, 1200);
     }
+
     function copySupportText(text, cardEl) {
       if (!text || !cardEl) return;
-      var ok = false;
+      var succeeded = false;
+
       try {
         var ta = document.createElement('textarea');
-        ta.value = text; ta.setAttribute('readonly', '');
-        ta.style.position = 'fixed'; ta.style.top = '-1000px'; ta.style.left = '-1000px'; ta.style.opacity = '0';
-        document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, ta.value.length);
-        ok = document.execCommand && document.execCommand('copy');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        ta.style.left = '-1000px';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        ta.setSelectionRange(0, ta.value.length);
+        succeeded = document.execCommand && document.execCommand('copy');
         document.body.removeChild(ta);
-      } catch (err) { ok = false; }
-      if (ok) { showCopied(cardEl); return; }
-      try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function() { showCopied(cardEl); }).catch(function() {}); } catch (e) {}
+      } catch (err) {
+        succeeded = false;
+      }
+
+      if (succeeded) {
+        showCopied(cardEl);
+        return;
+      }
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function() {
+            showCopied(cardEl);
+          }).catch(function() {});
+        }
+      } catch (err) {}
     }
+
     stack.addEventListener('touchstart', function(e) {
-      if (isAnimating || e.touches.length !== 1) return;
-      startY = e.touches[0].clientY; dragging = false; currentLift = 0;
+      if (isAnimating) return;
+      if (e.touches.length !== 1) return;
+      startY = e.touches[0].clientY;
+      dragging = false;
+      currentLift = 0;
       stack.classList.add('dragging');
-      var n = cards[topKey()]; if (n) n.style.transition = 'none';
+      var node = cards[topKey()];
+      if (node) node.style.transition = 'none';
     }, { passive: true });
+
     stack.addEventListener('touchmove', function(e) {
-      if (isAnimating || e.touches.length !== 1) return;
-      var dy = startY - e.touches[0].clientY;
-      if (!dragging) { if (dy < -3 || dy > 3) dragging = true; else return; }
-      currentLift = dy > 0 ? Math.max(0, Math.min(LIFT, dy)) : 0;
-      beginDragLift(); e.preventDefault();
+      if (isAnimating) return;
+      if (e.touches.length !== 1) return;
+      var y = e.touches[0].clientY;
+      var dy = startY - y;
+
+      if (!dragging) {
+        if (dy < -3 || dy > 3) dragging = true;
+        else return;
+      }
+
+      if (dy > 0) currentLift = Math.max(0, Math.min(LIFT, dy));
+      else currentLift = 0;
+
+      beginDragLift();
+      e.preventDefault();
     }, { passive: false });
-    stack.addEventListener('touchend', function() {
+
+    stack.addEventListener('touchend', function(e) {
       if (isAnimating) return;
       stack.classList.remove('dragging');
-      var was = dragging; dragging = false;
-      if (!was) return;
-      if (currentLift >= SWIPE_THRESHOLD) rotateOnce();
-      else { snapBackTop(); currentLift = 0; setTimeout(function() { var n = cards[topKey()]; if (n) n.style.transition = ''; }, 280); }
+      var wasDragging = dragging;
+      dragging = false;
+
+      if (!wasDragging) return;
+
+      if (currentLift >= SWIPE_THRESHOLD) {
+        rotateOnce();
+      } else {
+        snapBackTop();
+        currentLift = 0;
+        setTimeout(function() {
+          var node = cards[topKey()];
+          if (node) node.style.transition = '';
+        }, 280);
+      }
     }, { passive: false });
+
     stack.addEventListener('touchcancel', function() {
       if (isAnimating) return;
-      stack.classList.remove('dragging'); dragging = false;
-      snapBackTop(); currentLift = 0;
-      setTimeout(function() { var n = cards[topKey()]; if (n) n.style.transition = ''; }, 280);
+      stack.classList.remove('dragging');
+      dragging = false;
+      snapBackTop();
+      currentLift = 0;
+      setTimeout(function() {
+        var node = cards[topKey()];
+        if (node) node.style.transition = '';
+      }, 280);
     }, { passive: true });
-    var mouseDown = false, mouseStartY = 0, mouseDragging = false;
+
+    var mouseDown = false;
+    var mouseStartY = 0;
+    var mouseDragging = false;
+
     stack.addEventListener('mousedown', function(e) {
-      if (isAnimating || e.button !== 0) return;
-      mouseDown = true; mouseStartY = e.clientY; mouseDragging = false; currentLift = 0;
+      if (isAnimating) return;
+      if (e.button !== 0) return;
+      mouseDown = true;
+      mouseStartY = e.clientY;
+      mouseDragging = false;
+      currentLift = 0;
       stack.classList.add('dragging');
-      var n = cards[topKey()]; if (n) n.style.transition = 'none';
+      var node = cards[topKey()];
+      if (node) node.style.transition = 'none';
       e.preventDefault();
     });
+
     stack.addEventListener('mousemove', function(e) {
       if (!mouseDown || isAnimating) return;
-      var dy = mouseStartY - e.clientY;
-      if (!mouseDragging) { if (Math.abs(dy) < 3) return; mouseDragging = true; }
-      currentLift = dy > 0 ? Math.max(0, Math.min(LIFT, dy)) : 0;
+      var y = e.clientY;
+      var dy = mouseStartY - y;
+      if (!mouseDragging) {
+        if (Math.abs(dy) < 3) return;
+        mouseDragging = true;
+      }
+      if (dy > 0) currentLift = Math.max(0, Math.min(LIFT, dy));
+      else currentLift = 0;
       beginDragLift();
     });
-    stack.addEventListener('mouseup', function() {
+
+    stack.addEventListener('mouseup', function(e) {
       if (!mouseDown) return;
-      mouseDown = false; stack.classList.remove('dragging');
+      mouseDown = false;
+      stack.classList.remove('dragging');
       if (isAnimating) return;
-      if (!mouseDragging) { var n = cards[topKey()]; if (n) n.style.transition = ''; return; }
+      if (!mouseDragging) {
+        var node = cards[topKey()];
+        if (node) node.style.transition = '';
+        return;
+      }
       mouseDragging = false;
-      if (currentLift >= SWIPE_THRESHOLD) rotateOnce();
-      else { snapBackTop(); currentLift = 0; setTimeout(function() { var n = cards[topKey()]; if (n) n.style.transition = ''; }, 280); }
+
+      if (currentLift >= SWIPE_THRESHOLD) {
+        rotateOnce();
+      } else {
+        snapBackTop();
+        currentLift = 0;
+        setTimeout(function() {
+          var node = cards[topKey()];
+          if (node) node.style.transition = '';
+        }, 280);
+      }
     });
-    stack.addEventListener('mouseleave', function() {
+
+    stack.addEventListener('mouseleave', function(e) {
       if (!mouseDown) return;
-      mouseDown = false; stack.classList.remove('dragging');
-      if (!mouseDragging) { var n = cards[topKey()]; if (n) n.style.transition = ''; return; }
-      mouseDragging = false; snapBackTop(); currentLift = 0;
-      setTimeout(function() { var n = cards[topKey()]; if (n) n.style.transition = ''; }, 280);
+      mouseDown = false;
+      stack.classList.remove('dragging');
+      if (!mouseDragging) {
+        var node = cards[topKey()];
+        if (node) node.style.transition = '';
+        return;
+      }
+      mouseDragging = false;
+      snapBackTop();
+      currentLift = 0;
+      setTimeout(function() {
+        var node = cards[topKey()];
+        if (node) node.style.transition = '';
+      }, 280);
     });
+
     stack.addEventListener('dblclick', function(e) {
       if (isAnimating) return;
-      e.preventDefault(); e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
       rotateOnce();
     });
+
     applyPositions(false);
   }
 })();
+</script>
 
-/* ============================================================
-   ПОЛОСЫ ЗАТУХАНИЯ И НИЖНЯЯ ПАНЕЛЬ: ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ
-   Верхняя полоса появляется при сдвиге на 2px и исчезает
-   при возврате в самый верх. Нижняя полоса и панель иконок
-   работают как раньше — при любой прокрутке.
-   ============================================================ */
+<script>
 (function() {
+  'use strict';
+
+  var TG_CHANNEL = 'ThePokerWay';
+  var TG_CHANNEL_NAME = 'The Poker Way';
+  var TG_LINK = 'https://t.me/' + TG_CHANNEL;
+  var AUTOPLAY_MS = 4000;
+  var SWIPE_THRESHOLD = 40;
+  var WHEEL_THROTTLE = 600;
+  var DOTS_COUNT = 9;
+
+  var track = document.getElementById('tg-feed-track');
+  var wrap = document.getElementById('tg-feed-wrap');
+  var dotsWrap = document.getElementById('tg-feed-dots');
+  var avatarEl = document.getElementById('tg-feed-avatar');
+  var avatarFb = document.getElementById('tg-feed-avatar-fb');
+  var nameEl = document.getElementById('tg-feed-name');
+  var usernameEl = document.getElementById('tg-feed-username');
+
+  if (!track) return;
+
+  if (nameEl) nameEl.textContent = TG_CHANNEL_NAME;
+  if (usernameEl) usernameEl.textContent = '@' + TG_CHANNEL;
+
+  var HEART_SVG = window.POKER_HEART_SVG || '';
+  if (avatarFb) avatarFb.innerHTML = HEART_SVG;
+
+  (function loadAvatar() {
+    if (!avatarEl) return;
+    var img = new Image();
+    img.alt = TG_CHANNEL_NAME;
+    img.onload = function() {
+      avatarEl.innerHTML = '';
+      avatarEl.appendChild(img);
+    };
+    img.onerror = function() {};
+    img.src = 'https://t.me/i/userpic/320/' + TG_CHANNEL + '.jpg';
+  })();
+
+  function escapeHtml(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function getVisibleCount() {
+    if (wrap && wrap.clientWidth <= 380) return 1;
+    if (wrap && wrap.clientWidth <= 640) return 2;
+    if (wrap && wrap.clientWidth <= 980) return 3;
+    return 3;
+  }
+
+  var TG_ICON_SVG = '<svg class="tg-card-tap-icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M23.06 9.07 8.32 14.76c-.98.4-.97 1.78.01 2.17l3.66 1.4 1.4 4.5c.2.64 1.02.82 1.48.32l1.98-2.14 3.86 2.83c.55.4 1.34.11 1.49-.56l2.66-12.62c.16-.75-.6-1.35-1.8-1.59zM12.7 17.36l8.02-5.02-6.55 6.14-.18 2.55-1.29-3.67z"/></svg>';
+
+  function buildCardNode(p, i) {
+    var card = document.createElement('a');
+    card.className = 'tg-card';
+    card.href = p.link || TG_LINK;
+    card.target = '_blank';
+    card.rel = 'noopener noreferrer';
+    card.setAttribute('aria-label', 'Открыть пост в Telegram: ' + p.lead);
+    card.dataset.idx = i;
+
+    var thumbHtml;
+    if (p.img) {
+      thumbHtml = '<div class="tg-card-thumb"><img src="' + p.img + '" alt="" loading="lazy"></div>';
+    } else {
+      thumbHtml = '<div class="tg-card-thumb"><div class="ph-fallback">' + HEART_SVG + '</div></div>';
+    }
+
+    var fullText = String(p.text || '').replace(/\s+/g, ' ').trim();
+    var leadHtml = '<span class="tg-card-lead">' + escapeHtml(p.lead) + '</span>';
+    var bodyHtml = leadHtml + ' ' + escapeHtml(fullText);
+
+    card.innerHTML =
+      thumbHtml +
+      '<div class="tg-card-text-wrap">' +
+        '<div class="tg-card-text">' + bodyHtml + '</div>' +
+      '</div>' +
+      TG_ICON_SVG;
+
+    return card;
+  }
+
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    for (var i = 0; i < DOTS_COUNT; i++) {
+      var dot = document.createElement('span');
+      dot.className = 'd' + (i === 0 ? ' active' : '');
+      dot.dataset.slot = i;
+      dot.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var slot = parseInt(this.dataset.slot, 10);
+        var target = dotSlotToCardIdx(slot);
+        goToAbsolute(target);
+      });
+      dotsWrap.appendChild(dot);
+    }
+  }
+
+  function dotSlotToCardIdx(slot) {
+    if (totalPosts <= 1) return 0;
+    if (DOTS_COUNT <= 1) return 0;
+    var ratio = slot / (DOTS_COUNT - 1);
+    return Math.round(ratio * (totalPosts - 1));
+  }
+
+  function renderCards() {
+    track.innerHTML = '';
+    posts.forEach(function(p, i) {
+      track.appendChild(buildCardNode(p, i));
+    });
+  }
+
+  function appendCardsOnce() {
+    posts.forEach(function(p, i) {
+      track.appendChild(buildCardNode(p, i));
+    });
+  }
+
+  function prependCardsOnce() {
+    var frag = document.createDocumentFragment();
+    posts.forEach(function(p, i) {
+      frag.appendChild(buildCardNode(p, i));
+    });
+    var first = track.firstChild;
+    var nodes = frag.childNodes;
+    for (var k = nodes.length - 1; k >= 0; k--) {
+      track.insertBefore(nodes[k], first);
+    }
+  }
+
+  function getCardStep() {
+    var card = track.querySelector('.tg-card');
+    if (!card) return 0;
+    var gap = 14;
+    return card.offsetWidth + gap;
+  }
+
+  function updateCarousel() {
+    var step = getCardStep();
+    track.style.transform = 'translateX(' + (-activeIdx * step) + 'px)';
+
+    var visibleCount = getVisibleCount();
+    var cards = track.querySelectorAll('.tg-card');
+    var centerIdx = (visibleCount >= 3) ? activeIdx + 1 : activeIdx;
+
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('active', i === centerIdx);
+    }
+
+    var absIdx = ((activeIdx % totalPosts) + totalPosts) % totalPosts;
+    var slot = cardIdxToDotSlot(absIdx);
+    var dots = dotsWrap.querySelectorAll('.d');
+    for (var j = 0; j < dots.length; j++) {
+      dots[j].classList.toggle('active', j === slot);
+    }
+  }
+
+  function cardIdxToDotSlot(cardIdx) {
+    if (totalPosts <= 1) return 0;
+    if (DOTS_COUNT <= 1) return 0;
+    var ratio = cardIdx / (totalPosts - 1);
+    return Math.max(0, Math.min(DOTS_COUNT - 1, Math.round(ratio * (DOTS_COUNT - 1))));
+  }
+
+  function goTo(i) {
+    if (!posts.length) return;
+    activeIdx = i;
+    updateCarousel();
+    restartAutoplay();
+  }
+
+  function goToAbsolute(i) {
+    if (!posts.length) return;
+    var base = activeIdx - (((activeIdx % totalPosts) + totalPosts) % totalPosts);
+    activeIdx = base + ((i % totalPosts) + totalPosts) % totalPosts;
+    var cards = track.querySelectorAll('.tg-card');
+    if (activeIdx < 0) {
+      prependCardsOnce();
+      activeIdx += totalPosts;
+    }
+    while (activeIdx >= cards.length - 2) {
+      appendCardsOnce();
+      cards = track.querySelectorAll('.tg-card');
+    }
+    updateCarousel();
+    restartAutoplay();
+  }
+
+  function next() {
+    activeIdx = activeIdx + 1;
+
+    var cards = track.querySelectorAll('.tg-card');
+    if (activeIdx >= cards.length - 2) {
+      appendCardsOnce();
+    }
+
+    updateCarousel();
+  }
+
+  function prev() {
+    if (activeIdx <= 0) {
+      prependCardsOnce();
+      activeIdx += totalPosts;
+      var step0 = getCardStep();
+      track.style.transform = 'translateX(' + (-activeIdx * step0) + 'px)';
+    }
+    activeIdx = activeIdx - 1;
+    updateCarousel();
+  }
+
+  function restartAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    if (isPaused || posts.length < 2) return;
+    autoplayTimer = setInterval(next, AUTOPLAY_MS);
+  }
+
+  function onPointerDown(clientX, clientY) {
+    if (posts.length < 2) return;
+    isDragging = true;
+    dragStartX = clientX;
+    dragStartY = clientY;
+    dragDeltaX = 0;
+    dragLockedAxis = null;
+    suppressClick = false;
+    isPaused = true;
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    track.classList.add('no-transition');
+    wrap.classList.add('dragging');
+  }
+
+  function onPointerMove(clientX, clientY, evt) {
+    if (!isDragging) return;
+    var dx = clientX - dragStartX;
+    var dy = clientY - dragStartY;
+
+    if (dragLockedAxis === null) {
+      if (Math.abs(dx) > 8 || Math.abs(dy) > 8) {
+        dragLockedAxis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+      }
+    }
+
+    if (dragLockedAxis === 'y') {
+      if (evt && evt.cancelable) evt.preventDefault();
+      return;
+    }
+
+    if (evt && evt.cancelable) evt.preventDefault();
+
+    dragDeltaX = dx;
+    var step = getCardStep();
+    var offset = -activeIdx * step + dx;
+    track.style.transform = 'translateX(' + offset + 'px)';
+  }
+
+  function onPointerUp() {
+    if (!isDragging) {
+      track.classList.remove('no-transition');
+      wrap.classList.remove('dragging');
+      return;
+    }
+    isDragging = false;
+    track.classList.remove('no-transition');
+    wrap.classList.remove('dragging');
+
+    if (dragLockedAxis === 'x' && Math.abs(dragDeltaX) > SWIPE_THRESHOLD) {
+      suppressClick = true;
+      setTimeout(function() { suppressClick = false; }, 350);
+      if (dragDeltaX < 0) next();
+      else prev();
+    } else {
+      var step = getCardStep();
+      track.style.transform = 'translateX(' + (-activeIdx * step) + 'px)';
+    }
+    isPaused = false;
+    restartAutoplay();
+  }
+
+  track.addEventListener('click', function(e) {
+    if (suppressClick) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+  }, true);
+
+  wrap.addEventListener('touchstart', function(e) {
+    if (e.touches.length !== 1) return;
+    onPointerDown(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+
+  wrap.addEventListener('touchmove', function(e) {
+    if (e.touches.length !== 1) return;
+    onPointerMove(e.touches[0].clientX, e.touches[0].clientY, e);
+  }, { passive: false });
+
+  wrap.addEventListener('touchend', onPointerUp, { passive: true });
+  wrap.addEventListener('touchcancel', onPointerUp, { passive: true });
+
+  wrap.addEventListener('mousedown', function(e) {
+    if (e.button !== 0) return;
+    onPointerDown(e.clientX, e.clientY);
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+    onPointerMove(e.clientX, e.clientY, e);
+  });
+
+  document.addEventListener('mouseup', function() {
+    if (isDragging) onPointerUp();
+  });
+
+  wrap.addEventListener('mouseleave', function() {
+    if (isDragging) onPointerUp();
+  });
+
+  wrap.addEventListener('wheel', function(e) {
+    if (posts.length < 2) return;
+
+    var now = Date.now();
+    if (now - lastWheelTime < WHEEL_THROTTLE) {
+      e.preventDefault();
+      return;
+    }
+
+    var delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (Math.abs(delta) < 5) return;
+
+    e.preventDefault();
+    lastWheelTime = now;
+
+    if (delta > 0) next();
+    else prev();
+  }, { passive: false });
+
+  var DEMO_POSTS = [
+    {
+      lead: 'Логика и интуиция',
+      text: 'Poker Trainer — это не солвер и не калькулятор эквити. Это тренажёр того, как думает покерист, когда математика уже посчитана, а решение всё ещё нужно принять. В турнире вакуума нет. Есть оппонент с памятью, страхом, тильтом и привычками. Против него «правильная» игра часто проигрывает «точной» — той, что строится под его ошибки. Мы учим выстраивать линию так, чтобы оппонент совершил ошибку. Не просто «сыграл по чарту», а именно ошибся. Каждое действие — осознанный ответ на вопрос «зачем». Логика говорит: «здесь я должен ставить 60% банка». Интуиция говорит: «этот игрок на этой улице на такую ставку выкинет». Связка двух навыков — и есть точная игра.',
+      img: '',
+      link: TG_LINK
+    },
+    {
+      lead: 'Боты с памятью',
+      text: 'За столом Poker Trainer нет абстрактных «ботов». Есть характеры, повторяющие реальных игроков турниров. LAG-Pro давит постоянно, меняет образ, ставит ловушки. ICM-Exploiter тайтовеет на бабле и давит на короткие стеки в призах. Solver-Hybrid быстро читает вас и адаптируется — учитесь не давать ему паттерн. GTO-Reg играет ровно, не разваливается под давлением. VIP-класс — эксплуатируемые слабые боты. TAG-Lite знает базу, но играет роботизированно. Loose-Passive коллит широко, рейзит только с силой. Rock входит только с премиум-руками. Maniac рейзит всё и блефует на всех улицах. Каждый бот — отдельный урок. Каждый бот — отдельный характер, который можно изучить и эксплуатировать.',
+      img: '',
+      link: TG_LINK
+    },
+    {
+      lead: 'Sit & Go, 8-max',
+      text: 'Вы садитесь за стол из восьми игроков — вы и семь ботов — и играете турнир Sit & Go. Каждая раздача — это отдельный урок. Каждое действие бота — информация для вас. Каждый ваш ход — попытка направить мышление оппонента туда, где он примет неверное решение и ошибётся в вашу пользу. Обратная связь честная: WIN или LOSS, плюс или минус фишек. Никаких подсказок, никаких оценок «правильно/неправильно». Только результат — как в реальном покере. Турнирная логика: ICM на баббле и в призах. Давление на короткие стеки. Решения, когда риск оправдан, а когда нет — в условиях реальной структуры выплат.',
+      img: '',
+      link: TG_LINK
+    },
+    {
+      lead: 'Польза для игроков',
+      text: 'Начинающему Poker Trainer даёт главное — привычку думать за столом, а не запоминать стартовые руки. Покер — это не карты, а оппоненты и их решения. Чем раньше вы это поймёте, тем быстрее начнёте выигрывать. Опытному игроку тренажёр помогает перестать играть «по учебнику» и начать играть против конкретного оппонента. Увидеть, где чарты ограничивают вас, а где вы просто боитесь отойти от привычной линии. Профессионалу Poker Trainer даёт то, что не считается в солвере: момент, ритм, образ, ловушку. Чистая логика и абсолютная интуиция вместо перегруженных математических расчётов. Навык, который вы здесь развиваете, работает против любого соперника — и против человека, и против программы.',
+      img: '',
+      link: TG_LINK
+    },
+    {
+      lead: 'Боты учат людей',
+      text: 'Живой оппонент отличается от идеального калькулятора не тем, что он человек, а тем, что у него есть повторяющиеся ошибки. Он помнит прошлые раздачи, меняет стиль, ловит вас на паттерне, ошибается под давлением. Всё это — поведение. Поведение можно воспроизвести. Именно это и делают боты Poker Trainer. Они не идеальны. Они не играют по GTO. Они играют как люди — с характером, с памятью, с привычками. И именно поэтому тренировка против них готовит вас к реальному столу лучше, чем работа с солвером. Солвер даёт правильный ответ. Тренажёр учит точной игре. Это разные вещи — и обе нужны, но по-разному.',
+      img: '',
+      link: TG_LINK
+    },
+    {
+      lead: 'Что внутри приложения',
+      text: 'Турнирный стол 8-max, Texas Hold\'em, Sit & Go с призовой структурой на 3 места. Боты с памятью и адаптацией (PRO) и эксплуатируемые слабые боты (VIP). Слайдер ставок, быстрые проценты банка, BB-пресеты — всё под большой палец. Таймер на ход и тонкие настройки: сложность, стеки, стиль карт, рост блайндов, показ карт и типов. Реплей раздачи по шагам — увидеть линию со стороны и найти свою ошибку. ICM-логика на баббле и в призах — турнирные решения, а не кэш-игра. Удобное управление: жесты, свайпы, тапы — всё для тренировки на телефоне.',
+      img: '',
+      link: TG_LINK
+    },
+    {
+      lead: 'Полный контроль настроек',
+      text: 'В разделе «Настройки» вы полностью управляете условиями тренировки. Язык интерфейса — русский или английский. Уровень сложности — от расслабленной игры против слабых VIP-ботов до жёсткого стола с PRO-классом. Стеки настраиваются в BB или в фишках — в зависимости от того, что вам удобнее для тренировки конкретного спота. Стиль карт: 2-цветные или 4-цветные. Рост блайндов: медленный, средний, быстрый — или фиксированный. Время на ход настраивается под ваш темп: от быстрого до расслабленного. Типы игроков позволяют включать и выключать конкретные характеры ботов. Хотите тренироваться только против LAG-Pro и Solver-Hybrid? Отключите остальных.',
+      img: '',
+      link: TG_LINK
+    },
+    {
+      lead: 'Управление под палец',
+      text: 'Всё управление в Poker Trainer построено под большой палец — так, чтобы тренировка на телефоне была такой же удобной, как на большом экране. Свайпы вверх и вниз открывают настройки и руководство — не нужно тянуться к кнопкам в углу экрана. Слайдеры ставок настраиваются одним движением: точная подстройка размера бета без необходимости вводить цифры. Тапы по активным зонам: стек, карты, банк — все элементы реагируют на простое касание. Никаких двойных кликов и зажатий там, где нужно быстрое решение. Крупные тач-таргеты — минимальный размер 44 пикселя. Даже на маленьком экране вы не промахнётесь.',
+      img: '',
+      link: TG_LINK
+    },
+    {
+      lead: 'Поддержка проекта',
+      text: 'Poker Trainer — некоммерческий проект. Он не продаёт подписки, не показывает рекламу и не зарабатывает на игроках. Проект развивается исключительно на средства от ваших донатов. Адреса для переводов: GGPoker (перевод через покер-рум), USDT TRC20 (криптовалюта в сети Tron), VISA (карта для переводов в рублях и других валютах). Полные реквизиты — в блоге проекта и в Telegram. Контакты в Telegram — основной канал связи. Через него можно задать вопрос, предложить идею, сообщить об ошибке или просто поделиться впечатлениями от тренировки. Каждый донат идёт на конкретные вещи: развитие ботов, новые режимы тренировки, улучшение интерфейса, поддержку серверов.',
+      img: '',
+      link: TG_LINK
+    },
+    {
+      lead: 'Тренируйся каждый день',
+      text: 'Логика и интуиция в покере — не два отдельных навыка, а два конца одной линии. Логика говорит: «здесь я должен ставить 60% банка, чтобы у оппонента не было правильных шансов на колл». Интуиция говорит: «этот игрок на этой улице на такую ставку выкинет». По отдельности оба навыка ограничены. Чистая логика без интуиции — игра по чарту. Она правильная, но не эксплуатирует ошибки. Чистая интуиция без логики — догадки. Иногда гениальные, иногда катастрофические. В Poker Trainer вы тренируете связку: сначала считаете логически, какое действие должно быть «правильным в вакууме», потом через интуицию корректируете его под конкретного оппонента. И в этот момент ваша игра из «правильной» становится «точной» — она забирает максимум фишек именно у этого игрока именно сейчас.',
+      img: '',
+      link: TG_LINK
+    }
+  ];
+
+  var posts = DEMO_POSTS.slice();
+  var totalPosts = posts.length;
+  var activeIdx = 0;
+  var autoplayTimer = null;
+  var isPaused = false;
+
+  var isDragging = false;
+  var dragStartX = 0;
+  var dragStartY = 0;
+  var dragDeltaX = 0;
+  var dragLockedAxis = null;
+  var suppressClick = false;
+
+  var lastWheelTime = 0;
+
+  buildDots();
+  renderCards();
+  updateCarousel();
+  restartAutoplay();
+
+  var feedEl = document.getElementById('tg-feed');
+  if (feedEl) {
+    feedEl.addEventListener('mouseenter', function() { isPaused = true; });
+    feedEl.addEventListener('mouseleave', function() {
+      if (!isDragging) { isPaused = false; restartAutoplay(); }
+    });
+  }
+
+  window.addEventListener('resize', function() {
+    var step = getCardStep();
+    track.style.transform = 'translateX(' + (-activeIdx * step) + 'px)';
+  });
+})();
+</script>
+
+<script>
+(function() {
+  'use strict';
+
   var landing = document.getElementById('landing');
   var bottomBar = document.getElementById('bottom-bar');
   var fadeBottom = document.getElementById('lnd-fade-bottom');
-  var fadeTop = document.getElementById('lnd-fade-top');
+
   if (!landing || !bottomBar) return;
-  var bottomVisible = false;
-  var topVisible = false;
-  function setBottomVisible(v) {
-    if (v === bottomVisible) return;
-    bottomVisible = v;
-    bottomBar.classList.toggle('visible', v);
-    if (fadeBottom) fadeBottom.classList.toggle('visible', v);
+
+  var SCROLL_THRESHOLD = 2;
+  var isVisible = false;
+
+  function setVisible(v) {
+    if (v === isVisible) return;
+    isVisible = v;
+    if (v) {
+      bottomBar.classList.add('visible');
+      if (fadeBottom) fadeBottom.classList.add('visible');
+    } else {
+      bottomBar.classList.remove('visible');
+      if (fadeBottom) fadeBottom.classList.remove('visible');
+    }
   }
-  function setTopVisible(v) {
-    if (v === topVisible) return;
-    topVisible = v;
-    if (fadeTop) fadeTop.classList.toggle('visible', v);
-  }
+
   function onScroll() {
-    var y = landing.scrollTop || 0;
-    setBottomVisible(y > 2);
-    setTopVisible(y >= 2);
+    var y = landing.scrollTop || landing.pageYOffset || 0;
+    if (y > SCROLL_THRESHOLD) setVisible(true);
+    else setVisible(false);
   }
+
   landing.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('load', onScroll);
   onScroll();
-})();
 
-/* ============================================================
-   МОБИЛЬНОЕ НАЖАТИЕ НА ИКОНКИ НИЖНЕЙ ПАНЕЛИ
-   При касании добавляем класс is-pressed (вдавливание + подсветка
-   в цвете иконки), при отпускании/съезде пальца — снимаем.
-   На десктопе всё работает как раньше через :hover и :active.
-   ============================================================ */
-(function() {
-  'use strict';
-  var icons = document.querySelectorAll('.bottom-icon');
-  if (!icons.length) return;
-
-  function press(el) { if (el) el.classList.add('is-pressed'); }
-  function release(el) { if (el) el.classList.remove('is-pressed'); }
-  function releaseAll() { for (var i = 0; i < icons.length; i++) icons[i].classList.remove('is-pressed'); }
-
-  for (var i = 0; i < icons.length; i++) {
-    (function(el) {
-      el.addEventListener('touchstart', function() { press(el); }, { passive: true });
-      el.addEventListener('touchend', function() { release(el); }, { passive: true });
-      el.addEventListener('touchcancel', function() { release(el); }, { passive: true });
-      /* Если палец ушёл с иконки — снять эффект */
-      el.addEventListener('touchmove', function(e) {
-        if (!e.touches || !e.touches.length) { release(el); return; }
-        var t = e.touches[0];
-        var r = el.getBoundingClientRect();
-        var inside = t.clientX >= r.left && t.clientX <= r.right && t.clientY >= r.top && t.clientY <= r.bottom;
-        if (!inside) release(el);
-      }, { passive: true });
-    })(icons[i]);
+  if (bottomBar) {
+    bottomBar.addEventListener('click', function(e) {
+      var t = e.target;
+      if (!t || !t.closest) return;
+      var trigger = t.closest('[data-action="enter-app"]');
+      if (!trigger) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var fakeBtn = document.querySelector('[data-action="enter-app"]');
+      if (fakeBtn) fakeBtn.click();
+    });
   }
-  /* Страховка: если палец ушёл за пределы панели — снять со всех */
-  document.addEventListener('touchend', function() { setTimeout(releaseAll, 120); }, { passive: true });
-  document.addEventListener('touchcancel', releaseAll, { passive: true });
 })();
 </script>
 </body>
