@@ -768,13 +768,12 @@ button:disabled, button.disabled { cursor: default; }
    Подсветка при наведении и нажатии — в цвете самих иконок,
    радиус свечения компактный (без дальнего прозрачного слоя).
 
-   ВАЖНО (глухая подложка + выезд):
-   Панель накрывает всю свою область непроницаемой подложкой,
-   которая выезжает снизу вверх при прокрутке вниз и заезжает
-   обратно вниз при возврате в верх. Сама подложка перехватывает
-   все тапы, клики и наведения и НЕ пропускает их к элементам
-   под панелью. Кнопки на панели НЕ выезжают вместе с подложкой,
-   а просто плавно появляются/исчезают на уже выехавшей панели.
+   ВАЖНО:
+   Вся зона нижней панели — полностью глухая. Ни тапы,
+   ни клики, ни наведения сквозь неё никуда не проходят.
+   Работают ТОЛЬКО сами кнопки (тап по ним и наведение на них).
+   Панель всегда выезжает полностью, но скорость выезда/заезда
+   привязана к скорости прокрутки страницы (через JS).
    ============================================================ */
 #bottom-bar {
   position: fixed; left: 0;
@@ -786,32 +785,36 @@ button:disabled, button.disabled { cursor: default; }
   padding: 0 clamp(18px, 4vw, 40px);
   padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
   padding-top: 14px;
-  /* Подложка глухая и непроницаемая, выезжает снизу. */
+  /* Подложка глухая и непроницаемая, выезжает снизу.
+     transform задаётся из JS, чтобы движение было синхронно
+     со скоростью прокрутки страницы. */
   background: #000;
   pointer-events: none;
   transform: translateY(100%); /* скрыта: заехала вниз */
-  transition: transform .22s ease-out;
+  transition: transform .5s ease-out; /* fallback, JS переопределит */
   will-change: transform;
   touch-action: none;
 }
 @media (max-width: 640px) {
   #bottom-bar { right: 0; padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 10px); }
 }
+/* Панель видима: сама подложка перехватывает все события.
+   При этом дети-кнопки будут получать свои события. */
 #bottom-bar.visible {
   transform: translateY(0); /* выехала наверх */
   pointer-events: auto;
 }
+/* Класс "moving" отключает transition — панель движется напрямую из JS. */
+#bottom-bar.moving { transition: none; }
 .bottom-bar-center {
   display: flex; align-items: center; justify-content: center; gap: 22px;
-  /* Кнопки не выезжают с подложкой: контейнер не смещается,
-     кнопки плавно появляются/исчезают по прозрачности. */
+  /* Контейнер не перехватывает события — только сами кнопки. */
   pointer-events: none;
   opacity: 0;
-  transition: opacity .18s ease-out .18s; /* появляются после выезда панели */
+  transition: opacity .5s ease-out .15s; /* появляются после выезда панели */
 }
 #bottom-bar.visible .bottom-bar-center {
   opacity: 1;
-  transition: opacity .18s ease-out .14s;
 }
 .bottom-bar-center > * { pointer-events: auto; }
 .bottom-icon {
@@ -1482,6 +1485,12 @@ button:disabled, button.disabled { cursor: default; }
    работают как раньше — при любой прокрутке.
    Верхняя золотая линия (.lnd-top-rule) резко скрывается
    при прокрутке на 1px и резко появляется при возврате в 0px.
+
+   НИЖНЯЯ ПАНЕЛЬ:
+   Выезжает/заезжает всегда полностью. Скорость движения
+   панели привязана к скорости прокрутки страницы: берём
+   дельту scrollTop за кадр и переводим её в прогресс 0..1,
+   чтобы панель доезжала до конца плавно и в такт с колесом.
    ============================================================ */
 (function() {
   var landing = document.getElementById('landing');
@@ -1493,12 +1502,51 @@ button:disabled, button.disabled { cursor: default; }
   var bottomVisible = false;
   var topVisible = false;
   var topRuleHidden = false;
-  function setBottomVisible(v) {
-    if (v === bottomVisible) return;
-    bottomVisible = v;
-    bottomBar.classList.toggle('visible', v);
-    if (fadeBottom) fadeBottom.classList.toggle('visible', v);
+
+  /* Прогресс панели 0..1 (0 — заехала вниз, 1 — выехала полностью). */
+  var panelProgress = 0;
+  /* Скорость "догоняния" за кадр: чем больше, тем быстрее панель
+     доезжает до цели. Привязываем к дельте прокрутки. */
+  var rafId = 0;
+  var lastY = landing.scrollTop || 0;
+  var target = 0;
+
+  function applyPanel() {
+    /* Сдвиг от -100% (скрыта) до 0 (полностью видна). */
+    var ty = (1 - panelProgress) * 100;
+    bottomBar.style.transform = 'translateY(' + ty + '%)';
+    /* Класс visible управляет кликабельностью и появлением кнопок. */
+    var shouldBeVisible = panelProgress > 0.5;
+    if (shouldBeVisible !== bottomVisible) {
+      bottomVisible = shouldBeVisible;
+      bottomBar.classList.toggle('visible', shouldBeVisible);
+      if (fadeBottom) fadeBottom.classList.toggle('visible', shouldBeVisible);
+    }
   }
+
+  function tick() {
+    rafId = 0;
+    /* Шаг к цели пропорционален разнице и "скорости" прокрутки.
+       Цель — 0 (скрыта) или 1 (видна полностью). */
+    var speed = Math.min(0.28, Math.max(0.10, Math.abs(target - panelProgress) * 0.6 + 0.10));
+    if (panelProgress < target) {
+      panelProgress = Math.min(target, panelProgress + speed);
+    } else if (panelProgress > target) {
+      panelProgress = Math.max(target, panelProgress - speed);
+    }
+    applyPanel();
+    if (Math.abs(panelProgress - target) > 0.001) {
+      rafId = requestAnimationFrame(tick);
+    } else {
+      panelProgress = target;
+      applyPanel();
+    }
+  }
+
+  function kick() {
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  }
+
   function setTopVisible(v) {
     if (v === topVisible) return;
     topVisible = v;
@@ -1510,12 +1558,30 @@ button:disabled, button.disabled { cursor: default; }
     topRuleHidden = v;
     topRule.classList.toggle('hidden', v);
   }
+
   function onScroll() {
     var y = landing.scrollTop || 0;
-    setBottomVisible(y > 1);
+    /* Верхние полосы и золотая линия — как раньше, резко на 1px. */
     setTopVisible(y >= 1);
     setTopRuleHidden(y >= 1);
+    /* Нижняя панель: цель — полностью выехать при y>1, полностью
+       заехать при y=0. Скорость достижения цели привязана к дельте
+       прокрутки за кадр: чем больше прокрутил — тем быстрее доедет. */
+    var dy = y - lastY;
+    lastY = y;
+    target = (y > 1) ? 1 : 0;
+    if (target === 1) {
+      /* Выставляем повышенную скорость, если крутанули сильно. */
+      var boost = Math.min(0.35, Math.abs(dy) / 200);
+      if (panelProgress < target) panelProgress = Math.min(target, panelProgress + boost);
+    } else {
+      var boostDown = Math.min(0.35, Math.abs(dy) / 200);
+      if (panelProgress > target) panelProgress = Math.max(target, panelProgress - boostDown);
+    }
+    applyPanel();
+    kick();
   }
+
   landing.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('load', onScroll);
   onScroll();
