@@ -415,9 +415,9 @@ button:disabled, button.disabled { cursor: default; }
 }
 
 /* Название проекта — отдельный блок в самом верху, во всю ширину, по центру.
-   Буквы растянуты по горизонтали для более широкого и дорогого вида,
-   межбуквенный интервал увеличен, размер шрифта чуть крупнее.
-   Сверху отступ от верхнего края экрана + 10px (по просьбе). */
+   Сверху отступ от верхнего края экрана + 10px (по просьбе).
+   Буквы сделаны плотнее, шире и крупнее, чтобы название смотрелось
+   солиднее и красивее. Градиент и центрирование сохранены. */
 .lnd-brand-top {
   position: relative; z-index: 1;
   width: 100%;
@@ -429,21 +429,21 @@ button:disabled, button.disabled { cursor: default; }
 }
 .lnd-brand-name {
   font-weight: 900;
-  font-size: clamp(24px, 4vmin, 38px);
-  letter-spacing: 12px;
+  font-size: clamp(26px, 4.4vmin, 40px);
+  letter-spacing: 2px; /* буквы ближе друг к другу */
   text-transform: uppercase;
-  line-height: 1.1;
+  line-height: 1.05;
+  display: inline-block;
+  transform: scaleX(1.14); /* буквы шире по горизонтали */
+  transform-origin: center center;
   background: linear-gradient(180deg, #fff6d0 0%, var(--gold) 45%, #b8860b 100%);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
-  padding-left: 12px; /* компенсация letter-spacing справа, чтобы центр был ровный */
+  padding-left: 2px;
   white-space: nowrap;
-  transform: scaleX(1.08); /* буквы шире и солиднее */
-  transform-origin: center center;
-  display: inline-block;
 }
 @media (max-width: 420px) {
-  .lnd-brand-name { letter-spacing: 7px; font-size: clamp(20px, 5.6vmin, 24px); padding-left: 7px; transform: scaleX(1.05); }
+  .lnd-brand-name { letter-spacing: 1px; font-size: clamp(20px, 5.6vmin, 24px); transform: scaleX(1.10); padding-left: 1px; }
 }
 
 .lnd-hero-grid {
