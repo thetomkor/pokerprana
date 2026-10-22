@@ -767,23 +767,38 @@ button:disabled, button.disabled { cursor: default; }
    перекрывать вертикальную полосу прокрутки справа.
    Подсветка при наведении и нажатии — в цвете самих иконок,
    радиус свечения компактный (без дальнего прозрачного слоя).
+
+   ВАЖНО (глухая подложка):
+   Панель накрывает всю свою область непроницаемой подложкой.
+   Сама подложка перехватывает все тапы, клики и наведения и
+   НЕ пропускает их к элементам под панелью. Кнопки поверх
+   подложки остаются кликабельными и работают как раньше.
    ============================================================ */
 #bottom-bar {
   position: fixed; left: 0;
   right: 10px; /* на десктопе оставляем место под полосу прокрутки */
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
+  bottom: 0;
   z-index: 900;
   display: flex; align-items: center; justify-content: center;
-  gap: 22px; padding: 0 clamp(18px, 4vw, 40px);
-  opacity: 0; pointer-events: none;
-  transition: opacity .75s cubic-bezier(.22,.61,.36,1);
+  gap: 22px;
+  padding: 0 clamp(18px, 4vw, 40px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
+  padding-top: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: none; /* появление/исчезновение мгновенное */
   will-change: opacity;
+  /* Непроницаемая подложка на всю область панели — тапы, клики
+     и наведения не проходят вниз к контенту под панелью. */
+  background: #000;
+  touch-action: none;
 }
 @media (max-width: 640px) {
-  #bottom-bar { right: 0; bottom: calc(env(safe-area-inset-bottom, 0px) + 10px); }
+  #bottom-bar { right: 0; padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 10px); }
 }
 #bottom-bar.visible { opacity: 1; pointer-events: auto; }
-.bottom-bar-center { display: flex; align-items: center; justify-content: center; gap: 22px; }
+.bottom-bar-center { display: flex; align-items: center; justify-content: center; gap: 22px; pointer-events: none; }
+.bottom-bar-center > * { pointer-events: auto; }
 .bottom-icon {
   display: inline-flex; align-items: center; justify-content: center;
   width: 26px; height: 26px; padding: 0; margin: 0; border: none; outline: none;
@@ -840,15 +855,16 @@ button:disabled, button.disabled { cursor: default; }
 
 /* ============================================================
    ПОЛОСЫ ЗАТУХАНИЯ СВЕРХУ И СНИЗУ
-   Верхняя полоса скрыта на самом верху и плавно появляется
-   при сдвиге страницы вниз на 2 пикселя и более.
+   Верхняя полоса скрыта на самом верху и мгновенно появляется
+   при сдвиге страницы вниз на 1 пиксель и более.
+   Нижняя полоса появляется/исчезает мгновенно при сдвиге 1px.
    ============================================================ */
 .lnd-fade-top {
   position: fixed; left: 0; right: 10px; pointer-events: none; z-index: 850;
   top: 0; height: 10px; display: flex; flex-direction: column;
   background: transparent;
   opacity: 0;
-  transition: opacity .35s ease;
+  transition: none; /* мгновенно */
   will-change: opacity;
 }
 .lnd-fade-top.visible { opacity: 1; }
@@ -862,7 +878,7 @@ button:disabled, button.disabled { cursor: default; }
   position: fixed; left: 0; right: 10px; pointer-events: none; z-index: 850;
   bottom: 0; height: 60px; display: flex; flex-direction: column-reverse;
   background: transparent; opacity: 0;
-  transition: opacity .75s cubic-bezier(.22,.61,.36,1);
+  transition: none; /* мгновенно */
   will-change: opacity;
 }
 @media (max-width: 640px) {
@@ -879,7 +895,7 @@ button:disabled, button.disabled { cursor: default; }
 /* ============================================================
    ЗОЛОТАЯ ЛИНИЯ В САМОМ ВЕРХУ (впритык к краю экрана)
    Точно такая же, как линия над финальной секцией.
-   При прокрутке на 2px и более — резко исчезает,
+   При прокрутке на 1px и более — резко исчезает,
    при возврате в самый верх (0px) — резко появляется.
    ============================================================ */
 .lnd-top-rule {
@@ -1446,11 +1462,11 @@ button:disabled, button.disabled { cursor: default; }
 
 /* ============================================================
    ПОЛОСЫ ЗАТУХАНИЯ И НИЖНЯЯ ПАНЕЛЬ: ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ
-   Верхняя полоса появляется при сдвиге на 2px и исчезает
+   Верхняя полоса появляется при сдвиге на 1px и исчезает
    при возврате в самый верх. Нижняя полоса и панель иконок
    работают как раньше — при любой прокрутке.
    Верхняя золотая линия (.lnd-top-rule) резко скрывается
-   при прокрутке на 2px и резко появляется при возврате в 0px.
+   при прокрутке на 1px и резко появляется при возврате в 0px.
    ============================================================ */
 (function() {
   var landing = document.getElementById('landing');
@@ -1481,9 +1497,9 @@ button:disabled, button.disabled { cursor: default; }
   }
   function onScroll() {
     var y = landing.scrollTop || 0;
-    setBottomVisible(y > 2);
-    setTopVisible(y >= 2);
-    setTopRuleHidden(y >= 2);
+    setBottomVisible(y > 1);
+    setTopVisible(y >= 1);
+    setTopRuleHidden(y >= 1);
   }
   landing.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('load', onScroll);
