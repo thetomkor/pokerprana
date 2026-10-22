@@ -414,13 +414,14 @@ button:disabled, button.disabled { cursor: default; }
   pointer-events: none; z-index: 0;
 }
 
-/* Название проекта — отдельный блок в самом верху, во всю ширину, по центру */
+/* Название проекта — отдельный блок в самом верху, во всю ширину, по центру.
+   Сверху отступ от верхнего края экрана + 10px (по просьбе). */
 .lnd-brand-top {
   position: relative; z-index: 1;
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: calc(clamp(18px, 2.6vw, 28px) + env(safe-area-inset-top, 0px)) clamp(18px, 4vw, 40px) 0;
+  padding: calc(clamp(18px, 2.6vw, 28px) + env(safe-area-inset-top, 0px) + 10px) clamp(18px, 4vw, 40px) 0;
   display: flex; flex-direction: column; align-items: center;
   text-align: center;
 }
