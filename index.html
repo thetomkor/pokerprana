@@ -759,7 +759,8 @@ button:disabled, button.disabled { cursor: default; }
    НИЖНЯЯ ПАНЕЛЬ ИКОНОК (карты, сердце, Telegram)
    На десктопе ограничена областью контента, чтобы не
    перекрывать вертикальную полосу прокрутки справа.
-   Подсветка при наведении и нажатии — в цвете самих иконок.
+   Подсветка при наведении и нажатии — в цвете самих иконок,
+   радиус свечения компактный (без дальнего прозрачного слоя).
    ============================================================ */
 #bottom-bar {
   position: fixed; left: 0;
@@ -784,48 +785,48 @@ button:disabled, button.disabled { cursor: default; }
   color: var(--ph-heart); opacity: .75; cursor: pointer; line-height: 0;
   -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none;
   -webkit-user-select: none; user-select: none; -webkit-user-drag: none;
-  filter: drop-shadow(0 0 4px rgba(184,146,74,.35)) drop-shadow(0 0 8px rgba(184,146,74,.2));
+  filter: drop-shadow(0 0 4px rgba(184,146,74,.35));
   transition: opacity .18s ease, filter .18s ease, transform .12s ease;
   text-decoration: none; overflow: visible;
   -webkit-appearance: none; appearance: none; touch-action: manipulation;
 }
 .bottom-icon.bottom-icon--heart {
   color: var(--ph-heart-bright);
-  filter: drop-shadow(0 0 5px rgba(198,154,82,.55)) drop-shadow(0 0 12px rgba(198,154,82,.38)) drop-shadow(0 0 22px rgba(198,154,82,.20));
+  filter: drop-shadow(0 0 5px rgba(198,154,82,.55));
 }
-/* Подсветка при наведении (десктоп): цвет свечения = цвет самих иконок */
+/* Подсветка при наведении (десктоп): компактный радиус, цвет = цвет иконки */
 @media (hover: hover) {
   .bottom-icon:hover {
     opacity: 1;
-    filter: drop-shadow(0 0 6px rgba(184,146,74,.75)) drop-shadow(0 0 14px rgba(184,146,74,.5)) drop-shadow(0 0 24px rgba(184,146,74,.28));
+    filter: drop-shadow(0 0 5px rgba(184,146,74,.75)) drop-shadow(0 0 10px rgba(184,146,74,.45));
   }
   .bottom-icon.bottom-icon--heart:hover {
-    filter: drop-shadow(0 0 8px rgba(198,154,82,.85)) drop-shadow(0 0 18px rgba(198,154,82,.55)) drop-shadow(0 0 30px rgba(198,154,82,.3));
+    filter: drop-shadow(0 0 6px rgba(198,154,82,.85)) drop-shadow(0 0 12px rgba(198,154,82,.5));
   }
 }
-/* Нажатие: вдавливание + вспышка в цвете самой иконки (мышь) */
+/* Нажатие (мышь): вдавливание + компактная вспышка в цвете иконки */
 .bottom-icon:active {
   transform: scale(0.86);
   opacity: 1;
   transition: opacity .08s ease, filter .08s ease, transform .08s ease;
 }
 .bottom-icon:active:not(.bottom-icon--heart) {
-  filter: drop-shadow(0 0 9px rgba(184,146,74,.95)) drop-shadow(0 0 20px rgba(184,146,74,.7)) drop-shadow(0 0 34px rgba(184,146,74,.42));
+  filter: drop-shadow(0 0 6px rgba(184,146,74,.95)) drop-shadow(0 0 12px rgba(184,146,74,.65));
 }
 .bottom-icon.bottom-icon--heart:active {
-  filter: drop-shadow(0 0 9px rgba(198,154,82,.95)) drop-shadow(0 0 20px rgba(198,154,82,.7)) drop-shadow(0 0 34px rgba(198,154,82,.42));
+  filter: drop-shadow(0 0 7px rgba(198,154,82,.95)) drop-shadow(0 0 14px rgba(198,154,82,.65));
 }
-/* Нажатие на мобильном (касание): то же самое вдавливание и подсветка */
+/* Нажатие (касание на мобильном): то же самое */
 .bottom-icon.is-pressed {
   transform: scale(0.86);
   opacity: 1;
   transition: opacity .08s ease, filter .08s ease, transform .08s ease;
 }
 .bottom-icon.is-pressed:not(.bottom-icon--heart) {
-  filter: drop-shadow(0 0 9px rgba(184,146,74,.95)) drop-shadow(0 0 20px rgba(184,146,74,.7)) drop-shadow(0 0 34px rgba(184,146,74,.42));
+  filter: drop-shadow(0 0 6px rgba(184,146,74,.95)) drop-shadow(0 0 12px rgba(184,146,74,.65));
 }
 .bottom-icon.bottom-icon--heart.is-pressed {
-  filter: drop-shadow(0 0 9px rgba(198,154,82,.95)) drop-shadow(0 0 20px rgba(198,154,82,.7)) drop-shadow(0 0 34px rgba(198,154,82,.42));
+  filter: drop-shadow(0 0 7px rgba(198,154,82,.95)) drop-shadow(0 0 14px rgba(198,154,82,.65));
 }
 .bottom-icon svg { width: 26px; height: 26px; display: block; -webkit-user-drag: none; user-select: none; pointer-events: none; }
 .bottom-icon.bottom-icon-tg { width: 26px; height: 26px; }
