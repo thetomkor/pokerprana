@@ -812,12 +812,18 @@ button:disabled, button.disabled { cursor: default; }
 
 /* ============================================================
    ПОЛОСЫ ЗАТУХАНИЯ СВЕРХУ И СНИЗУ
+   Верхняя полоса скрыта на самом верху и плавно появляется
+   при сдвиге страницы вниз на 2 пикселя и более.
    ============================================================ */
 .lnd-fade-top {
   position: fixed; left: 0; right: 0; pointer-events: none; z-index: 850;
   top: 0; height: 10px; display: flex; flex-direction: column;
   background: transparent;
+  opacity: 0;
+  transition: opacity .35s ease;
+  will-change: opacity;
 }
+.lnd-fade-top.visible { opacity: 1; }
 .lnd-fade-top::before { content: ""; display: block; height: 3px; background: #000; }
 .lnd-fade-top::after {
   content: ""; display: block; height: 7px; background: #000;
@@ -1071,7 +1077,7 @@ button:disabled, button.disabled { cursor: default; }
 </div>
 
 <!-- Полосы затухания -->
-<div class="lnd-fade-top" aria-hidden="true"></div>
+<div class="lnd-fade-top" id="lnd-fade-top" aria-hidden="true"></div>
 <div class="lnd-fade-bottom" id="lnd-fade-bottom" aria-hidden="true"></div>
 
 <!-- Нижняя панель иконок -->
@@ -1384,23 +1390,34 @@ button:disabled, button.disabled { cursor: default; }
 })();
 
 /* ============================================================
-   НИЖНЯЯ ПАНЕЛЬ: ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ
+   ПОЛОСЫ ЗАТУХАНИЯ И НИЖНЯЯ ПАНЕЛЬ: ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ
+   Верхняя полоса появляется при сдвиге на 2px и исчезает
+   при возврате в самый верх. Нижняя полоса и панель иконок
+   работают как раньше — при любой прокрутке.
    ============================================================ */
 (function() {
   var landing = document.getElementById('landing');
   var bottomBar = document.getElementById('bottom-bar');
   var fadeBottom = document.getElementById('lnd-fade-bottom');
+  var fadeTop = document.getElementById('lnd-fade-top');
   if (!landing || !bottomBar) return;
-  var isVisible = false;
-  function setVisible(v) {
-    if (v === isVisible) return;
-    isVisible = v;
+  var bottomVisible = false;
+  var topVisible = false;
+  function setBottomVisible(v) {
+    if (v === bottomVisible) return;
+    bottomVisible = v;
     bottomBar.classList.toggle('visible', v);
     if (fadeBottom) fadeBottom.classList.toggle('visible', v);
   }
+  function setTopVisible(v) {
+    if (v === topVisible) return;
+    topVisible = v;
+    if (fadeTop) fadeTop.classList.toggle('visible', v);
+  }
   function onScroll() {
     var y = landing.scrollTop || 0;
-    setVisible(y > 2);
+    setBottomVisible(y > 2);
+    setTopVisible(y >= 2);
   }
   landing.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('load', onScroll);
