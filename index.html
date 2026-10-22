@@ -503,28 +503,20 @@ button:disabled, button.disabled { cursor: default; }
 .lnd-chip.c2 { bottom: 14%; left: 26%; width: clamp(30px, 6vw, 44px); height: clamp(30px, 6vw, 44px); opacity: .9; }
 .lnd-chip.c3 { bottom: 0%; right: 6%; width: clamp(36px, 7vw, 52px); height: clamp(36px, 7vw, 52px); opacity: .95; }
 
-/* Мобильный блок с текстом и кнопкой под картами */
+/* Мобильный блок с кнопкой под картами */
 .lnd-mobile-cta { display: none; }
 @media (max-width: 859px) {
-  /* На мобильном: заголовок и текст сверху, под ними карты, под картами — текст и кнопка */
+  /* На мобильном: заголовок и текст сверху (по левому краю), под ними карты, под картами — кнопка */
   .lnd-hero-grid { display: flex; flex-direction: column; gap: clamp(16px, 3.6vw, 22px); }
-  .lnd-hero-copy { order: 1; width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .lnd-h1 { text-align: center; margin-bottom: clamp(10px, 2.4vw, 14px); }
-  .lnd-sub { display: block; text-align: center; margin-left: auto; margin-right: auto; margin-bottom: 0; max-width: 46ch; }
+  .lnd-hero-copy { order: 1; width: 100%; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+  .lnd-h1 { text-align: left; margin-bottom: clamp(10px, 2.4vw, 14px); }
+  .lnd-sub { display: block; text-align: left; margin-left: 0; margin-right: 0; margin-bottom: 0; max-width: 100%; }
   .lnd-hero-actions { display: none; }
   .lnd-hero-visual { order: 2; width: 100%; margin-top: 0; }
 
   .lnd-mobile-cta {
     display: flex; flex-direction: column; align-items: center;
     gap: 14px; margin-top: 2px; width: 100%; order: 3;
-  }
-  .lnd-mobile-cta .lnd-sub-mobile {
-    color: var(--muted-soft-2);
-    font-size: clamp(13px, 3.4vmin, 15px);
-    line-height: 1.55;
-    text-align: center;
-    max-width: 40ch;
-    margin: 0;
   }
   .lnd-mobile-cta .lnd-btn { width: 100%; max-width: 340px; }
 }
@@ -878,9 +870,8 @@ button:disabled, button.disabled { cursor: default; }
         </div>
       </div>
 
-      <!-- Мобильный блок: текст и кнопка под картами, по центру -->
+      <!-- Мобильный блок: кнопка под картами, по центру -->
       <div class="lnd-mobile-cta">
-        <p class="lnd-sub-mobile">Бесплатно. Без установки. Без регистрации.</p>
         <a class="lnd-btn" href="/app.html" aria-label="Начать тренировку">Начать тренировку</a>
       </div>
     </div>
