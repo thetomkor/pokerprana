@@ -803,20 +803,16 @@ button:disabled, button.disabled { cursor: default; }
     filter: drop-shadow(0 0 8px rgba(198,154,82,.85)) drop-shadow(0 0 18px rgba(198,154,82,.55)) drop-shadow(0 0 30px rgba(198,154,82,.3));
   }
 }
-/* Нажатие: вдавливание + вспышка в цвете самой иконки.
-   Работает и на десктопе (мышь), и на мобильном (тап). */
-.bottom-icon:active,
-.bottom-icon.is-pressed {
+/* Нажатие: вдавливание + вспышка в цвете самой иконки */
+.bottom-icon:active {
   transform: scale(0.86);
   opacity: 1;
   transition: opacity .08s ease, filter .08s ease, transform .08s ease;
 }
-.bottom-icon:active:not(.bottom-icon--heart),
-.bottom-icon.is-pressed:not(.bottom-icon--heart) {
+.bottom-icon:active:not(.bottom-icon--heart) {
   filter: drop-shadow(0 0 9px rgba(184,146,74,.95)) drop-shadow(0 0 20px rgba(184,146,74,.7)) drop-shadow(0 0 34px rgba(184,146,74,.42));
 }
-.bottom-icon.bottom-icon--heart:active,
-.bottom-icon.bottom-icon--heart.is-pressed {
+.bottom-icon.bottom-icon--heart:active {
   filter: drop-shadow(0 0 9px rgba(198,154,82,.95)) drop-shadow(0 0 20px rgba(198,154,82,.7)) drop-shadow(0 0 34px rgba(198,154,82,.42));
 }
 .bottom-icon svg { width: 26px; height: 26px; display: block; -webkit-user-drag: none; user-select: none; pointer-events: none; }
@@ -862,19 +858,20 @@ button:disabled, button.disabled { cursor: default; }
 }
 
 /* ============================================================
-   ЗОЛОТАЯ ЛИНИЯ В САМОМ ВЕРХУ (часть страницы, не фиксирована)
-   Уезжает вверх вместе со страницей при скролле.
-   Внешний вид — точно как у линии над финальной секцией.
+   ЗОЛОТАЯ ЛИНИЯ В САМОМ ВЕРХУ (впритык к краю экрана)
+   Точно такая же, как линия над финальной секцией.
    ============================================================ */
 .lnd-top-rule {
-  position: relative;
-  width: 100%;
+  position: fixed;
+  top: 0; left: 0; right: 10px;
   height: 1px;
   pointer-events: none;
-  z-index: 1;
-  margin-top: env(safe-area-inset-top, 0px);
+  z-index: 860;
   background: linear-gradient(to right, transparent 0%, rgba(255,203,43,.12) 18%, rgba(255,203,43,.12) 82%, transparent 100%);
   box-shadow: 0 0 8px rgba(255,203,43,.25);
+}
+@media (max-width: 640px) {
+  .lnd-top-rule { right: 0; }
 }
 </style>
 </head>
@@ -894,9 +891,6 @@ button:disabled, button.disabled { cursor: default; }
      ЛЕНДИНГ
      ============================================================ -->
 <div id="landing" aria-label="Poker Prana — лендинг">
-
-  <!-- Золотая линия в самом верху страницы: часть контента, уезжает при скролле -->
-  <div class="lnd-top-rule" aria-hidden="true"></div>
 
   <!-- Hero-секция -->
   <section class="lnd-hero" aria-labelledby="lnd-hero-title">
@@ -1114,6 +1108,9 @@ button:disabled, button.disabled { cursor: default; }
 <div class="lnd-fade-top" id="lnd-fade-top" aria-hidden="true"></div>
 <div class="lnd-fade-bottom" id="lnd-fade-bottom" aria-hidden="true"></div>
 
+<!-- Золотая линия в самом верху, впритык к краю экрана -->
+<div class="lnd-top-rule" aria-hidden="true"></div>
+
 <!-- Нижняя панель иконок -->
 <div id="bottom-bar" aria-hidden="true">
   <div class="bottom-bar-center">
@@ -1163,31 +1160,6 @@ button:disabled, button.disabled { cursor: default; }
     if (t && t.tagName === 'IMG') handleImg(t);
   }, true);
   window.PT_HEART_SVG = HEART_SVG;
-})();
-
-/* ============================================================
-   НАЖАТИЕ КНОПОК НИЖНЕЙ ПАНЕЛИ НА МОБИЛЬНОМ
-   На тач-устройствах :active не всегда успевает сработать,
-   поэтому добавляем класс is-pressed на touchstart и снимаем
-   его на touchend / touchcancel. На десктопе всё работает
-   через обычный :active.
-   ============================================================ */
-(function() {
-  if (!('ontouchstart' in window)) return;
-  var icons = document.querySelectorAll('.bottom-icon');
-  for (var i = 0; i < icons.length; i++) {
-    (function(el) {
-      el.addEventListener('touchstart', function() {
-        el.classList.add('is-pressed');
-      }, { passive: true });
-      el.addEventListener('touchend', function() {
-        el.classList.remove('is-pressed');
-      }, { passive: true });
-      el.addEventListener('touchcancel', function() {
-        el.classList.remove('is-pressed');
-      }, { passive: true });
-    })(icons[i]);
-  }
 })();
 
 /* ============================================================
