@@ -394,24 +394,6 @@ button:disabled, button.disabled { cursor: default; }
 .lnd-btn:active { transform: scale(0.97); filter: brightness(1.1); box-shadow: 0 1px 0 #8a6508, inset 0 1px 0 rgba(255,255,255,.35); }
 
 /* ============================================================
-   ЗОЛОТАЯ ЛИНИЯ В САМОМ ВЕРХУ СТРАНИЦЫ
-   Часть прокручиваемой страницы: уезжает вверх вместе с
-   контентом. Поднята по слою, чтобы её не перекрывал блок
-   с названием. Внешний вид прежний: градиент с затуханием
-   по краям и лёгкое золотое свечение вниз.
-   ============================================================ */
-.lnd-top-rule {
-  width: 100%;
-  height: 1px;
-  flex-shrink: 0;
-  pointer-events: none;
-  position: relative;
-  z-index: 10;
-  background: linear-gradient(to right, transparent 0%, rgba(255,203,43,.12) 18%, rgba(255,203,43,.12) 82%, transparent 100%);
-  box-shadow: 0 0 8px rgba(255,203,43,.25);
-}
-
-/* ============================================================
    HERO-СЕКЦИЯ: НАЗВАНИЕ СВЕРХУ, ПОД НИМ СЕТКА
    ============================================================ */
 #landing .lnd-hero {
@@ -893,6 +875,28 @@ button:disabled, button.disabled { cursor: default; }
   -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,.95) 0%, rgba(0,0,0,.9) 10%, rgba(0,0,0,.7) 35%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.2) 82%, rgba(0,0,0,0) 100%);
   mask-image: linear-gradient(to top, rgba(0,0,0,.95) 0%, rgba(0,0,0,.9) 10%, rgba(0,0,0,.7) 35%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.2) 82%, rgba(0,0,0,0) 100%);
 }
+
+/* ============================================================
+   ЗОЛОТАЯ ЛИНИЯ В САМОМ ВЕРХУ (впритык к краю экрана)
+   Точно такая же, как линия над финальной секцией.
+   При прокрутке на 2px и более — резко исчезает,
+   при возврате в самый верх (0px) — резко появляется.
+   ============================================================ */
+.lnd-top-rule {
+  position: fixed;
+  top: 0; left: 0; right: 10px;
+  height: 1px;
+  pointer-events: none;
+  z-index: 860;
+  background: linear-gradient(to right, transparent 0%, rgba(255,203,43,.12) 18%, rgba(255,203,43,.12) 82%, transparent 100%);
+  box-shadow: 0 0 8px rgba(255,203,43,.25);
+  opacity: 1;
+  transition: none;
+}
+.lnd-top-rule.hidden { opacity: 0; }
+@media (max-width: 640px) {
+  .lnd-top-rule { right: 0; }
+}
 </style>
 </head>
 <body>
@@ -911,10 +915,6 @@ button:disabled, button.disabled { cursor: default; }
      ЛЕНДИНГ
      ============================================================ -->
 <div id="landing" aria-label="Poker Prana — лендинг">
-
-  <!-- Золотая линия в самом верху страницы. Часть прокручиваемой
-       страницы, уезжает вверх вместе с контентом. -->
-  <div class="lnd-top-rule" aria-hidden="true"></div>
 
   <!-- Hero-секция -->
   <section class="lnd-hero" aria-labelledby="lnd-hero-title">
@@ -1131,6 +1131,9 @@ button:disabled, button.disabled { cursor: default; }
 <!-- Полосы затухания -->
 <div class="lnd-fade-top" id="lnd-fade-top" aria-hidden="true"></div>
 <div class="lnd-fade-bottom" id="lnd-fade-bottom" aria-hidden="true"></div>
+
+<!-- Золотая линия в самом верху, впритык к краю экрана -->
+<div class="lnd-top-rule" id="lnd-top-rule" aria-hidden="true"></div>
 
 <!-- Нижняя панель иконок -->
 <div id="bottom-bar" aria-hidden="true">
@@ -1446,15 +1449,19 @@ button:disabled, button.disabled { cursor: default; }
    Верхняя полоса появляется при сдвиге на 2px и исчезает
    при возврате в самый верх. Нижняя полоса и панель иконок
    работают как раньше — при любой прокрутке.
+   Верхняя золотая линия (.lnd-top-rule) резко скрывается
+   при прокрутке на 2px и резко появляется при возврате в 0px.
    ============================================================ */
 (function() {
   var landing = document.getElementById('landing');
   var bottomBar = document.getElementById('bottom-bar');
   var fadeBottom = document.getElementById('lnd-fade-bottom');
   var fadeTop = document.getElementById('lnd-fade-top');
+  var topRule = document.getElementById('lnd-top-rule');
   if (!landing || !bottomBar) return;
   var bottomVisible = false;
   var topVisible = false;
+  var topRuleHidden = false;
   function setBottomVisible(v) {
     if (v === bottomVisible) return;
     bottomVisible = v;
@@ -1466,10 +1473,17 @@ button:disabled, button.disabled { cursor: default; }
     topVisible = v;
     if (fadeTop) fadeTop.classList.toggle('visible', v);
   }
+  function setTopRuleHidden(v) {
+    if (!topRule) return;
+    if (v === topRuleHidden) return;
+    topRuleHidden = v;
+    topRule.classList.toggle('hidden', v);
+  }
   function onScroll() {
     var y = landing.scrollTop || 0;
     setBottomVisible(y > 2);
     setTopVisible(y >= 2);
+    setTopRuleHidden(y >= 2);
   }
   landing.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('load', onScroll);
