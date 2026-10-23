@@ -516,7 +516,9 @@ button:disabled, button.disabled { cursor: default; }
   .lnd-hero-actions { display: none; }
   .lnd-hero-visual { order: 2; width: 100%; margin-top: 0; }
 
-  /* Блок под картами: текст над кнопкой, кнопка ещё ниже, с заметным отступом */
+  /* Блок под картами: текст над кнопкой, кнопка ещё ниже, с заметным отступом.
+     Строка «Бесплатно. Без установки. Без регистрации.» — белого цвета
+     ТОЛЬКО в мобильной версии. */
   .lnd-mobile-cta {
     display: flex; flex-direction: column; align-items: center;
     gap: clamp(20px, 5vw, 28px);
@@ -524,7 +526,7 @@ button:disabled, button.disabled { cursor: default; }
     width: 100%; order: 3;
   }
   .lnd-mobile-cta .lnd-sub-mobile {
-    color: var(--muted-soft-2);
+    color: #ffffff;
     font-size: clamp(13px, 3.4vmin, 15px);
     line-height: 1.55;
     text-align: center;
